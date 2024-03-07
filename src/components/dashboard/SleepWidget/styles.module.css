@@ -1,0 +1,10 @@
+.sleep-widget {
+  background: linear-gradient(274.42deg, #92a4fd3f 0%, #9dceff3f 124.45%);
+  opacity: 1;
+  border-radius: 16px;
+
+  margin-top: 10px;
+  flex-grow: 1;
+  flex-basis: 1;
+  aspect-ratio: 1;
+}

@@ -1,0 +1,63 @@
+.container button {
+  position: initial;
+  background: linear-gradient(274.42deg, #ffae00 0%, #f12711 124.45%);
+  border-radius: 20px;
+  color: white;
+
+  width: 80px;
+  height: 30px;
+  border: none;
+  padding: 8px;
+  align-self: flex-end;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  min-height: 180px;
+  max-height: 180px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  padding: 0;
+
+  color: #fff;
+  align-items: left;
+  overflow: hidden;
+
+  /* Blue-Linear */
+  background: linear-gradient(274.42deg, #92a4fd3f 0%, #9dceff3f 124.45%);
+  border-radius: 16px;
+
+  position: relative;
+}
+
+.graph {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  transform: translateY(50px);
+}
+
+.headings {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  position: absolute;
+}
+
+.heart_rate {
+  margin-top: 5px;
+  color: #92a3fd;
+  font-weight: 600;
+}
+
+.tooltip {
+  background: linear-gradient(274.42deg, #ffae00 0%, #f12711 124.45%);
+  padding: 8px;
+  border: none;
+}

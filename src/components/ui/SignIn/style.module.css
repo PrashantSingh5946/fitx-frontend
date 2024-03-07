@@ -1,0 +1,43 @@
+.sign-in-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: black;
+  position: relative;
+  width: 100vw;
+}
+
+.sign-in-page h2 {
+  color: white;
+
+  margin: 0.5em 0em 3em 0em;
+}
+
+.sign-in-page h3 {
+  color: white;
+  align-items: center;
+  justify-content: center;
+
+  display: flex;
+}
+
+.sign-in-page button {
+  position: initial;
+  background: linear-gradient(274.42deg, #ffae00 0%, #f12711 124.45%);
+  border-radius: 99px;
+  color: white;
+  padding: 1rem;
+  width: 80%;
+
+  font-size: 1.5rem;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

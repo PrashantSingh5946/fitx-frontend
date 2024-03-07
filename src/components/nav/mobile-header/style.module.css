@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  color: white;
+  position: fixed;
+  top: 0;
+  padding: 10px;
+  background: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.container h3 {
+  margin: 0.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.container h5 {
+  margin: 0.3rem;
+}

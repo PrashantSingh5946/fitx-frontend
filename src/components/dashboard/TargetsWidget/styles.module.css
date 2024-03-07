@@ -1,0 +1,31 @@
+.container button {
+  position: initial;
+  background: linear-gradient(274.42deg, #ffae00 0%, #f12711 124.45%);
+  border-radius: 20px;
+  color: white;
+
+  width: 80px;
+  height: 30px;
+  border: none;
+  padding: 8px;
+  align-self: flex-end;
+}
+
+.container {
+  width: 100%;
+  height: 60px;
+  border-radius: 20px;
+  display: flex;
+  margin-top: 20px;
+  font-size: 0.9rem;
+
+  color: #fff;
+  align-items: center;
+  padding: 20px;
+
+  /* Blue-Linear */
+  background: linear-gradient(274.42deg, #92a4fd3f 0%, #9dceff3f 124.45%);
+  border-radius: 16px;
+
+  justify-content: space-between;
+}
