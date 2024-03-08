@@ -1,7 +1,7 @@
 "use client";
 
-import MobileHeader from "../../../components/nav/mobile-header/MobileHeader";
-import Navbar from "../../../components/nav/mobile-header/MobileHeader";
+import MobileHeader from "../../components/nav/mobile-header/MobileHeader";
+import Navbar from "../../components/nav/mobile-header/MobileHeader";
 import styles from "./styles.module.css";
 
 export default function ({ children }: { children: React.ReactNode }) {

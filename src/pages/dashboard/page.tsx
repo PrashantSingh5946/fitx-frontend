@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import BMIWidget from "../../../components/dashboard/bmi-widget/BMIWidget";
-import MobileHeader from "../../../components/nav/mobile-header/MobileHeader";
+import BMIWidget from "../../components/dashboard/bmi-widget/BMIWidget";
+import MobileHeader from "../../components/nav/mobile-header/MobileHeader";
 import styles from "./styles.module.css";
-import TargetsWidget from "../../../components/dashboard/TargetsWidget/TargetsWidget";
-import HeartRateWidget from "../../../components/dashboard/HeartRateWidget/HeartRateWidget";
-import StepsWidget from "../../../components/dashboard/StepsWidget/StepsWidget";
+import TargetsWidget from "../../components/dashboard/TargetsWidget/TargetsWidget";
+import HeartRateWidget from "../../components/dashboard/HeartRateWidget/HeartRateWidget";
+import StepsWidget from "../../components/dashboard/StepsWidget/StepsWidget";
 
 export default function dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
