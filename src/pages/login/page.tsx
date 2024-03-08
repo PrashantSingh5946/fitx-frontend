@@ -2,10 +2,12 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { decodeLoginCredential } from "../../lib/helpers";
 import { login } from "../../app/features/auth/authSlice";
-import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function () {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const handleLogin = (loginCredential: string | undefined) => {
     if (loginCredential) {
       let decodedCredential = decodeLoginCredential(loginCredential);
@@ -23,6 +25,14 @@ export default function () {
       dispatch(login(payload));
     }
   };
+
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const redirect = useNavigate();
+  useEffect(() => {
+    if (isLoggedIn) {
+      redirect("/dashboard");
+    }
+  }, [isLoggedIn]);
 
   return (
     <div>

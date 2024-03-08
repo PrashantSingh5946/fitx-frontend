@@ -9,8 +9,6 @@ import {
   Route,
 } from "react-router-dom";
 
-import { GoogleOAuthProvider } from "@react-oauth/google";
-
 function App() {
   return (
     <BrowserRouter>
