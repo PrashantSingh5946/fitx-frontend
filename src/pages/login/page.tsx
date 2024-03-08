@@ -7,17 +7,32 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function () {
-  const [shouldAuthorise, startAuthorisation] = useState(false);
+  const [payload, setPayload] = useState({
+    isLoggedIn: false,
+    email: "",
+    emailVerified: false,
+    firstName: "",
+    lastName: "",
+    picture: "",
+    credential: "",
+    accessToken: "",
+  });
   const dispatch = useAppDispatch();
+
   const googleLogin = useGoogleLogin({
     flow: "auth-code",
     onSuccess: async (codeResponse) => {
       console.log(codeResponse);
-      const tokens = await axios.post("http://localhost:3001/auth/google", {
-        code: codeResponse.code,
-      });
+      const { access_token } = (
+        await axios.post("http://localhost:3001/auth/google", {
+          code: codeResponse.code,
+        })
+      ).data;
 
-      console.log(tokens);
+      console.log(access_token);
+
+      setPayload({ ...payload, accessToken: access_token });
+      dispatch(login({ ...payload, accessToken: access_token }));
     },
     onError: (errorResponse) => console.log(errorResponse),
   });
@@ -36,13 +51,14 @@ export default function () {
           lastName: decodedCredential.family_name,
           picture: decodedCredential.picture,
           credential: loginCredential,
+          accessToken: "",
         };
+
+        setPayload(payload);
 
         //Complete the authorisation procedure
 
         googleLogin();
-
-        dispatch(login(payload));
       }
     } catch (err) {
       console.log(err);

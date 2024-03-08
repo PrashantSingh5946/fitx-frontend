@@ -10,6 +10,7 @@ interface CounterState {
   lastName?: string;
   picture?: string;
   credential?: string;
+  accessToken: string;
 }
 
 // Define the initial state using that type
@@ -21,6 +22,7 @@ const initialState: CounterState = {
   lastName: "",
   picture: "",
   credential: "",
+  accessToken: "",
 };
 
 export const authSlice = createSlice({

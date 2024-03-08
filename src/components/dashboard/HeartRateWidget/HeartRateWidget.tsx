@@ -5,14 +5,29 @@ import { useEffect, useState } from "react";
 
 import ApexChart from "react-apexcharts";
 import googleFitDataFetcher from "../../../lib/HeartDataFetcher";
+import { useAppSelector } from "../../../app/hooks";
 
 export default function HeartRateWidget() {
   const [data, setData] = useState([0]);
+  let accessToken = useAppSelector((state) => state.auth.accessToken);
+  const [average, setAverage] = useState("-");
+
+  useEffect(() => {
+    let filteredData = data.filter((value) => value != 0);
+    filteredData.length != 0 &&
+      setAverage(
+        (
+          filteredData.reduce((collector, current) => collector + current) /
+          filteredData.length
+        ).toString() + " BPM"
+      );
+  }, [data]);
 
   const fetchData = async () => {
-    let data = await googleFitDataFetcher();
-    console.log(data);
-    //setData(data);
+    if (accessToken) {
+      let data = await googleFitDataFetcher(accessToken);
+      setData(data);
+    }
   };
 
   useEffect(() => {
@@ -142,7 +157,7 @@ export default function HeartRateWidget() {
     <div className={styles.container}>
       <div className={styles.headings}>
         <span>Heart Rate</span>
-        <span className={styles.heart_rate}>78 BPM</span>
+        <span className={styles.heart_rate}>{average}</span>
       </div>
 
       <div className={styles.graph}>

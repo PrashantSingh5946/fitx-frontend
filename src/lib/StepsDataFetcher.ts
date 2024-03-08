@@ -1,6 +1,7 @@
 import axios from "axios";
+import { useAppSelector } from "../app/hooks";
 
-export default async function (): Promise<number[]> {
+export default async function (accessToken: string): Promise<number[]> {
   let data = JSON.stringify({
     aggregateBy: [
       {
@@ -22,8 +23,7 @@ export default async function (): Promise<number[]> {
     url: "https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate",
     headers: {
       "Content-Type": "application/json",
-      Authorization:
-        "Bearer ya29.a0Ad52N3_K1sejvQZub4aC4P-8GXZkkDzXhNhI9JNAGydg79ISZS7n4QHFX5KIpkVS1p7jAlLCNYd8R5jOadvvShGKdi2F5Q6UF5_wIYsKr9joWlyrifLfsA68HTtUXrO7oN-t1nxxzb7ObLKUSsqrd2UuO3ZeaawrQg2RaCgYKATUSARISFQHGX2MiZUTVzdOMlconOYYZJERZng0171",
+      Authorization: "Bearer " + accessToken,
     },
     data: data,
   };

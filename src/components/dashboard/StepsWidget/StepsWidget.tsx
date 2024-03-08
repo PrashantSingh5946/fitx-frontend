@@ -3,13 +3,22 @@ import { ApexOptions } from "apexcharts";
 import { useEffect, useState } from "react";
 import googleFitStepsDataFetcher from "../../../lib/StepsDataFetcher";
 import ApexChart from "react-apexcharts";
+import { useAppSelector } from "../../../app/hooks";
 
 export default function StepsWidget() {
   const [data, setData] = useState([0]);
+  const [total, setTotal] = useState(0);
+  let accessToken = useAppSelector((state) => state.auth.accessToken);
+
+  useEffect(() => {
+    setTotal(data.reduce((collector, current) => collector + current));
+  }, [data]);
 
   const fetchData = async () => {
-    let data = await googleFitStepsDataFetcher();
-    setData(data);
+    if (accessToken) {
+      let data = await googleFitStepsDataFetcher(accessToken);
+      setData(data);
+    }
   };
 
   useEffect(() => {
@@ -138,7 +147,7 @@ export default function StepsWidget() {
     <div className={styles.container}>
       <div className={styles.headings}>
         <span>Steps</span>
-        <span className={styles.heart_rate}>12240</span>
+        <span className={styles.heart_rate}>{total}</span>
       </div>
 
       <div className={styles.graph}>
