@@ -8,19 +8,22 @@ import { Provider } from "react-redux";
 import { persistor, store } from "./app/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { NextUIProvider } from "@nextui-org/react";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <NextUIProvider>
-          <App />
-        </NextUIProvider>
-      </PersistGate>
-    </Provider>
+    <GoogleOAuthProvider clientId="172252521427-lc61p26ecqbpp0pnqiso8is1jbrt4s2g.apps.googleusercontent.com">
+      <NextUIProvider>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <App />
+          </PersistGate>
+        </Provider>
+      </NextUIProvider>
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );
 

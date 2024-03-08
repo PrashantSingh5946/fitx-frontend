@@ -1,9 +1,8 @@
 "use client";
-import { lazy } from "react";
 import styles from "./styles.module.css";
 import { ApexOptions } from "apexcharts";
 
-const ApexChart = lazy(() => import("react-apexcharts"));
+import ApexChart from "react-apexcharts";
 
 export default function StepsWidget() {
   const options: ApexOptions = {

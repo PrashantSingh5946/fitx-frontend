@@ -8,7 +8,7 @@ import TargetsWidget from "../../components/dashboard/TargetsWidget/TargetsWidge
 import HeartRateWidget from "../../components/dashboard/HeartRateWidget/HeartRateWidget";
 import StepsWidget from "../../components/dashboard/StepsWidget/StepsWidget";
 
-export default function dashboard() {
+export default function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (

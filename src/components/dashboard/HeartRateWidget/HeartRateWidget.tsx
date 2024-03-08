@@ -2,7 +2,9 @@
 import styles from "./styles.module.css";
 import { ApexOptions } from "apexcharts";
 import { Skeleton, Card } from "@nextui-org/react";
-import { lazy, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
+import ApexChart from "react-apexcharts";
 
 export default function HeartRateWidget() {
   const [isDataFetched, setIsDataFetched] = useState(false);
@@ -201,8 +203,6 @@ export default function HeartRateWidget() {
       ],
     },
   ];
-
-  const ApexChart = lazy(() => import("react-apexcharts"));
 
   return (
     <div className={styles.container}>
