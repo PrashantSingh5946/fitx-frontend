@@ -1,4 +1,3 @@
-"use client";
 import { GoogleLogin } from "@react-oauth/google";
 import { decodeLoginCredential } from "../../lib/helpers";
 import { login } from "../../app/features/auth/authSlice";

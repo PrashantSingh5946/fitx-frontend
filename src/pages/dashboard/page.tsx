@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
 import BMIWidget from "../../components/dashboard/bmi-widget/BMIWidget";
 import MobileHeader from "../../components/nav/mobile-header/MobileHeader";

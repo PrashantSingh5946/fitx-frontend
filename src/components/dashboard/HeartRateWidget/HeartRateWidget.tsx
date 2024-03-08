@@ -1,4 +1,3 @@
-"use client";
 import styles from "./styles.module.css";
 import { ApexOptions } from "apexcharts";
 import { Skeleton, Card } from "@nextui-org/react";

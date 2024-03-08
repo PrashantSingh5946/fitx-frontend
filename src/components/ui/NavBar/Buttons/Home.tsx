@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface props {
   fillColor: string;
   href: string;
@@ -6,7 +8,10 @@ interface props {
 export default function (props: props) {
   return (
     <>
-      <a href={props.href}>
+      <Link
+        to={props.href}
+        className="w-full h-full flex justify-center items-center"
+      >
         <svg
           width="24"
           height="23"
@@ -21,7 +26,7 @@ export default function (props: props) {
             fill={props.fillColor}
           />
         </svg>
-      </a>
+      </Link>
     </>
   );
 }
