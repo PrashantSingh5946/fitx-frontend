@@ -34,10 +34,14 @@ export const authSlice = createSlice({
       console.log({ ...state, ...action.payload });
       return { ...state, ...action.payload };
     },
+
+    logout: () => {
+      return { ...initialState };
+    },
   },
 });
 
-export const { login } = authSlice.actions;
+export const { login, logout } = authSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 

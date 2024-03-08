@@ -1,24 +1,58 @@
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  User,
+  useDisclosure,
+} from "@nextui-org/react";
 import styles from "./style.module.css";
 import { Card } from "@nextui-org/card";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import userImage from "../../../../public/assets/user.png";
+import { googleLogout } from "@react-oauth/google";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login, logout } from "../../../app/features/auth/authSlice";
+import { log } from "console";
 
 export default function MobileHeader() {
+  const firstName = useAppSelector((state) => state.auth.firstName);
+  const pictureUrl =
+    useAppSelector((state) => state.auth.picture) ?? "/assets/user.png";
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const logoutUser = () => {
+    googleLogout();
+    dispatch(logout());
+  };
+
   return (
-    <Card className="left-0 w-full h-16 justify-between items-center z-50 w-screen flex flex-row p-5 dark text-white rounded-none mb-2">
-      <span className="text-md font-medium ">Welcome Back, User</span>
-      <svg
-        className="h-6 w-6 text-gray-500"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2"
-          d="M15 17h5l-1.405-1.405A2.032 2.032 0 0 0 18 14.595V10a6 6 0 0 0-6-6h-4l-1-1H8m5 3v7m0 0a2 2 0 1 0 0-4a2 2 0 0 0 0 4z"
-        />
-      </svg>
+    <Card className="left-0 w-full h-16 justify-between items-center z-50 w-screen flex flex-row p-5 dark text-white rounded-none mb-2 p-3">
+      <User
+        name={firstName}
+        description="FitX User"
+        avatarProps={{
+          src: pictureUrl,
+        }}
+        onClick={() => setIsModalOpen(true)}
+      />
+
+      <Modal isOpen={isModalOpen}>
+        <ModalContent>
+          <Button
+            onClick={() => {
+              logoutUser();
+            }}
+          >
+            Logout
+          </Button>
+        </ModalContent>
+      </Modal>
     </Card>
   );
 }
