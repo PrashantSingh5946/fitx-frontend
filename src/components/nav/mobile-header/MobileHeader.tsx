@@ -32,7 +32,10 @@ export default function MobileHeader() {
   };
 
   return (
-    <Card className="left-0 w-full h-16 justify-between items-center z-50 w-screen flex flex-row p-5 dark text-white rounded-none mb-2 p-3">
+    <Card
+      className="left-0 w-full h-16 justify-between items-center z-50 w-screen flex flex-row p-5 dark text-white rounded-none mb-2 p-3"
+      style={{ background: "none" }}
+    >
       <User
         name={firstName}
         description="FitX User"

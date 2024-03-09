@@ -23,13 +23,13 @@ export default function () {
     flow: "auth-code",
     onSuccess: async (codeResponse) => {
       console.log(codeResponse);
-      const { access_token } = (
+      const { access_token, id_token } = (
         await axios.post("http://localhost:3001/auth/google", {
           code: codeResponse.code,
         })
       ).data;
 
-      console.log(access_token);
+      console.log(access_token, id_token);
 
       setPayload({ ...payload, accessToken: access_token });
       dispatch(login({ ...payload, accessToken: access_token }));
