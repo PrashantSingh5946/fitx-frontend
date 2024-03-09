@@ -5,6 +5,8 @@ import styles from "./styles.module.css";
 import TargetsWidget from "../../components/dashboard/TargetsWidget/TargetsWidget";
 import HeartRateWidget from "../../components/dashboard/HeartRateWidget/HeartRateWidget";
 import StepsWidget from "../../components/dashboard/StepsWidget/StepsWidget";
+import WaterIntakeTracker from "../../components/dashboard/WaterIntakeWidget.tsx";
+import SleepTracker from "../../components/dashboard/SleepWidget/SleepWidget";
 
 export default function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,6 +19,9 @@ export default function Dashboard() {
       <HeartRateWidget />
 
       <StepsWidget />
+
+      {/* <WaterIntakeTracker /> */}
+      <SleepTracker />
     </div>
   );
 }

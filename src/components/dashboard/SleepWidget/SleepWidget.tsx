@@ -1,95 +1,31 @@
-import styles from "./styles.module.css";
-import { ApexOptions } from "apexcharts";
+import * as React from "react";
 
-import ApexChart from "react-apexcharts";
-
-export default function SleepWidget() {
-  var series = [75];
-  var options: ApexOptions = {
-    series: [75],
-    chart: {
-      height: 350,
-      type: "radialBar",
-      toolbar: {
-        show: true,
-      },
-    },
-    plotOptions: {
-      radialBar: {
-        startAngle: -135,
-        endAngle: 225,
-        hollow: {
-          margin: 0,
-          size: "70%",
-          background: "#fff",
-          image: undefined,
-          imageOffsetX: 0,
-          imageOffsetY: 0,
-          position: "front",
-          dropShadow: {
-            enabled: true,
-            top: 3,
-            left: 0,
-            blur: 4,
-            opacity: 0.24,
-          },
-        },
-        track: {
-          background: "#fff",
-          strokeWidth: "67%",
-          margin: 0, // margin is in pixels
-          dropShadow: {
-            enabled: true,
-            top: -3,
-            left: 0,
-            blur: 4,
-            opacity: 0.35,
-          },
-        },
-
-        dataLabels: {
-          show: true,
-          name: {
-            offsetY: -10,
-            show: true,
-            color: "#888",
-            fontSize: "17px",
-          },
-          value: {
-            color: "#111",
-            fontSize: "36px",
-            show: true,
-          },
-        },
-      },
-    },
-    fill: {
-      type: "gradient",
-      gradient: {
-        shade: "dark",
-        type: "horizontal",
-        shadeIntensity: 0.5,
-        gradientToColors: ["#ABE5A1"],
-        inverseColors: true,
-        opacityFrom: 1,
-        opacityTo: 1,
-        stops: [0, 100],
-      },
-    },
-    stroke: {
-      lineCap: "round",
-    },
-    labels: ["Percent"],
-  };
+export default function SleepTracker() {
   return (
-    <div className={styles["sleep-widget"]}>
-      <ApexChart
-        options={options}
-        series={series}
-        type="radialBar"
-        height={350}
-        width={"100%"}
-      />
+    <div className="flex flex-col justify-center font-medium max-w-[150px]">
+      <div className="flex overflow-hidden relative flex-col p-4 w-full">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/62e746c1ff0c04ca66714ae68babe9a09599a86ed766d08170e2111a759b922f?apiKey=2471e6abba594059a1b1e2ce6032627e&"
+          className="object-cover absolute inset-0 size-full"
+        />
+        <div className="relative text-xs leading-5 text-white">Sleep</div>
+        <div
+          className="relative mt-3 text-sm leading-5 bg-clip-text bg-[linear-gradient(274deg,#92A3FD_0%,#9DCEFF_124.45%)]"
+          style={{ zIndex: 11 }}
+        >
+          <span className="font-semibold">8</span>
+          <span className="text-xs font-semibold">h</span>{" "}
+          <span className="font-semibold">20</span>
+          <span className="text-xs font-semibold">m</span>
+        </div>
+        <img
+          loading="lazy"
+          style={{ zIndex: 10 }}
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/81ad1a591383edb1ca6cf6aaba225e6ad2a5d5b1c01773640e89c9f4766e3fd5?apiKey=2471e6abba594059a1b1e2ce6032627e&"
+          className="self-center mt-3 aspect-[1.41] w-[110px]"
+        />
+      </div>
     </div>
   );
 }
