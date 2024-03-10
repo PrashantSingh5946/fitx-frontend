@@ -21,6 +21,8 @@ export default function () {
 
   const googleLogin = useGoogleLogin({
     flow: "auth-code",
+    scope:
+      "https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.heart_rate.read https://www.googleapis.com/auth/fitness.sleep.read https://www.googleapis.com/auth/admin.directory.user.readonly",
     onSuccess: async (codeResponse) => {
       console.log(codeResponse);
       const { access_token, id_token } = (
