@@ -36,16 +36,17 @@ export default async function (accessToken: string): Promise<[]> {
       .then((response) => {
         let bucket = response.data.bucket;
 
-        let rawData = bucket.map((minute: any) => {
-          return {
-            y: minute.dataset[0]?.point[0]?.value[0]?.fpVal
-              ? minute.dataset[0]?.point[0]?.value[0]?.fpVal
-              : null,
+        let rawData = bucket
+          .map((minute: any) => {
+            return {
+              y: minute.dataset[0]?.point[0]?.value[0]?.fpVal
+                ? minute.dataset[0]?.point[0]?.value[0]?.fpVal
+                : null,
 
-            x: new Date(parseInt(minute.startTimeMillis)),
-          };
-        });
-        // .filter((dataset: any) => dataset.y);
+              x: new Date(parseInt(minute.startTimeMillis)),
+            };
+          })
+          .filter((dataset: any) => dataset.y);
 
         resolve(rawData);
       })
