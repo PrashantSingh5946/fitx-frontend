@@ -16,25 +16,41 @@ export default function () {
     picture: "",
     credential: "",
     accessToken: "",
+    refreshToken: "",
   });
   const dispatch = useAppDispatch();
+
+  let API_URL = process.env.REACT_APP_API_URL;
 
   const googleLogin = useGoogleLogin({
     flow: "auth-code",
     scope:
       "https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.heart_rate.read https://www.googleapis.com/auth/fitness.sleep.read https://www.googleapis.com/auth/admin.directory.user.readonly",
     onSuccess: async (codeResponse) => {
-      console.log(codeResponse);
-      const { access_token, id_token } = (
-        await axios.post("http://localhost:3001/auth/google", {
+      let url = API_URL + "/auth/google";
+
+      const data = (
+        await axios.post(url, {
           code: codeResponse.code,
         })
       ).data;
 
-      console.log(access_token, id_token);
+      console.log(data);
 
-      setPayload({ ...payload, accessToken: access_token });
-      dispatch(login({ ...payload, accessToken: access_token }));
+      let { access_token, id_token, refresh_token } = data;
+
+      setPayload({
+        ...payload,
+        accessToken: access_token,
+        refreshToken: refresh_token,
+      });
+      dispatch(
+        login({
+          ...payload,
+          accessToken: access_token,
+          refreshToken: refresh_token,
+        })
+      );
     },
     onError: (errorResponse) => console.log(errorResponse),
   });
@@ -54,6 +70,7 @@ export default function () {
           picture: decodedCredential.picture,
           credential: loginCredential,
           accessToken: "",
+          refreshToken: "",
         };
 
         setPayload(payload);

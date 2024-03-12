@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 
-export default async function (accessToken: string): Promise<number[]> {
+export default async function (accessToken: string): Promise<[]> {
   let data = JSON.stringify({
     aggregateBy: [
       {
@@ -35,16 +35,23 @@ export default async function (accessToken: string): Promise<number[]> {
       .request(config)
       .then((response) => {
         let bucket = response.data.bucket;
-        // console.log(bucket);
+
         let rawData = bucket
-          .map((minute: any) => minute.dataset[0]?.point[0]?.value[0]?.fpVal)
-          .map((heart_rate: any) => (heart_rate ? heart_rate : 0));
+          .map((minute: any) => {
+            return {
+              y: minute.dataset[0]?.point[0]?.value[0]?.fpVal
+                ? minute.dataset[0]?.point[0]?.value[0]?.fpVal
+                : null,
+
+              x: new Date(parseInt(minute.startTimeMillis)),
+            };
+          })
+          .filter((dataset: any) => dataset.y);
 
         resolve(rawData);
       })
       .catch((error) => {
-        console.log(error);
-        reject();
+        reject(error);
       });
   });
 }

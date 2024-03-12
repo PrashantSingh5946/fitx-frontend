@@ -15,15 +15,15 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId="172252521427-lc61p26ecqbpp0pnqiso8is1jbrt4s2g.apps.googleusercontent.com">
-      <NextUIProvider>
-        <Provider store={store}>
+    <Provider store={store}>
+      <GoogleOAuthProvider clientId="172252521427-lc61p26ecqbpp0pnqiso8is1jbrt4s2g.apps.googleusercontent.com">
+        <NextUIProvider>
           <PersistGate loading={null} persistor={persistor}>
             <App />
           </PersistGate>
-        </Provider>
-      </NextUIProvider>
-    </GoogleOAuthProvider>
+        </NextUIProvider>
+      </GoogleOAuthProvider>
+    </Provider>
   </React.StrictMode>
 );
 

@@ -1,11 +1,11 @@
 import { ProtectedLayout } from "./layouts/ProtectedLayouts";
-import Dashboard from "./pages/dashboard/page";
+import Dashboard from "./pages/dashboard/Dashboard";
 import Activity from "./pages/activity/page";
 import Search from "./pages/search/page";
 import Profile from "./pages/profile/page";
 import Camera from "./pages/camera/page";
 
-import Login from "./pages/login/page";
+import Login from "./pages/login/Login";
 
 import {
   BrowserRouter,
@@ -15,6 +15,10 @@ import {
 } from "react-router-dom";
 
 function App() {
+  console.log(process.env);
+  let data = process.env.REACT_APP_API_URL;
+  console.log(process.env.REACT_APP_API_URL);
+  console.log(data);
   return (
     <BrowserRouter>
       <Routes>

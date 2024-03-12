@@ -3,14 +3,15 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 // Define a type for the slice state
 interface CounterState {
-  isLoggedIn: boolean;
+  isLoggedIn?: boolean;
   email?: string;
   emailVerified?: boolean;
   firstName?: string;
   lastName?: string;
   picture?: string;
   credential?: string;
-  accessToken: string;
+  accessToken?: string;
+  refreshToken?: string;
 }
 
 // Define the initial state using that type
@@ -23,6 +24,7 @@ const initialState: CounterState = {
   picture: "",
   credential: "",
   accessToken: "",
+  refreshToken: "",
 };
 
 export const authSlice = createSlice({

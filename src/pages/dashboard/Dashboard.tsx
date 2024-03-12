@@ -11,6 +11,8 @@ import SleepTracker from "../../components/dashboard/SleepWidget/SleepWidget";
 export default function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  console.log(process.env.REACT_APP_API_URL);
+
   return (
     <div className="flex flex-col justify-center items-center overflow-hidden p-2 overflow-y-scroll">
       <BMIWidget />

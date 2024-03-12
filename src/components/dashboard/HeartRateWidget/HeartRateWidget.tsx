@@ -5,28 +5,63 @@ import { useEffect, useState } from "react";
 
 import ApexChart from "react-apexcharts";
 import googleFitDataFetcher from "../../../lib/HeartDataFetcher";
-import { useAppSelector } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import axios from "axios";
+import { refreshAccessToken } from "../../../lib/helpers";
+import { login } from "../../../app/features/auth/authSlice";
 
 export default function HeartRateWidget() {
-  const [data, setData] = useState([0]);
+  const [data, setData] = useState([{ x: "", y: 0 }]);
   let accessToken = useAppSelector((state) => state.auth.accessToken);
+  let refreshToken = useAppSelector((state) => state.auth.refreshToken);
+
+  let dispatch = useAppDispatch();
+
   const [average, setAverage] = useState("-");
 
+  let API_URL = process.env.REACT_APP_API_URL;
+  let url = API_URL + "/auth/google";
+
   useEffect(() => {
-    let filteredData = data.filter((value) => value != 0);
+    let filteredData = data.filter((value) => value.y && value.y != 0);
     filteredData.length != 0 &&
       setAverage(
         (
-          filteredData.reduce((collector, current) => collector + current) /
-          filteredData.length
-        ).toString() + " BPM"
+          filteredData.reduce(
+            (collector, current) => collector + current.y,
+            0
+          ) / filteredData.length
+        )
+          .toFixed(0)
+          .toString() + " BPM"
       );
   }, [data]);
 
   const fetchData = async () => {
     if (accessToken) {
-      let data = await googleFitDataFetcher(accessToken);
-      setData(data);
+      try {
+        let data = await googleFitDataFetcher(accessToken);
+        setData(data);
+      } catch (err: any) {
+        if (err.message.indexOf("Request failed with status code 401") != -1) {
+          //Refresh token
+          if (refreshToken) {
+            try {
+              let response = (await refreshAccessToken(refreshToken)).data;
+              console.log("Refreshed token", response);
+              let accessToken = response.access_token;
+
+              dispatch(
+                login({
+                  accessToken: accessToken,
+                })
+              );
+            } catch (err) {
+              console.log("Error refreshing the access token", err);
+            }
+          }
+        }
+      }
     }
   };
 
@@ -68,6 +103,7 @@ export default function HeartRateWidget() {
         show: false,
       },
       labels: {
+        format: "HH/mm",
         show: false,
       },
       axisTicks: {
@@ -115,7 +151,7 @@ export default function HeartRateWidget() {
 
         return `<div style="background: linear-gradient(274.42deg, #ffae00 0%, #f12711 124.45%);
   padding: 8px;
-  border: none;">${data}</div>`;
+  border: none;">${data.y} BPM</div>`;
       },
     },
     fill: {
