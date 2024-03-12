@@ -1,0 +1,123 @@
+/* .navbar {
+    background-color: yellow;
+    height: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+  } */
+  
+  .nav-menu {
+    /* background-color: orange; */
+    /* width: 250px; */
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    /* justify-content: center; */
+    /* position: fixed; */
+    top: 0;
+    left: -100%;
+    transition: 850ms;
+  }
+  
+  .nav-menu.active {
+    left: 0;
+    transition: 350ms;
+  }
+
+  .nav-menu-items {
+    width: 15vw;
+    /* background: green; */
+  }
+
+  .navbar-toggle {
+    /* background-color: green; */
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+  }
+
+  .menu-bars {
+    margin-left: 2rem;
+    /* margin-top: 2.5rem; */
+    font-size: 2rem;
+    background: none;
+  }
+  
+  .dashboardOptions{
+    /* margin-top: 10vh; */
+    margin-left: 5vh;
+    background: linear-gradient(274.42deg, #92a4fd3f 0%, #9dceff3f 124.45%);
+    border-radius: 16px;
+  }
+
+  .nav-option {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px 0px 8px 16px;
+    list-style: none;
+    height: 50px;
+  }
+  
+  .nav-option a {
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 18px;
+    width: 95%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    border-radius: 4px;
+  }
+  
+  .nav-option a:hover {
+    background-color: #1a83ff;
+  }
+  
+  span {
+    margin-left: 16px;
+  }
+/* ------------------------------- */
+  .nav-main-page {
+    width: 85vw;
+    display: flex;
+  }
+
+ 
+  .deskUI{
+    /* width: 85vw; */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .user{
+    margin: 0;
+    width: 85vw;
+    height: 20vh;  
+    /* background: blue; */
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+  
+  .userAvatar{
+    background:red;
+    height: 50px;
+    width: 50px;
+    border-radius: 30px;
+    margin-right: 2vw;
+  }
+  
+  .userName{
+    font-size: 2.5rem;
+    margin-right: 2vw;
+  
+  }
+
+  .main{
+    margin-left: 2rem;
+    display: flex;
+  }
