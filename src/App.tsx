@@ -6,7 +6,7 @@ import Profile from "./pages/profile/page";
 import Camera from "./pages/camera/page";
 
 import Login from "./pages/login/Login";
-
+import DashUI from "./pages/desktopDashboard/DashUI";
 import {
   BrowserRouter,
   BrowserRouter as Router,
@@ -28,6 +28,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/camera" element={<Camera />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/dash" element={<DashUI />} />
         </Route>
 
         <Route path="/login" element={<Login />} />

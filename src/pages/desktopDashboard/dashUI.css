@@ -1,0 +1,105 @@
+.container{
+    margin: 0;
+    padding: 0;
+    /* background: green; */
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.row{
+    /* background: red; */
+    width: 30%;
+    height: 100%;
+}
+
+.row1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background: yellow; */
+    height: 100%;
+    width: 100%;
+}
+
+.row1col1{
+    height: 25%;
+    /* background: purple; */
+}
+.row1col2{
+    height: 70%;
+    /* background: purple; */
+}
+
+.row1col2division{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+.row1col2row{
+    width: 48%;
+    height: 100%;
+    background: olive;
+}
+
+.stats{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.statsData{
+    height: 30%;
+    /* background: lime; */
+}
+
+/* ------------------------ ROW2------------------ */
+
+.row2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* background: yellow; */
+    height: 100%;
+    width: 100%;
+}
+.row2col1{
+    height: 25%;
+    /* background: purple; */
+    color:white;
+    background: linear-gradient(274.42deg, #92a4fd3f 0%, #9dceff3f 124.45%);
+    box-shadow: 0px 10px 22px rgba(149, 173, 254, 0.3);
+    border-radius: 16px;
+}
+
+.row2col2{
+    height: 25%;
+    /* background: purple; */
+    color:white;
+    background: linear-gradient(274.42deg, #92a4fd3f 0%, #9dceff3f 124.45%);
+    box-shadow: 0px 10px 22px rgba(149, 173, 254, 0.3);
+
+    border-radius: 16px;
+}
+
+.row2col3{
+    height: 42%;
+    /* background: purple; */
+    color:white;
+    background: linear-gradient(274.42deg, #92a4fd3f 0%, #9dceff3f 124.45%);
+    box-shadow: 0px 10px 22px rgba(149, 173, 254, 0.3);
+    border-radius: 16px;
+}
+/* ------------------------ ROW3------------------ */
+.row3{
+    height: 100%;
+    color:white;
+    background: linear-gradient(274.42deg, #92a4fd3f 0%, #9dceff3f 124.45%);
+    box-shadow: 0px 10px 22px rgba(149, 173, 254, 0.3);
+    border-radius: 16px;
+}
