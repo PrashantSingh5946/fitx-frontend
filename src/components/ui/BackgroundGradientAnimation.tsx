@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 export const BackgroundGradientAnimation = ({
   gradientBackgroundStart = "rgb(108, 0, 162)",
   gradientBackgroundEnd = "rgb(0, 17, 82)",
-  firstColor = "221, 113, 30",
+  firstColor = "221, 180, 210",
   secondColor = "221, 74, 30",
   thirdColor = "100, 45, 30",
   fourthColor = "200, 50, 50",
@@ -32,6 +32,8 @@ export const BackgroundGradientAnimation = ({
   interactive?: boolean;
   containerClassName?: string;
 }) => {
+  let lastExecutionTime = 0;
+
   useEffect(() => {
     document.addEventListener("mousemove", (e: any) => {
       function move() {
@@ -39,9 +41,35 @@ export const BackgroundGradientAnimation = ({
           interactiveRef.current.style.transform = `translate(${Math.round(
             e.clientX
           )}px, ${Math.round(e.clientY)}px)`;
+
+          console.log("Mouse move triggered");
         }
       }
-      move();
+
+      const currentTime = Date.now();
+      if (currentTime - lastExecutionTime >= 100) {
+        move();
+        lastExecutionTime = currentTime;
+      }
+    });
+
+    document.addEventListener("touchmove", (e: any) => {
+      function move() {
+        if (interactiveRef.current) {
+          interactiveRef.current.style.transform = `translate(${Math.round(
+            e.touches[0].clientX
+          )}px, ${Math.round(e.touches[0].clientY)}px)`;
+
+          console.log(e);
+          console.log("touch move triggered");
+        }
+      }
+
+      const currentTime = Date.now();
+      if (currentTime - lastExecutionTime >= 100) {
+        move();
+        lastExecutionTime = currentTime;
+      }
     });
   }, []);
 
@@ -173,6 +201,7 @@ export const BackgroundGradientAnimation = ({
             `[mix-blend-mode:var(--blending-value)] w-full h-full -top-1/2 -left-1/2`,
             `opacity-70`
           )}
+          style={{ transition: "0.1s" }}
         ></div>
       </div>
     </div>
