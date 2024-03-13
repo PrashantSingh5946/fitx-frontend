@@ -3,12 +3,18 @@ import { ApexOptions } from "apexcharts";
 import { useEffect, useState } from "react";
 import googleFitStepsDataFetcher from "../../../lib/StepsDataFetcher";
 import ApexChart from "react-apexcharts";
-import { useAppSelector } from "../../../app/hooks";
+import { useAppSelector, useAppDispatch } from "../../../app/hooks";
+import { refreshAccessToken } from "../../../lib/helpers";
+import { login } from "../../../app/features/auth/authSlice";
+import { AxiosError } from "axios";
 
 export default function StepsWidget() {
   const [data, setData] = useState([0]);
   const [total, setTotal] = useState(0);
+
   let accessToken = useAppSelector((state) => state.auth.accessToken);
+  let refreshToken = useAppSelector((state) => state.auth.refreshToken);
+  let dispatch = useAppDispatch();
 
   useEffect(() => {
     setTotal(data.reduce((collector, current) => collector + current));
@@ -16,14 +22,38 @@ export default function StepsWidget() {
 
   const fetchData = async () => {
     if (accessToken) {
-      let data = await googleFitStepsDataFetcher(accessToken);
-      setData(data);
+      try {
+        let data = await googleFitStepsDataFetcher(accessToken);
+        setData(data);
+      } catch (err: any) {
+        console.log(err);
+        if (err.response.status == 401) {
+          console.log("Refreshing token", refreshToken);
+
+          //Refresh token
+          if (refreshToken) {
+            try {
+              let response = (await refreshAccessToken(refreshToken)).data;
+              console.log("Refreshed token", response);
+              let accessToken = response.access_token;
+
+              dispatch(
+                login({
+                  accessToken: accessToken,
+                })
+              );
+            } catch (err) {
+              console.log("Error refreshing the access token", err);
+            }
+          }
+        }
+      }
     }
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [accessToken]);
 
   const options: ApexOptions = {
     chart: {

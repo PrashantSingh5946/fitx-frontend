@@ -45,7 +45,7 @@ export default async function (accessToken: string): Promise<number[]> {
       })
       .catch((error) => {
         console.log(error);
-        reject();
+        reject(error);
       });
   });
 }

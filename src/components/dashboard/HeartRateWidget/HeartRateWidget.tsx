@@ -67,7 +67,7 @@ export default function HeartRateWidget() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [accessToken]);
 
   const options: ApexOptions = {
     chart: {

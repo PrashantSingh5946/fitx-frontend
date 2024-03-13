@@ -12,7 +12,7 @@ export default function (props: props) {
         to={props.href}
         className="w-full h-full flex justify-center items-center"
       >
-        <div className="bg-red-700 flex justify-center items-center w-full h-full flex justify-center items-center">
+        <div className="flex justify-center items-center w-full h-full flex justify-center items-center">
           <svg
             width="20"
             height="18"
