@@ -3,8 +3,6 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Activity from "./pages/activity/page";
 import Search from "./pages/search/page";
 import Profile from "./pages/profile/page";
-import Camera from "./pages/camera/page";
-
 import Login from "./pages/login/Login";
 
 import {
@@ -13,6 +11,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import Recipe from "./pages/recipe/Recipe";
 
 function App() {
   console.log(process.env);
@@ -26,7 +25,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/activity" element={<Activity />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/camera" element={<Camera />} />
+          <Route path="/recipe" element={<Recipe />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
 

@@ -3,9 +3,10 @@ import CameraButton from "./Buttons/Camera";
 import ActivityButton from "./Buttons/Activity";
 import ProfileButton from "./Buttons/Profile";
 import SearchButton from "./Buttons/Search";
+import { FaBowlFood } from "react-icons/fa6";
 
 import { Tabs, Tab } from "@nextui-org/tabs";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function () {
   let fillColor = "orange";
@@ -57,13 +58,15 @@ export default function () {
           }
         />
         <Tab
-          key="/camera"
+          key="/recipe"
           className="flex items-center"
           title={
-            <CameraButton
-              href="/camera"
-              fillColor={path.includes("camera") ? fillColor : "white"}
-            />
+            <Link to={"/recipe"}>
+              <FaBowlFood
+                style={{ height: 20, width: 20 }}
+                color={path.includes("recipe") ? fillColor : "white"}
+              />
+            </Link>
           }
         />
         <Tab
