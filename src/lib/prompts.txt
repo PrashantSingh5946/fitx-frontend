@@ -1,0 +1,95 @@
+// let myPrompt = `Given the height, weight, age and gender in the given object,
+// {
+//     "height":"160",
+//     "weight":"80KG",
+//     "gender": "male",
+//     "age":"25",
+//     "Activity level":"no exercise"
+// }
+// estimate only the BMR value using Mifflin-St Jeor Equation and return the response in json format`;
+
+// let myPrompt = `Given the BMR and activity level in the given object,
+// {
+//     "BMR":"1800 calorie",
+//     "Activity level":"less-intense exercise"
+// }
+// only return the maintanance calorie as response only in json format without any additional text or explanation`;
+
+// let myPrompt = `Given the height, weight, age, goals and preferences. Give a list of suggestions of workouts that will help to acheive the goal and focus more on the preferences part as these could be a restrictions or limitations,
+// {
+//     "height":"160 cms",
+//     "Weight" :"80 Kg",
+//     "Age" : "26 years"
+//     "Activity level":"less-intense exercise",
+//     "Goals" : "loose weight",
+//     "Preference" : "had a ligament operation in left leg"
+// }
+// only return the lisy of exercises/ workout as response only in json format without any additional text or explanation`;
+
+let myPrompt = `Delete my previous query and treat this as a fresh query. Given the height, weight, age, goals and preferences. Give a list of suggestions of dish/diet that will help to acheive the goal and focus more on the preferences/restriction part as these could be a limitations,
+{
+    "height":"160 cms",
+    "Weight" :"80 Kg",
+    "Age" : "26 years"
+    "Activity level":"less-intense exercise",
+    "Goals" : "loose weight",
+    "Physical Restriction" : "no teeths",
+    "Dietry Preference" : "Non-vegetarian",
+    "Dietry Restriction" : "Have type 2 diabetes, allergic to fish"
+}
+only return the list of diet as response only in json format without any additional text or explanation like when to eat or any schedule or timings like breakfast, lunch, starter, snacks etc. it should be healthy and as per physical and diestry, preference and restrictions`;
+
+const fetchData = async () => {
+  let TOKEN = "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";
+  let res = await fetch("https://api.openai.com/v1/engines/gpt-4/completions", {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + TOKEN,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      prompt: myPrompt,
+      max_tokens: 3500,
+      n: 1,
+      stop: null,
+      temperature: 0,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+    }),
+  });
+
+  const result = await res.json();
+  console.log(result.choices[0].text);
+};
+
+fetchData();
+
+let topic = `give me 3 recipes that comply with the following dietary requirements
+{
+  allergies
+: 
+"Peanut allergy"
+dietaryPreferences
+: 
+"vegetarian"
+name
+: 
+"Soaked oats"
+nutritionalPreference
+: 
+"High in protein, low in sugar"}
+
+
+
+in the form of a json schema like this
+{
+
+    name: "Name of the recipe",
+    ingredients: [ingredients],
+    instructions: instructions to prepare the recipe,
+    macros_per_100g: [carbs:5g, Protein: 3g],
+    dietary_restrictions,
+    allergy_warning,
+    
+}. Make sure to return the data in JSON format`;
