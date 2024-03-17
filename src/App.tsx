@@ -14,10 +14,6 @@ import {
 import Recipe from "./pages/recipe/Recipe";
 
 function App() {
-  console.log(process.env);
-  let data = process.env.REACT_APP_API_URL;
-  console.log(process.env.REACT_APP_API_URL);
-  console.log(data);
   return (
     <BrowserRouter>
       <Routes>
@@ -28,7 +24,6 @@ function App() {
           <Route path="/recipe" element={<Recipe />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
-
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>

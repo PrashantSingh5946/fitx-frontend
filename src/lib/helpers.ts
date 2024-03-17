@@ -20,3 +20,30 @@ export const refreshAccessToken = async (refreshToken: string) => {
 
   return data;
 };
+
+export const fetchGoogleProfilePicture = async (
+  accessToken: string
+): Promise<string> => {
+  let config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: "https://www.googleapis.com/userinfo/v2/me",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+  };
+
+  return new Promise((resolve, reject) => {
+    axios
+      .request(config)
+      .then((response) => {
+        let pictureURL = response.data.picture.toString();
+
+        resolve(pictureURL);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};

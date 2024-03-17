@@ -7,21 +7,19 @@ import HeartRateWidget from "../../components/dashboard/HeartRateWidget/HeartRat
 import StepsWidget from "../../components/dashboard/StepsWidget/StepsWidget";
 import WaterIntakeTracker from "../../components/dashboard/WaterIntakeWidget.tsx";
 import SleepTracker from "../../components/dashboard/SleepWidget/SleepWidget";
-
+import { Card, User } from "@nextui-org/react";
 export default function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   console.log(process.env.REACT_APP_API_URL);
 
   return (
-    <div className="flex flex-col justify-center items-center overflow-hidden p-2 overflow-y-scroll">
+    <div className="" style={{ height: "inherit", overflowY: "scroll" }}>
+      <MobileHeader />
       <BMIWidget />
       <TargetsWidget />
-
       <HeartRateWidget />
-
       <StepsWidget />
-
       {/* <WaterIntakeTracker /> */}
       <SleepTracker />
     </div>

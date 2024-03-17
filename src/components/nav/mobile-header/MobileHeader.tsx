@@ -20,6 +20,8 @@ import { log } from "console";
 
 export default function MobileHeader() {
   const firstName = useAppSelector((state) => state.auth.firstName);
+  const lastName = useAppSelector((state) => state.auth.lastName);
+
   const pictureUrl =
     useAppSelector((state) => state.auth.picture) ?? "/assets/user.png";
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,8 +39,8 @@ export default function MobileHeader() {
       style={{ background: "none" }}
     >
       <User
-        name={firstName}
-        description="FitX User"
+        name={"WELCOME BACK"}
+        description={firstName?.toUpperCase() + " " + lastName?.toUpperCase()}
         avatarProps={{
           src: pictureUrl,
         }}

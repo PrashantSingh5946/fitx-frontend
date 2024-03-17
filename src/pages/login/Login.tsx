@@ -1,5 +1,8 @@
 import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
-import { decodeLoginCredential } from "../../lib/helpers";
+import {
+  decodeLoginCredential,
+  fetchGoogleProfilePicture,
+} from "../../lib/helpers";
 import { login } from "../../app/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +28,7 @@ export default function () {
   const googleLogin = useGoogleLogin({
     flow: "auth-code",
     scope:
-      "https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.heart_rate.read https://www.googleapis.com/auth/fitness.sleep.read https://www.googleapis.com/auth/admin.directory.user.readonly",
+      "https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.heart_rate.read https://www.googleapis.com/auth/fitness.sleep.read https://www.googleapis.com/auth/admin.directory.user.readonly https://www.googleapis.com/auth/userinfo.profile",
     onSuccess: async (codeResponse) => {
       let url = API_URL + "/auth/google";
 
@@ -39,16 +42,20 @@ export default function () {
 
       let { access_token, id_token, refresh_token } = data;
 
+      let picture = await fetchGoogleProfilePicture(access_token);
+
       setPayload({
         ...payload,
         accessToken: access_token,
         refreshToken: refresh_token,
+        picture: picture,
       });
       dispatch(
         login({
           ...payload,
           accessToken: access_token,
           refreshToken: refresh_token,
+          picture: picture,
         })
       );
     },

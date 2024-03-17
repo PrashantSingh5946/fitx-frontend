@@ -2,7 +2,7 @@ import * as React from "react";
 
 export default function SleepTracker() {
   return (
-    <div className="flex flex-col justify-center font-medium max-w-[150px]">
+    <div className="flex flex-col justify-center font-medium max-w-[150px] m-4">
       <div className="flex overflow-hidden relative flex-col p-4 w-full">
         <img
           loading="lazy"
