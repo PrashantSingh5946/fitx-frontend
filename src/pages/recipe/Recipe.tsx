@@ -55,7 +55,7 @@ export default function () {
             type="search"
             startContent={<FaSearch />}
           />
-          <Modal isOpen={true} onOpenChange={onOpenChange}>
+          <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent
               className="bg-transparent top-0"
               style={{

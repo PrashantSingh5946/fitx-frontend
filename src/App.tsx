@@ -12,6 +12,7 @@ import {
   Route,
 } from "react-router-dom";
 import Recipe from "./pages/recipe/Recipe";
+import RecipeDetails from "./components/recipe/RecipeDisplay";
 
 function App() {
   return (
@@ -21,7 +22,10 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/activity" element={<Activity />} />
           <Route path="/search" element={<Search />} />
+
           <Route path="/recipe" element={<Recipe />} />
+          <Route path="/recipe/show" element={<RecipeDetails />} />
+
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/login" element={<Login />} />
