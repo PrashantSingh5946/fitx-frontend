@@ -1,5 +1,6 @@
 import * as React from "react";
 import Pancake from "./Pancake";
+import { useAppSelector } from "../../app/hooks";
 
 interface IngredientProps {
   imageSrc: string;
@@ -117,6 +118,9 @@ const ingredients = [
 ];
 
 const RecipeDetails: React.FC = () => {
+  const recipe = useAppSelector((state) => state.recipe.currentRecipe);
+  console.log(recipe);
+
   return (
     <div
       className="flex flex-col mx-auto w-full bg-neutral-600 max-w-[480px] text-white rounded-[40px] mt-4"
@@ -140,9 +144,9 @@ const RecipeDetails: React.FC = () => {
         <div className="flex gap-5 justify-between leading-[150%] px-4">
           <div className="flex flex-col">
             <h1 className="mt-8 text-base font-bold text-white">
-              Blueberry Pancake
+              {recipe?.name}
             </h1>
-            <div className="mt-3 text-xs bg-clip-text">by Tony Robbins</div>
+            <div className="mt-3 text-xs bg-clip-text">by Prashant Singh</div>
           </div>
           <img
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/524327a0641a67174da21f8a51e1e0dc8a2d7ce2460a60c82bf3bc59bf63b040?apiKey=2471e6abba594059a1b1e2ce6032627e&"
@@ -172,7 +176,7 @@ const RecipeDetails: React.FC = () => {
                   alt="Calories"
                   className="shrink-0 aspect-square w-[18px]"
                 />
-                <div className="my-auto">180kCal</div>
+                <div className="my-auto">{recipe?.calories ?? 0}kCal</div>
               </div>
               <div
                 className="flex gap-1.5 rounded-xl  bg-[linear-gradient(175deg,#b4b5b72b_0%,#3F4E5E36_124.45%)]"
@@ -187,7 +191,7 @@ const RecipeDetails: React.FC = () => {
                   alt="Fats"
                   className="shrink-0 aspect-square w-[18px]"
                 />
-                <div>30g fats</div>
+                <div>{recipe?.macros_per_100g.fats}g fats</div>
               </div>
               <div
                 className="flex gap-1.5 p-2.5 rounded-xl  bg-[linear-gradient(175deg,#b4b5b72b_0%,#3F4E5E36_124.45%)]"
@@ -202,7 +206,7 @@ const RecipeDetails: React.FC = () => {
                   alt="Proteins"
                   className="shrink-0 aspect-square w-[18px]"
                 />
-                <div>20g proteins</div>
+                <div>{recipe?.macros_per_100g.protein}g proteins</div>
               </div>
 
               <div
@@ -218,7 +222,7 @@ const RecipeDetails: React.FC = () => {
                   alt="Fibre"
                   className="shrink-0 self-end mt-9 aspect-[0.76] w-[18px]"
                 />
-                <div>20g Fibre</div>
+                <div>{recipe?.macros_per_100g.fibre}g Fibre</div>
               </div>
             </div>
           </div>
@@ -230,10 +234,7 @@ const RecipeDetails: React.FC = () => {
             Description
           </h2>
           <p className="self-start text-white mt-2 text-xs leading-5 bg-clip-text">
-            Pancakes are some people's favorite breakfast, who doesn't like
-            pancakes? Especially with the real honey splash on top of the
-            pancakes, of course everyone loves that! besides being{" "}
-            <span className="font-medium">Read More...</span>
+            {recipe?.description}
           </p>
         </div>
 
@@ -244,13 +245,18 @@ const RecipeDetails: React.FC = () => {
                 Ingredients That You Will Need{" "}
               </div>
               <div className="text-base text-xs  text-white self-end self-center">
-                6 items
+                {recipe?.ingredients.length} items
               </div>
             </div>
 
             <div className="flex gap-4 mt-5 leading-[150%] overflow-x-auto">
-              {ingredients.map((ingredient) => (
-                <Ingredient key={ingredient.name} {...ingredient} />
+              {recipe?.ingredients.map((data, index) => (
+                <Ingredient
+                  key={index}
+                  name={""}
+                  amount={data}
+                  imageSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/f04bc67e13ef786645964c24ac41cd45bd59d0b24762be1cd783117fa4cd416b?apiKey=2471e6abba594059a1b1e2ce6032627e&"
+                />
               ))}
             </div>
           </div>
@@ -266,8 +272,14 @@ const RecipeDetails: React.FC = () => {
             <div className="text-xs text-stone-500">8 Steps</div>
           </div>
 
-          {steps.map((step, index) => (
-            <Step key={step.number} {...step} isActive={index === 0} />
+          {recipe?.instructions.map((instruction, index) => (
+            <Step
+              key={index}
+              number={index.toFixed(0)}
+              title=""
+              description={instruction}
+              isActive={index === 0}
+            />
           ))}
         </div>
       </div>

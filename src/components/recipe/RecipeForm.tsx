@@ -22,6 +22,11 @@ import Loader from "../loader/page";
 import RecipeCard from "./RecipeCard";
 import RecipeDetails from "./RecipeDisplay";
 import { useNavigate } from "react-router-dom";
+import {
+  Recipe,
+  setCurrentRecipe,
+} from "../../app/features/recipe/recipeSlice";
+import { useAppDispatch } from "../../app/hooks";
 
 export default function () {
   const [name, setName] = useState("");
@@ -67,6 +72,7 @@ export default function () {
 
   const [data, setData] = useState<any>([]);
   let nav = useNavigate();
+  let dispatch = useAppDispatch();
 
   console.log(data.length);
 
@@ -89,22 +95,50 @@ export default function () {
       data: payload,
     };
 
+    const submitData = (data: Recipe) => {
+      dispatch(setCurrentRecipe(data));
+      nav("/recipe/show");
+    };
+
     setIsloading(true);
     axios
       .request(config)
       .then((response) => {
         console.log(response);
         setData(response.data);
+
+        let {
+          name,
+          description,
+          allergy_warning,
+          calories,
+          ingredients,
+          instructions,
+          macros_per_100g,
+          dietary_restrictions,
+        } = response.data.recipes[0];
+
+        let recipe: Recipe = {
+          name: name,
+          description: description,
+          ingredients: ingredients,
+          allergy_warning: allergy_warning,
+          calories: calories,
+          instructions: instructions,
+          macros_per_100g: macros_per_100g,
+          dietary_restrictions: dietary_restrictions,
+        };
+
+        submitData(recipe);
       })
       .catch((error) => {
         console.log(error);
       })
       .finally(() => {
         setIsloading(false);
-
-        nav("/recipe/show");
       });
   }
+
   return (
     <>
       {!isLoading && data.length == 0 && (
