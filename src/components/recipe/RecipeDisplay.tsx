@@ -119,7 +119,7 @@ const ingredients = [
 const RecipeDetails: React.FC = () => {
   return (
     <div
-      className="flex flex-col mx-auto w-full bg-neutral-600 max-w-[480px]  text-white rounded-[40px]"
+      className="flex flex-col mx-auto w-full bg-neutral-600 max-w-[480px] text-white rounded-[40px] mt-4"
       style={{
         maxHeight: "90vh",
         background: "linear-gradient(274.42deg, #F6605D 0%, #9DCEFF 124.45%)",

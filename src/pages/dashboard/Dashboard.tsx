@@ -14,8 +14,11 @@ export default function Dashboard() {
   console.log(process.env.REACT_APP_API_URL);
 
   return (
-    <div className="" style={{ height: "inherit", overflowY: "scroll" }}>
-      <MobileHeader />
+    <div
+      className="p-2 flex flex-col items-center"
+      style={{ height: "inherit", overflowY: "scroll" }}
+    >
+      {/* <MobileHeader /> */}
       <BMIWidget />
       <TargetsWidget />
       <HeartRateWidget />

@@ -44,7 +44,7 @@ export default function MobileHeader() {
         avatarProps={{
           src: pictureUrl,
         }}
-        onClick={() => setIsModalOpen(true)}
+        // onClick={() => setIsModalOpen(true)}
       />
 
       <Modal isOpen={isModalOpen}>

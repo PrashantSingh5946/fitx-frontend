@@ -16,7 +16,7 @@ export default function () {
 
   return (
     <>
-      <header className="flex gap-5 justify-between px-px text-base font-bold leading-6 text-white">
+      <header className="flex gap-5 justify-between  text-base font-bold leading-6 text-white mt-2 p-2">
         <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/26336c73ad6c31fbce1fc60e608605a48a89b2f14e549776cc8ce9ed8856450e?apiKey=2471e6abba594059a1b1e2ce6032627e&"
@@ -34,14 +34,14 @@ export default function () {
         />
       </header>
       <div
-        className=""
+        className="p-2 mt-2  flex flex-col gap-5"
         style={{
           height: "inherit",
           overflowY: "scroll",
           marginTop: "24px",
         }}
       >
-        <Card className="bg-transparent mt-4">
+        <Card className="bg-transparent flex flex-col gap-5">
           <Input
             classNames={{
               base: "max-w-full sm:max-w-[10rem] h-10",
@@ -51,10 +51,11 @@ export default function () {
                 "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
             }}
             placeholder="Type to search..."
-            size="sm"
+            size="lg"
             type="search"
             startContent={<FaSearch />}
           />
+
           <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
             <ModalContent
               className="bg-transparent top-0"
@@ -72,19 +73,21 @@ export default function () {
                   <ModalBody>
                     <RecipeForm />
                   </ModalBody>
-                  <ModalFooter>
-                    <Button color="danger" onPress={onClose}>
-                      Cancel
-                    </Button>
-                    <Button color="primary" onPress={onClose}>
-                      Create
-                    </Button>
-                  </ModalFooter>
                 </>
               )}
             </ModalContent>
           </Modal>
-          <Button onPress={onOpen}>Create Recipe</Button>
+          <Button
+            className="justify-center items-center px-16 py-5 text-base font-bold leading-6 text-white"
+            style={{
+              background:
+                "linear-gradient(274.42deg, rgb(246, 96, 93) 0%, rgb(157, 206, 255) 124.45%)",
+            }}
+            onPress={onOpen}
+            size="lg"
+          >
+            Create Recipe
+          </Button>
         </Card>
       </div>
     </>

@@ -21,6 +21,7 @@ import axios from "axios";
 import Loader from "../loader/page";
 import RecipeCard from "./RecipeCard";
 import RecipeDetails from "./RecipeDisplay";
+import { useNavigate } from "react-router-dom";
 
 export default function () {
   const [name, setName] = useState("");
@@ -65,6 +66,7 @@ export default function () {
   //   ]);
 
   const [data, setData] = useState<any>([]);
+  let nav = useNavigate();
 
   console.log(data.length);
 
@@ -99,65 +101,78 @@ export default function () {
       })
       .finally(() => {
         setIsloading(false);
+
+        nav("/recipe/show");
       });
   }
   return (
     <>
       {!isLoading && data.length == 0 && (
         <>
-          <Input
-            type="text"
-            label="Recipe name"
-            placeholder="Enter your recipe name"
-            className="bg-transparent text-white"
-            value={name}
-            onValueChange={(e) => {
-              setName((name) => e);
-            }}
-          />
+          <div className="p-4 flex flex-col  gap-3">
+            <Input
+              type="text"
+              label="Recipe name"
+              placeholder="Enter your recipe name"
+              className="bg-transparent text-white"
+              value={name}
+              onValueChange={(e) => {
+                setName((name) => e);
+              }}
+            />
 
-          <Card className="p-2 bg-transparent text-white">
-            <RadioGroup
-              classNames={{ label: "text-white" }}
-              label="Select your dietary preference"
-              orientation="horizontal"
-              defaultValue="vegetarian"
-              onValueChange={(e) => setDietaryPreferences(e)}
-            >
-              <Radio classNames={{ label: "text-white" }} value="vegetarian">
-                Veg
-              </Radio>
-              <Radio
+            <Card className="p-2 bg-transparent text-white">
+              <RadioGroup
                 classNames={{ label: "text-white" }}
-                value="non-vegetarian"
+                label="Select your dietary preference"
+                orientation="horizontal"
+                defaultValue="vegetarian"
+                onValueChange={(e) => setDietaryPreferences(e)}
               >
-                Nov-Veg
-              </Radio>
-              <Radio classNames={{ label: "text-white" }} value="vegan">
-                Vegan
-              </Radio>
-            </RadioGroup>
-          </Card>
+                <Radio classNames={{ label: "text-white" }} value="vegetarian">
+                  Veg
+                </Radio>
+                <Radio
+                  classNames={{ label: "text-white" }}
+                  value="non-vegetarian"
+                >
+                  Nov-Veg
+                </Radio>
+                <Radio classNames={{ label: "text-white" }} value="vegan">
+                  Vegan
+                </Radio>
+              </RadioGroup>
+            </Card>
 
-          <Input
-            type="text"
-            label="Nutritional Preferences"
-            placeholder="Enter your nutritional preferences"
-            className="bg-transparent"
-            value={nutritionalPreference}
-            onValueChange={(e) => setNutritionalPreferences(e)}
-          />
+            <Input
+              type="text"
+              label="Nutritional Preferences"
+              placeholder="Enter your nutritional preferences"
+              className="bg-transparent"
+              value={nutritionalPreference}
+              onValueChange={(e) => setNutritionalPreferences(e)}
+            />
 
-          <Input
-            type="text"
-            label="Allergies"
-            placeholder="Name allergies, if you have got any"
-            className="bg-transparent"
-            value={allergies}
-            onValueChange={(e) => setAllergies(e)}
-          />
+            <Input
+              type="text"
+              label="Allergies"
+              placeholder="Name allergies, if you have got any"
+              className="bg-transparent"
+              value={allergies}
+              onValueChange={(e) => setAllergies(e)}
+            />
 
-          <button onClick={GenerateRecipe}>Generate Recipe</button>
+            <button
+              className="justify-center items-center px-16 py-5 text-base font-bold leading-6 text-white rounded-lg"
+              style={{
+                background:
+                  "linear-gradient(274.42deg, rgb(246, 96, 93) 0%, rgb(157, 206, 255) 124.45%)",
+              }}
+              onClick={GenerateRecipe}
+            >
+              Generate Recipe
+            </button>
+          </div>
         </>
       )}
 

@@ -15,7 +15,7 @@ export default function (props: props) {
       >
         <div className="flex justify-center items-center w-full h-full flex justify-center items-center">
           <FaBowlFood
-            style={{ height: 20, width: 20 }}
+            style={{ height: "30px", width: "30px" }}
             color={props.fillColor}
           />
         </div>
