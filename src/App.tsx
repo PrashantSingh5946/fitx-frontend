@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import Recipe from "./pages/recipe/Recipe";
 import RecipeDetails from "./components/recipe/RecipeDisplay";
+import TermsOfService from "./pages/legal/TermsOfService";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
 
           <Route path="/profile" element={<Profile />} />
         </Route>
+        <Route path="/terms-of-service" element={<TermsOfService />} />
+        <Route path="/privacy-policy" element={<TermsOfService />} />
+
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
