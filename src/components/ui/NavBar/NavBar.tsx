@@ -10,7 +10,7 @@ import { Link, useLocation } from "react-router-dom";
 import Recipe from "./Buttons/Recipe";
 
 export default function () {
-  let fillColor = "orange";
+  let fillColor = "#fb3f3fd4";
   const { pathname: path } = useLocation();
 
   return (

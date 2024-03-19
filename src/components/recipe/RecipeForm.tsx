@@ -30,9 +30,9 @@ import { useAppDispatch } from "../../app/hooks";
 
 export default function () {
   const [name, setName] = useState("");
-  const [nutritionalPreference, setNutritionalPreferences] = useState("");
+  const [nutritionalPreference, setNutritionalPreferences] = useState("None");
   const [dietaryPreferences, setDietaryPreferences] = useState("vegetarian");
-  const [allergies, setAllergies] = useState("");
+  const [allergies, setAllergies] = useState("None");
   const [isLoading, setIsloading] = useState(false);
   //   const [data, setData] = useState([
   //     {
@@ -206,7 +206,7 @@ export default function () {
         </>
       )}
 
-      {isLoading && <Spinner size="lg" />}
+      {isLoading && <Spinner className="h-[450px]" size="lg" />}
 
       {data.length != 0 && (
         <div className="overflow-y bg-transparent">
