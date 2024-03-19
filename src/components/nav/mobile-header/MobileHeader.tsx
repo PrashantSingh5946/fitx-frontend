@@ -13,25 +13,38 @@ import { Card } from "@nextui-org/card";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import userImage from "../../../../public/assets/user.png";
 import { googleLogout } from "@react-oauth/google";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { login, logout } from "../../../app/features/auth/authSlice";
 import { log } from "console";
+import { fetchGoogleProfilePicture } from "../../../lib/helpers";
 
 export default function MobileHeader() {
   const firstName = useAppSelector((state) => state.auth.firstName);
   const lastName = useAppSelector((state) => state.auth.lastName);
+  const access_token = useAppSelector((state) => state.auth.accessToken);
 
   const pictureUrl =
     useAppSelector((state) => state.auth.picture) ?? "/assets/user.png";
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const logoutUser = () => {
     googleLogout();
     dispatch(logout());
   };
+
+  useEffect(() => {
+    const fetchPic = async () => {
+      if (access_token) {
+        let picture = await fetchGoogleProfilePicture(access_token);
+        dispatch(login({ picture: picture }));
+      }
+    };
+
+    fetchPic();
+  }, [access_token]);
 
   return (
     <Card
