@@ -3,7 +3,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Activity from "./pages/activity/page";
 import Profile from "./pages/profile/page";
 import Login from "./pages/login/Login";
-
+import DashUI from "./pages/desktopDashboard/DashUI";
 import {
   BrowserRouter,
   BrowserRouter as Router,
@@ -26,6 +26,7 @@ function App() {
           <Route path="/recipe/show" element={<RecipeDetails />} />
 
           <Route path="/profile" element={<Profile />} />
+          <Route path="/dash" element={<DashUI />} />
         </Route>
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/privacy-policy" element={<TermsOfService />} />
