@@ -88,7 +88,7 @@ export default function () {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:3001/recipe/create",
+      url: process.env.REACT_APP_API_URL + "/recipe/create",
       headers: {
         "Content-Type": "application/json",
       },
