@@ -1,4 +1,10 @@
-import { Button, Card, Input, useDisclosure } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardHeader,
+  Input,
+  useDisclosure,
+} from "@nextui-org/react";
 import { FaSearch } from "@react-icons/all-files/fa/FaSearch";
 import {
   Modal,
@@ -10,6 +16,8 @@ import {
 import { useState } from "react";
 import Recipe from "../../components/ui/NavBar/Buttons/Recipe";
 import RecipeForm from "../../components/recipe/RecipeForm";
+import RecipePreviewCard from "../../components/recipe/RecipePreviewCard";
+import RecipeCategoryCard from "../../components/recipe/RecipeCategoryCard";
 
 export default function () {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -22,7 +30,7 @@ export default function () {
           "linear-gradient(274.42deg, rgb(96 106 153 / 20%) 0%, rgba(49, 69, 88, 0.82) 124.45%)",
       }}
     >
-      <div className="flex gap-2 justify-between text-base font-bold leading-6 text-white mt-2 p-2">
+      <div className="flex gap-2 justify-between text-base font-bold leading-6 text-white mt-5 p-2">
         <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/26336c73ad6c31fbce1fc60e608605a48a89b2f14e549776cc8ce9ed8856450e?apiKey=2471e6abba594059a1b1e2ce6032627e&"
@@ -40,7 +48,7 @@ export default function () {
         />
       </div>
       <div
-        className="p-2 mt-2  flex flex-col gap-5 bg-white/10 p-4 rounded-large m-2 "
+        className="p-2 mt-2  flex flex-col gap-5 bg-transparent p-4 rounded-large m-2 "
         style={{
           height: "inherit",
           overflowY: "scroll",
@@ -95,6 +103,26 @@ export default function () {
             Create Recipe
           </Button>
         </Card>
+
+        <div>
+          <Card className="bg-transparent shadow-none text-white text-large pb-2 mb-0 mt-5">
+            Recommendation for Diet
+          </Card>
+          <Card className="bg-transparent shadow-none flex flex-row overflow-x gap-5 mt-1">
+            <RecipePreviewCard />
+            <RecipePreviewCard />
+          </Card>
+        </div>
+
+        <div>
+          <Card className="bg-transparent shadow-none text-white text-large pb-2 mb-0 mt-5">
+            Find something to eat
+          </Card>
+          <Card className="bg-transparent shadow-none flex flex-row overflow-x gap-5 mt-1">
+            <RecipeCategoryCard />
+            <RecipeCategoryCard />
+          </Card>
+        </div>
       </div>
     </div>
   );

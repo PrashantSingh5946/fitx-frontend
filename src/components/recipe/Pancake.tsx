@@ -9,7 +9,7 @@ export default function () {
         xmlns="http://www.w3.org/2000/svg"
       >
         <circle opacity="0.3" cx="145" cy="144" r="144" fill="white" />
-        <g clip-path="url(#clip0_8_5133)">
+        <g clipPath="url(#clip0_8_5133)">
           <path
             opacity="0.27"
             d="M1.86737 227.122C1.86737 256.546 66.3057 283.482 145.348 281.94C235.18 280.187 288.033 254.356 288.033 224.931C288.033 195.507 224.153 176.698 145.124 176.698C66.0953 176.698 1.86737 197.691 1.86737 227.122Z"
@@ -773,11 +773,11 @@ export default function () {
             y2="230.227"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#D72F5D" />
-            <stop offset="0.33" stop-color="#D83360" />
-            <stop offset="0.64" stop-color="#DA3E68" />
-            <stop offset="0.93" stop-color="#DD5077" />
-            <stop offset="1" stop-color="#DE567B" />
+            <stop stopColor="#D72F5D" />
+            <stop offset="0.33" stopColor="#D83360" />
+            <stop offset="0.64" stopColor="#DA3E68" />
+            <stop offset="0.93" stopColor="#DD5077" />
+            <stop offset="1" stopColor="#DE567B" />
           </linearGradient>
           <linearGradient
             id="paint1_linear_8_5133"
@@ -787,11 +787,11 @@ export default function () {
             y2="28434.3"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#D72F5D" />
-            <stop offset="0.33" stop-color="#D83360" />
-            <stop offset="0.64" stop-color="#DA3E68" />
-            <stop offset="0.93" stop-color="#DD5077" />
-            <stop offset="1" stop-color="#DE567B" />
+            <stop stopColor="#D72F5D" />
+            <stop offset="0.33" stopColor="#D83360" />
+            <stop offset="0.64" stopColor="#DA3E68" />
+            <stop offset="0.93" stopColor="#DD5077" />
+            <stop offset="1" stopColor="#DE567B" />
           </linearGradient>
           <linearGradient
             id="paint2_linear_8_5133"
@@ -801,11 +801,11 @@ export default function () {
             y2="218.988"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#F0A82C" />
-            <stop offset="0.31" stop-color="#EFA42C" />
-            <stop offset="0.59" stop-color="#EB992C" />
-            <stop offset="0.86" stop-color="#E6872C" />
-            <stop offset="1" stop-color="#E27A2C" />
+            <stop stopColor="#F0A82C" />
+            <stop offset="0.31" stopColor="#EFA42C" />
+            <stop offset="0.59" stopColor="#EB992C" />
+            <stop offset="0.86" stopColor="#E6872C" />
+            <stop offset="1" stopColor="#E27A2C" />
           </linearGradient>
           <linearGradient
             id="paint3_linear_8_5133"
@@ -815,11 +815,11 @@ export default function () {
             y2="37142.3"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#F0A82C" />
-            <stop offset="0.31" stop-color="#EFA42C" />
-            <stop offset="0.59" stop-color="#EB992C" />
-            <stop offset="0.86" stop-color="#E6872C" />
-            <stop offset="1" stop-color="#E27A2C" />
+            <stop stopColor="#F0A82C" />
+            <stop offset="0.31" stopColor="#EFA42C" />
+            <stop offset="0.59" stopColor="#EB992C" />
+            <stop offset="0.86" stopColor="#E6872C" />
+            <stop offset="1" stopColor="#E27A2C" />
           </linearGradient>
           <radialGradient
             id="paint4_radial_8_5133"
@@ -829,11 +829,11 @@ export default function () {
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(46732.4 9033.85) scale(22410.1 5650.2)"
           >
-            <stop stop-color="#F0A82C" />
-            <stop offset="0.31" stop-color="#EFA42C" />
-            <stop offset="0.59" stop-color="#EB992C" />
-            <stop offset="0.86" stop-color="#E6872C" />
-            <stop offset="1" stop-color="#E27A2C" />
+            <stop stopColor="#F0A82C" />
+            <stop offset="0.31" stopColor="#EFA42C" />
+            <stop offset="0.59" stopColor="#EB992C" />
+            <stop offset="0.86" stopColor="#E6872C" />
+            <stop offset="1" stopColor="#E27A2C" />
           </radialGradient>
           <radialGradient
             id="paint5_radial_8_5133"
@@ -843,10 +843,10 @@ export default function () {
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(153.508 112.164) scale(75.794 76.2878)"
           >
-            <stop stop-color="#E27A2C" />
-            <stop offset="0.28" stop-color="#E4802C" />
-            <stop offset="0.66" stop-color="#E9932C" />
-            <stop offset="1" stop-color="#F0A82C" />
+            <stop stopColor="#E27A2C" />
+            <stop offset="0.28" stopColor="#E4802C" />
+            <stop offset="0.66" stopColor="#E9932C" />
+            <stop offset="1" stopColor="#F0A82C" />
           </radialGradient>
           <radialGradient
             id="paint6_radial_8_5133"
@@ -856,11 +856,11 @@ export default function () {
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(68066.4 510.733) scale(40999.1 8833.58)"
           >
-            <stop stop-color="#F0A82C" />
-            <stop offset="0.31" stop-color="#EFA42C" />
-            <stop offset="0.59" stop-color="#EB992C" />
-            <stop offset="0.86" stop-color="#E6872C" />
-            <stop offset="1" stop-color="#E27A2C" />
+            <stop stopColor="#F0A82C" />
+            <stop offset="0.31" stopColor="#EFA42C" />
+            <stop offset="0.59" stopColor="#EB992C" />
+            <stop offset="0.86" stopColor="#E6872C" />
+            <stop offset="1" stopColor="#E27A2C" />
           </radialGradient>
           <linearGradient
             id="paint7_linear_8_5133"
@@ -870,11 +870,11 @@ export default function () {
             y2="3021.69"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#F0A82C" />
-            <stop offset="0.31" stop-color="#EFA42C" />
-            <stop offset="0.59" stop-color="#EB992C" />
-            <stop offset="0.86" stop-color="#E6872C" />
-            <stop offset="1" stop-color="#E27A2C" />
+            <stop stopColor="#F0A82C" />
+            <stop offset="0.31" stopColor="#EFA42C" />
+            <stop offset="0.59" stopColor="#EB992C" />
+            <stop offset="0.86" stopColor="#E6872C" />
+            <stop offset="1" stopColor="#E27A2C" />
           </linearGradient>
           <clipPath id="clip0_8_5133">
             <rect
