@@ -66,7 +66,7 @@ export default function Home() {
                     radius="lg"
                     size="lg"
                   >
-                    Join Us
+                    <Link to={"/login"}>Join Us</Link>
                   </Button>
                 </p>
               </CardFooter>
