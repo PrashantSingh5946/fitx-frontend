@@ -1,6 +1,7 @@
 import * as React from "react";
 import Pancake from "./Pancake";
 import { useAppSelector } from "../../app/hooks";
+import { Card } from "@nextui-org/react";
 
 interface IngredientProps {
   imageSrc: string;
@@ -9,17 +10,16 @@ interface IngredientProps {
 }
 
 const Ingredient: React.FC<IngredientProps> = ({ imageSrc, name, amount }) => (
-  <div
-    className="flex flex-col flex-1 items-left"
-    style={{ maxWidth: "100px" }}
-  >
+  <div className="flex flex-col items-left" style={{ minWidth: "100px" }}>
     <img
       src={imageSrc}
       alt={name}
       className="self-center w-20 rounded-xl aspect-square"
     />
     <div className="self-center mt-2.5 text-xs text-white">{name}</div>
-    <div className="self-center mt-1 text-xs text-stone-500">{amount}</div>
+    <div className="self-center mt-1 text-xs text-stone-500 flex-wrap mx-2 px-2">
+      {amount}
+    </div>
   </div>
 );
 
@@ -138,7 +138,7 @@ const RecipeDetails: React.FC = () => {
       </div>
       <div
         className="flex z-10 flex-col px-1 py-2 mt-0 w-full bg-black/80 rounded-[40px]"
-        style={{ overflow: "scroll" }}
+        style={{ overflowY: "scroll" }}
       >
         <div className="shrink-0 self-end bg-white/80 h-[5px] rounded-[50px] w-[50px] self-center" />
         <div className="flex gap-5 justify-between leading-[150%] px-4">
@@ -239,8 +239,8 @@ const RecipeDetails: React.FC = () => {
         </div>
 
         <div className="flex gap-4 mt-5 p-2">
-          <div className="flex flex-col flex-1">
-            <div className="flex flex-row justify-between px-1">
+          <div className="flex flex-col">
+            <div className="justify-between px-1">
               <div className="text-base font-semibold leading-6 text-white">
                 Ingredients That You Will Need{" "}
               </div>
@@ -249,14 +249,22 @@ const RecipeDetails: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex gap-4 mt-5 leading-[150%] overflow-x-auto">
+            <div
+              className="flex flex-row mt-5 leading-[150%] w-screen"
+              style={{ overflowX: "scroll", maxWidth: "100%" }}
+            >
               {recipe?.ingredients.map((data, index) => (
-                <Ingredient
+                <Card
                   key={index}
-                  name={""}
-                  amount={data}
-                  imageSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/f04bc67e13ef786645964c24ac41cd45bd59d0b24762be1cd783117fa4cd416b?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-                />
+                  className="bg-transparent p-2"
+                  style={{ minWidth: "100px", minHeight: "100px" }}
+                >
+                  <Ingredient
+                    name={""}
+                    amount={data}
+                    imageSrc="https://cdn.builder.io/api/v1/image/assets/TEMP/f04bc67e13ef786645964c24ac41cd45bd59d0b24762be1cd783117fa4cd416b?apiKey=2471e6abba594059a1b1e2ce6032627e&"
+                  />
+                </Card>
               ))}
             </div>
           </div>
