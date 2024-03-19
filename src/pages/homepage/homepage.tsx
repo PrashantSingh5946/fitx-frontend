@@ -56,9 +56,20 @@ export default function Homepage() {
 
                     <Button
                       variant="bordered"
-                      className="bg-transparent p-4 w-[100px] mt-10"
+                      color="warning"
+                      className="bg-orange text-white p-4 w-[100px] mt-10"
+                      style={{
+                        background: "rgb(245, 165, 36)",
+                        color: "white",
+                      }}
                     >
-                      <Link to={"/login"}>JOIN US</Link>{" "}
+                      <Link
+                        className="text-white"
+                        to={"/login"}
+                        style={{ color: "white", fontWeight: "600" }}
+                      >
+                        JOIN US
+                      </Link>{" "}
                     </Button>
                   </div>
                 </div>
