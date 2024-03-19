@@ -1,6 +1,8 @@
 // src/redux/store.js
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authReducer from "./features/auth/authSlice";
+import recipeReducer from "./features/recipe/recipeSlice";
+
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
@@ -10,7 +12,10 @@ const persistConfig = {
   storage,
 };
 
-const rootReducer = combineReducers({ auth: authReducer });
+const rootReducer = combineReducers({
+  auth: authReducer,
+  recipe: recipeReducer,
+});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

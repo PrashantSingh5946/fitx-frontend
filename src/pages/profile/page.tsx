@@ -1,11 +1,32 @@
-import { Button, Card } from "@nextui-org/react";
+import { Button, Card, Image, Switch } from "@nextui-org/react";
 import { googleLogout } from "@react-oauth/google";
 import * as React from "react";
 import { useDispatch } from "react-redux";
-import { logout } from "../../app/features/auth/authSlice";
+import { login, logout } from "../../app/features/auth/authSlice";
+import { useAppSelector } from "../../app/hooks";
+import { useEffect } from "react";
+import { fetchGoogleProfilePicture } from "../../lib/helpers";
 
 export default function Profile() {
   const dispatch = useDispatch();
+
+  //Fetcing profile picture
+  const pictureUrl =
+    useAppSelector((state) => state.auth.picture) ?? "/assets/user.png";
+  const { accessToken, firstName, lastName } = useAppSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    const fetchPic = async () => {
+      if (accessToken) {
+        let picture = await fetchGoogleProfilePicture(accessToken);
+        dispatch(login({ picture: picture }));
+      }
+    };
+
+    fetchPic();
+  }, [accessToken]);
 
   const logoutUser = () => {
     googleLogout();
@@ -13,7 +34,13 @@ export default function Profile() {
   };
 
   return (
-    <div className="flex flex-col items-center pt-10 mx-auto w-full bg-black max-w-[480px] rounded-[40px]">
+    <div
+      className="flex flex-col items-center pt-10 mx-auto w-full bg-black max-w-[480px] rounded-[40px] pb-5 mt-5"
+      style={{
+        background:
+          "linear-gradient(274.42deg, rgba(96, 106, 153, 0.2) 0%, rgba(49, 69, 88, 0.82) 124.45%)",
+      }}
+    >
       <div className="flex gap-5 justify-between px-5 w-full text-base font-bold leading-6 text-white whitespace-nowrap max-w-[315px]">
         <img
           loading="lazy"
@@ -27,26 +54,35 @@ export default function Profile() {
           className="shrink-0 w-8 aspect-square"
         />
       </div>
-      <Card style={{ background: "none" }} className="w-100 mt-2 mb-5">
-        <div className="flex gap-5 justify-between mt-9 w-full leading-[150%] max-w-[315px]">
-          <div className="flex gap-4">
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/cb9a7c63bc52aaf91d4edc4bc9f21ccfdcd71acddc831e85bd466265d66c59db?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-              className="shrink-0 aspect-square w-[55px]"
+      <Card
+        style={{ background: "none" }}
+        className="w-100 mt-2 my-5 flex justify-center items-center p-4"
+      >
+        <div className="flex gap-5 justify-between w-full leading-[150%] max-w-[315px]">
+          <div className="flex gap-4 dark">
+            <Image
+              src={pictureUrl}
+              width={55}
+              height={55}
+              className="shrink-0 aspect-square dark "
+              isZoomed
             />
             <div className="flex flex-col flex-1 px-5 my-auto">
-              <div className="text-sm font-medium text-white">John Smith</div>
-              <div className="mt-4 text-xs whitespace-nowrap text-white">
+              <div className="text-base text-white">
+                {firstName + " " + lastName}
+              </div>
+              <div className="mt-1 text-xs whitespace-nowrap text-white/70">
                 Genesis Program
               </div>
             </div>
           </div>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/0469ee56d4b96896d2bb471ede89a9b7c643c5623790167b51b9984ee0dd5e80?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-            className="shrink-0 my-auto aspect-[2.78] w-[83px]"
-          />
+          <Button
+            className="text-white self-center"
+            size="sm"
+            style={{ background: "#FF6767" }}
+          >
+            Edit
+          </Button>
         </div>
       </Card>
 
@@ -58,13 +94,9 @@ export default function Profile() {
 
       {/* Accounts Tab */}
       <div
-        className="flex gap-5 justify-between px-5 py-6 mt-8 w-full rounded-2xl shadow-2xl bg-neutral-600 max-w-[315px]"
+        className="flex gap-5 justify-between px-5 py-6 mt-8 w-full rounded-2xl shadow-2xl bg-neutral-600/40 max-w-[315px]"
         style={{
-          background: "gray",
-          margin: "20px",
-          width: "90%",
           borderRadius: "10px",
-          padding: "10px",
         }}
       >
         <div className="flex flex-col text-xs leading-5 text-white whitespace-nowrap">
@@ -128,44 +160,27 @@ export default function Profile() {
 
       <div
         style={{
-          background: "gray",
-          margin: "20px",
-          width: "90%",
           borderRadius: "10px",
-          padding: "10px",
         }}
-        className="flex gap-5 justify-between px-5 py-6 mt-4 w-full text-white whitespace-nowrap rounded-2xl shadow-2xl bg-neutral-600 leading-[150%] max-w-[315px]"
+        className="flex gap-2 justify-between p-6 mt-4 w-full text-white whitespace-nowrap rounded-2xl shadow-2xl bg-neutral-600/40 leading-[150%] max-w-[315px]"
       >
-        <div className="flex flex-col">
-          <div className="text-base font-semibold">Notification</div>
-          <div className="flex gap-2.5 mt-5 text-xs">
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/781961b75170daa19bb393e72030b879a0d1da27fdaf88b87579c33c393ad7f9?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-              className="shrink-0 w-5 aspect-square"
-            />
+        <div className="flex flex-col w-full">
+          <div className="text-base font-semibold">Notifications</div>
+          <div className="flex gap-2.5 mt-1 text-xs space-between">
             <div className="grow my-auto">Pop-up Notification</div>
+            <Switch defaultSelected color="success" size="sm" />
           </div>
         </div>
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/460793e8e6b0bdc42d9cba8dad428498c3eb6b6bee0a0bf5713ad1aa86c2b105?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-          className="shrink-0 self-end mt-9 w-9 aspect-[2]"
-        />
       </div>
       <div
         style={{
-          background: "gray",
-          margin: "20px",
-          width: "90%",
           borderRadius: "10px",
-          padding: "10px",
         }}
-        className="flex gap-5 justify-between px-5 pt-7 pb-3.5 mt-4 w-full rounded-2xl shadow-2xl bg-neutral-600 max-w-[315px]"
+        className="flex gap-5 justify-between p-5 mt-4 w-full rounded-2xl shadow-2xl bg-neutral-600/40 max-w-[315px]"
       >
         <div className="flex flex-col text-xs leading-5 text-white">
           <div className="text-base font-semibold">Other</div>
-          <div className="flex gap-2.5 mt-5">
+          <div className="flex gap-2.5 mt-3">
             <img
               loading="lazy"
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/7d3dddb204077686acd3c54ab8e44beb37595e67124ad79f403c32d3928de61d?apiKey=2471e6abba594059a1b1e2ce6032627e&"
@@ -198,6 +213,7 @@ export default function Profile() {
 
       <div>
         <Button
+          className="m-5"
           onClick={() => {
             logoutUser();
           }}

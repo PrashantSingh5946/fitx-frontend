@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+/* #mobile_navbar svg {
+  height: 30px !important;
+} */

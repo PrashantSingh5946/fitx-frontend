@@ -10,7 +10,7 @@ import { Link, useLocation } from "react-router-dom";
 import Recipe from "./Buttons/Recipe";
 
 export default function () {
-  let fillColor = "orange";
+  let fillColor = "#fb3f3fd4";
   const { pathname: path } = useLocation();
 
   return (
@@ -23,11 +23,12 @@ export default function () {
         className="rounded-sm"
         classNames={{
           tabList:
-            "dark gap-6 w-full relative rounded-none p-0 border-b border-divider h-30 p-2 rounded-sm flex p-1 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-100 rounded-medium   z-20",
-          tab: "max-w px-0 h-12 flex align-center justify-center ",
+            "gap-6 w-full relative rounded-none p-0 border-b border-divider h-30 p-2 rounded-sm flex p-1 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-100 rounded-large mx-2 z-20 dark",
+          tab: "max-w p-4 h-20 flex align-center justify-center ",
           tabContent: "w-full h-full flex justify-center items-center",
-          base: "w-screen h-14",
+          base: "w-screen h-20 mb-4 mt-2",
         }}
+        id="mobile_navbar"
       >
         <Tab
           key="/dashboard"

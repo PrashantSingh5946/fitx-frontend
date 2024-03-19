@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 // Define a type for the slice state
-interface InitialState {
+interface AuthState {
   isLoggedIn?: boolean;
   email?: string;
   emailVerified?: boolean;
@@ -15,7 +15,7 @@ interface InitialState {
 }
 
 // Define the initial state using that type
-const initialState: InitialState = {
+const initialState: AuthState = {
   isLoggedIn: false,
   email: "",
   emailVerified: false,
@@ -33,7 +33,7 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     // Use the PayloadAction type to declare the contents of `action.payload`
-    login: (state, action: PayloadAction<InitialState>) => {
+    login: (state, action: PayloadAction<AuthState>) => {
       console.log(action.payload);
       console.log({ ...state, ...action.payload });
       return { ...state, ...action.payload };

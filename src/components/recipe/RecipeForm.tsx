@@ -20,6 +20,13 @@ import {
 import axios from "axios";
 import Loader from "../loader/page";
 import RecipeCard from "./RecipeCard";
+import RecipeDetails from "./RecipeDisplay";
+import { useNavigate } from "react-router-dom";
+import {
+  Recipe,
+  setCurrentRecipe,
+} from "../../app/features/recipe/recipeSlice";
+import { useAppDispatch } from "../../app/hooks";
 
 interface RecipeFormProps {
   name: string;
