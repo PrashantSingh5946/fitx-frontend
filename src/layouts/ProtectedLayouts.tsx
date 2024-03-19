@@ -5,7 +5,6 @@ import { useAppSelector } from "../app/hooks";
 import { useEffect } from "react";
 import { Card } from "@nextui-org/react";
 import { BackgroundGradientAnimation } from "../components/ui/BackgroundGradientAnimation";
-import Homepage from "../pages/homepage/homepage";
 
 export const ProtectedLayout = () => {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
@@ -18,7 +17,6 @@ export const ProtectedLayout = () => {
 
   return (
     <BackgroundGradientAnimation>
-      <Homepage/>
       <Card className="bg-transparent z-10 h-screen w-screen flex flex-col">
         {/* <MobileHeader /> */}
         <div

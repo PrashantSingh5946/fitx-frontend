@@ -13,11 +13,13 @@ import {
 import Recipe from "./pages/recipe/Recipe";
 import RecipeDetails from "./components/recipe/RecipeDisplay";
 import TermsOfService from "./pages/legal/TermsOfService";
+import Homepage from "./pages/homepage/Homepage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Homepage />} />
         <Route path="/" element={<ProtectedLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/activity" element={<Activity />} />
@@ -27,6 +29,7 @@ function App() {
 
           <Route path="/profile" element={<Profile />} />
         </Route>
+
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/privacy-policy" element={<TermsOfService />} />
 
