@@ -13,13 +13,13 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Homepage from "./pages/homepage/Homepage";
+import Home from "./pages/homepage/Home";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Home />} />
 
         <Route path="/" element={<ProtectedLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
