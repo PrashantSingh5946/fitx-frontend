@@ -15,8 +15,14 @@ export default function () {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <>
-      <header className="flex gap-5 justify-between  text-base font-bold leading-6 text-white mt-2 p-2">
+    <div
+      className="flex flex-col gap-2 mt-5 rounded-[40px] py-5 px-2"
+      style={{
+        background:
+          "linear-gradient(274.42deg, rgb(96 106 153 / 20%) 0%, rgba(49, 69, 88, 0.82) 124.45%)",
+      }}
+    >
+      <div className="flex gap-2 justify-between text-base font-bold leading-6 text-white mt-2 p-2">
         <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/26336c73ad6c31fbce1fc60e608605a48a89b2f14e549776cc8ce9ed8856450e?apiKey=2471e6abba594059a1b1e2ce6032627e&"
@@ -32,16 +38,16 @@ export default function () {
           alt=""
           className="shrink-0 w-8 aspect-square"
         />
-      </header>
+      </div>
       <div
-        className="p-2 mt-2  flex flex-col gap-5"
+        className="p-2 mt-2  flex flex-col gap-5 bg-white/10 p-4 rounded-large m-2 "
         style={{
           height: "inherit",
           overflowY: "scroll",
           marginTop: "24px",
         }}
       >
-        <Card className="bg-transparent flex flex-col gap-5">
+        <Card className="bg-transparent flex flex-col gap-5 border-0 shadow-none">
           <Input
             classNames={{
               base: "max-w-full sm:max-w-[10rem] h-10",
@@ -81,7 +87,7 @@ export default function () {
             className="justify-center items-center px-16 py-5 text-base font-bold leading-6 text-white"
             style={{
               background:
-                "linear-gradient(274.42deg, rgb(246, 96, 93) 0%, rgb(157, 206, 255) 124.45%)",
+                "linear-gradient(274.42deg, rgb(255 52 48) 0%, rgb(109 182 255) 124.45%)",
             }}
             onPress={onOpen}
             size="lg"
@@ -90,6 +96,6 @@ export default function () {
           </Button>
         </Card>
       </div>
-    </>
+    </div>
   );
 }

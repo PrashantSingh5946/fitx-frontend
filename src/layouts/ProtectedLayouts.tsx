@@ -18,7 +18,7 @@ export const ProtectedLayout = () => {
   return (
     <BackgroundGradientAnimation>
       <Card className="bg-transparent z-10 h-screen w-screen flex flex-col">
-        <MobileHeader />
+        {/* <MobileHeader /> */}
         <div
           className="bg-transparent w-screen"
           style={{ flexGrow: 1, overflowY: "auto" }}

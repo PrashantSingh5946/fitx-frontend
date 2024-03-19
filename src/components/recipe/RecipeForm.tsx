@@ -200,7 +200,7 @@ export default function () {
               className="justify-center items-center px-16 py-5 text-base font-bold leading-6 text-white rounded-lg"
               style={{
                 background:
-                  "linear-gradient(274.42deg, rgb(246, 96, 93) 0%, rgb(157, 206, 255) 124.45%)",
+                  "linear-gradient(274.42deg, rgb(255 56 52) 0%, rgb(94 175 255) 124.45%)",
               }}
               onClick={GenerateRecipe}
             >

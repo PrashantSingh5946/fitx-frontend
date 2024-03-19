@@ -18,7 +18,7 @@ export default function Dashboard() {
       className="p-2 flex flex-col items-center"
       style={{ height: "inherit", overflowY: "scroll" }}
     >
-      {/* <MobileHeader /> */}
+      <MobileHeader />
       <BMIWidget />
       <TargetsWidget />
       <HeartRateWidget />
