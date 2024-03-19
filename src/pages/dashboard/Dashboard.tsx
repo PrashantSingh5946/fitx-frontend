@@ -20,7 +20,7 @@ export default function Dashboard() {
     >
       <MobileHeader />
       <BMIWidget />
-      <TargetsWidget />
+      {/* <TargetsWidget /> */}
       <HeartRateWidget />
       <StepsWidget />
       {/* <WaterIntakeTracker /> */}

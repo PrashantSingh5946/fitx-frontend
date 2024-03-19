@@ -47,23 +47,19 @@ const ActivityTrackerApp: React.FC = () => (
       className="m-2 p-2"
       style={{ background: "none", width: "90%", alignSelf: "center" }}
     >
-      <header className="flex gap-5 justify-between px-px text-base font-bold leading-6 text-white">
+      <div className="flex gap-5 mt-2 justify-between px-5 w-full text-base font-bold leading-6 text-white whitespace-nowrap">
         <img
           loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/26336c73ad6c31fbce1fc60e608605a48a89b2f14e549776cc8ce9ed8856450e?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-          alt=""
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/7e4b5c64979f7b79b1d2be80b885f9ad03ed4723e1a1f2835d21945d29ba888b?apiKey=2471e6abba594059a1b1e2ce6032627e&"
           className="shrink-0 w-8 aspect-square"
         />
-        <h2 className="flex-auto my-auto m-2 p-2 font-semibold leading-5 text-white">
-          Activity Tracker
-        </h2>
+        <div className="my-auto">Activity Tracker</div>
         <img
           loading="lazy"
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/a4a6fbc5223c59f105bbf3ea19b0d0860de5c6961f1c8ff64f71a5d789034b87?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-          alt=""
           className="shrink-0 w-8 aspect-square"
         />
-      </header>
+      </div>
     </Card>
 
     <div
