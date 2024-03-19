@@ -12,6 +12,7 @@ import {
   Route,
 } from "react-router-dom";
 import Recipe from "./pages/recipe/Recipe";
+import RecipeDetails from "./pages/recipe/RecipeDetails";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/activity" element={<Activity />} />
           <Route path="/search" element={<Search />} />
           <Route path="/recipe" element={<Recipe />} />
+          <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/login" element={<Login />} />
