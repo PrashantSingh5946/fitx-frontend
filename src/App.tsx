@@ -11,7 +11,7 @@ import {
   Route,
 } from "react-router-dom";
 import Recipe from "./pages/recipe/Recipe";
-import RecipeDetails from "./components/recipe/RecipeDisplay";
+import RecipeDetails from "./pages/recipe/RecipeDetails";
 import TermsOfService from "./pages/legal/TermsOfService";
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
           <Route path="/activity" element={<Activity />} />
 
           <Route path="/recipe" element={<Recipe />} />
-          <Route path="/recipe/show" element={<RecipeDetails />} />
+          <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
 
           <Route path="/profile" element={<Profile />} />
         </Route>
