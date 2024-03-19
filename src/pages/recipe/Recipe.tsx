@@ -70,15 +70,13 @@ export default function () {
             startContent={<FaSearch />}
           />
 
-          <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-            <ModalContent
-              className="bg-transparent top-0"
-              style={{
-                background: "rgba(255,255,255,0.5)",
-                position: "relative",
-                alignSelf: "center",
-              }}
-            >
+          <Modal
+            isOpen={isOpen}
+            onOpenChange={onOpenChange}
+            backdrop="blur"
+            className="dark"
+          >
+            <ModalContent className="bg-black/80">
               {(onClose) => (
                 <>
                   <ModalHeader className="flex flex-col gap-1">
@@ -87,6 +85,14 @@ export default function () {
                   <ModalBody>
                     <RecipeForm />
                   </ModalBody>
+                  <ModalFooter>
+                    {/* <Button color="danger" variant="light" onPress={onClose}>
+                      Close
+                    </Button>
+                    <Button color="primary" onPress={onClose}>
+                      Action
+                    </Button> */}
+                  </ModalFooter>
                 </>
               )}
             </ModalContent>

@@ -130,7 +130,7 @@ const RecipeDetails: React.FC = () => {
       }}
     >
       <div
-        className="flex gap-5 justify-between items-start px-8 pt-10 pb-20 w-full mt-5 justify-center"
+        className="flex gap-5  items-start px-8 pt-10 pb-20 w-full mt-5 justify-center"
         id="background"
         style={{ height: "250px" }}
       >

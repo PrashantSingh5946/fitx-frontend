@@ -145,9 +145,10 @@ export default function () {
         <>
           <div className="p-4 flex flex-col  gap-3">
             <Input
+              variant="faded"
+              isRequired
               type="text"
               label="Recipe name"
-              placeholder="Enter your recipe name"
               className="bg-transparent text-white"
               value={name}
               onValueChange={(e) => {
@@ -155,42 +156,37 @@ export default function () {
               }}
             />
 
-            <Card className="p-2 bg-transparent text-white">
+            <Card className=" bg-transparent text-white">
               <RadioGroup
-                classNames={{ label: "text-white" }}
+                className="p-3"
                 label="Select your dietary preference"
-                orientation="horizontal"
-                defaultValue="vegetarian"
+                orientation="vertical"
+                defaultValue=""
+                color="secondary"
                 onValueChange={(e) => setDietaryPreferences(e)}
               >
-                <Radio classNames={{ label: "text-white" }} value="vegetarian">
-                  Veg
-                </Radio>
-                <Radio
-                  classNames={{ label: "text-white" }}
-                  value="non-vegetarian"
-                >
-                  Nov-Veg
-                </Radio>
-                <Radio classNames={{ label: "text-white" }} value="vegan">
-                  Vegan
-                </Radio>
+                <Radio value="vegetarian">Veg</Radio>
+                <Radio value="non-vegetarian">Nov-Veg</Radio>
+                <Radio value="vegan">Vegan</Radio>
               </RadioGroup>
             </Card>
 
             <Input
+              variant="faded"
+              isRequired
               type="text"
               label="Nutritional Preferences"
-              placeholder="Enter your nutritional preferences"
               className="bg-transparent"
+              size="lg"
               value={nutritionalPreference}
               onValueChange={(e) => setNutritionalPreferences(e)}
             />
 
             <Input
+              variant="faded"
+              size="lg"
               type="text"
               label="Allergies"
-              placeholder="Name allergies, if you have got any"
               className="bg-transparent"
               value={allergies}
               onValueChange={(e) => setAllergies(e)}
