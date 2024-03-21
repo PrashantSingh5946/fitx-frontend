@@ -28,7 +28,7 @@ export default function SleepTracker() {
 
   return (
     <div
-      className="flex flex-col justify-center font-medium max-w-[150px] m-4 rounded-lg aspect-square"
+      className="flex flex-col justify-center font-medium h-[180px] rounded-lg aspect-square"
       style={{
         background:
           "linear-gradient(274.42deg, #92a4fd3f 0%, #9dceff3f 124.45%)",

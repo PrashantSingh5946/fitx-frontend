@@ -15,16 +15,25 @@ export default function Dashboard() {
 
   return (
     <div
-      className="p-2 flex flex-col items-center"
-      style={{ height: "inherit", overflowY: "scroll" }}
+      className="p-4 flex flex-col items-center"
+      style={{ height: "inherit"}}
     >
-      <MobileHeader />
+ <MobileHeader />
+      {/* Convert this to a responsive tailwind layout */}
+
+      <div className="flex flex-row gap-4 flex-wrap justify-center sm:justify-start">
+
+      
+     
       <BMIWidget />
       {/* <TargetsWidget /> */}
       <HeartRateWidget />
       <StepsWidget />
       {/* <WaterIntakeTracker /> */}
       <SleepTracker />
+      </div>
+
+    
     </div>
   );
 }
