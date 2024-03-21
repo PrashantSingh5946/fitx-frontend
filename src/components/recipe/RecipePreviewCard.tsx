@@ -12,8 +12,8 @@ export default function () {
         style={{
           background:
             "linear-gradient(274.42deg, rgb(197 139 242 / 20%) 0%, rgb(238 164 206 / 20%) 124.45%)",
-          width: "180px",
-          height: "180px",
+          width: "150px",
+          height: "150px",
         }}
       >
         {/* //Food logo */}

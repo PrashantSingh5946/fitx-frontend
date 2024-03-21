@@ -13,10 +13,14 @@ export default function () {
         style={{
           background:
             "linear-gradient(274.42deg, rgb(146 163 253 / 10%) 0%, rgb(157 206 255 / 10%) 124.45%) ",
-          width: "180px",
-          borderTopRightRadius: "120px",
+          minWidth: "120px",
+          borderTopRightRadius: "100px",
         }}
       >
+
+
+
+
         {/* //Food logo */}
         <div className={styles["category-svg-container"] + " self-end"}>
           {" "}

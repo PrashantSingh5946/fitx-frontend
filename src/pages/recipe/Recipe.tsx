@@ -31,18 +31,10 @@ export default function () {
       }}
     >
       <div></div>
-      <div className="flex gap-5 justify-between px-5 w-full text-base font-bold leading-6 text-white whitespace-nowrap">
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/7e4b5c64979f7b79b1d2be80b885f9ad03ed4723e1a1f2835d21945d29ba888b?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-          className="shrink-0 w-8 aspect-square"
-        />
+      <div className="flex gap-5 justify-center px-5 w-full text-base font-bold leading-6 text-white whitespace-nowrap">
+
         <div className="my-auto">Recipes</div>
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/a4a6fbc5223c59f105bbf3ea19b0d0860de5c6961f1c8ff64f71a5d789034b87?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-          className="shrink-0 w-8 aspect-square"
-        />
+
       </div>
       <div
         className="p-2 mt-2  flex flex-col gap-5 bg-transparent p-4 rounded-large m-2 "
@@ -52,10 +44,12 @@ export default function () {
           marginTop: "24px",
         }}
       >
-        <Card className="bg-transparent flex flex-col gap-5 border-0 shadow-none">
+
+
+        <Card className="bg-transparent flex flex-row gap-5 border-0 shadow-none grid grid-cols-1 sm:grid-cols-2 gap-5 max-w[600px] mb-5">
           <Input
             classNames={{
-              base: "max-w-full sm:max-w-[10rem] h-10",
+              base: "h-10 w-full sm:w-auto",
               mainWrapper: "h-full",
               input: "text-small",
               inputWrapper:
@@ -67,35 +61,8 @@ export default function () {
             startContent={<FaSearch />}
           />
 
-          <Modal
-            isOpen={isOpen}
-            onOpenChange={onOpenChange}
-            backdrop="blur"
-            className="dark"
-          >
-            <ModalContent className="bg-black/80">
-              {(onClose) => (
-                <>
-                  <ModalHeader className="flex flex-col gap-1">
-                    Create Recipe
-                  </ModalHeader>
-                  <ModalBody>
-                    <RecipeForm />
-                  </ModalBody>
-                  <ModalFooter>
-                    {/* <Button color="danger" variant="light" onPress={onClose}>
-                      Close
-                    </Button>
-                    <Button color="primary" onPress={onClose}>
-                      Action
-                    </Button> */}
-                  </ModalFooter>
-                </>
-              )}
-            </ModalContent>
-          </Modal>
           <Button
-            className="justify-center items-center px-16 py-5 text-base font-bold leading-6 text-white"
+            className="justify-center items-center px-16 py-5 text-base font-bold w-[190px] leading-6 text-white"
             style={{
               background:
                 "linear-gradient(274.42deg, rgb(255 52 48) 0%, rgb(109 182 255) 124.45%)",
@@ -105,26 +72,62 @@ export default function () {
           >
             Create Recipe
           </Button>
+
         </Card>
 
-        <div>
-          <Card className="bg-transparent shadow-none text-white text-large pb-2 mb-0 mt-5">
-            Recommendation for Diet
-          </Card>
-          <Card className="bg-transparent shadow-none flex flex-row overflow-x gap-5 mt-1">
-            <RecipePreviewCard />
-            <RecipePreviewCard />
-          </Card>
-        </div>
+        <Modal
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          backdrop="blur"
+          className="dark"
+        >
+          <ModalContent className="bg-black/80">
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">
+                  Create Recipe
+                </ModalHeader>
+                <ModalBody>
+                  <RecipeForm />
+                </ModalBody>
+                <ModalFooter>
+                  {/* <Button color="danger" variant="light" onPress={onClose}>
+                      Close
+                    </Button>
+                    <Button color="primary" onPress={onClose}>
+                      Action
+                    </Button> */}
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
 
-        <div>
-          <Card className="bg-transparent shadow-none text-white text-large pb-2 mb-0 mt-5">
-            Find something to eat
-          </Card>
-          <Card className="bg-transparent shadow-none flex flex-row overflow-x gap-5 mt-1">
-            <RecipeCategoryCard />
-            <RecipeCategoryCard />
-          </Card>
+        <div className="overflow-y scroll">
+
+          <div>
+            <Card className="bg-transparent shadow-none text-white text-large pb-2 mb-0 mt-5">
+              Recommendation for Diet
+            </Card>
+            <Card className="bg-transparent shadow-none flex flex-row overflow-x gap-5 flex-wrap justify-center sm:justify-start mt-1">
+              <RecipePreviewCard />
+              <RecipePreviewCard />
+              <RecipePreviewCard />
+              <RecipePreviewCard />
+            </Card>
+          </div>
+
+          <div>
+            <Card className="bg-transparent shadow-none text-white text-large pb-2 mb-0 mt-5">
+              Find something to eat
+            </Card>
+            <Card className="bg-transparent shadow-none flex flex-row overflow-x gap-5 flex-wrap justify-center sm:justify-start mt-1">
+              <RecipeCategoryCard />
+              <RecipeCategoryCard />
+              <RecipeCategoryCard />
+              <RecipeCategoryCard />
+            </Card>
+          </div>
         </div>
       </div>
     </div>
