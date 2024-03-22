@@ -40,6 +40,8 @@ export const authSlice = createSlice({
     },
 
     logout: () => {
+
+      localStorage.removeItem("persist:root");
       return { ...initialState };
     },
   },
