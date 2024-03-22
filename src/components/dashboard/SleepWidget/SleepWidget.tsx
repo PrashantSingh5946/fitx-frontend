@@ -3,26 +3,43 @@ import fetchSleepData from "../../../lib/SleepDataFetcher";
 import { access, stat } from "fs";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { login } from "../../../app/features/auth/authSlice";
+import { setHealthData } from "../../../app/features/health/healthSlice";
 
 export default function SleepTracker() {
   let accessToken = useAppSelector((state) => state.auth.accessToken);
   let dispatch = useAppDispatch();
 
-  let state = useAppSelector((state) => state.auth);
+  const {data, fetchTimeInMillis} = useAppSelector((state) => state.health.sleep);
 
-  const [data, setData] = React.useState({ hours: 0, minutes: 0 });
+  const setData = (payload: { hours: number, minutes: number }) => {
+
+    dispatch(
+      setHealthData({
+        sleep: { data: payload, fetchTimeInMillis: new Date().getTime() },
+      })
+    );
+  }
+  //const [data, setData] = React.useState({ hours: 0, minutes: 0 });
 
   React.useEffect(() => {
     async function fetchData() {
-      if (accessToken) {
-        try {
-          const data = await fetchSleepData(accessToken);
-          console.log("Sleep data");
-          console.log(data);
-          setData(data);
-        } catch (err) {}
+
+      if((new Date().getTime() - fetchTimeInMillis > 60000))
+      {
+
+        console.log(new Date().getTime() - fetchTimeInMillis);
+        if (accessToken) {
+          try {
+            const data = await fetchSleepData(accessToken);
+            console.log("Sleep data");
+            console.log(data);
+            setData(data);
+          } catch (err) {}
+        }
       }
+   
     }
+
     fetchData();
   }, [accessToken]);
 
@@ -40,7 +57,7 @@ export default function SleepTracker() {
           className="relative mt-3 text-lg leading-5 bg-clip-text bg-black/80 text-white "
           style={{ zIndex: 11, color: "#92a3fd" }}
         >
-          {data.hours ? (
+          {data.hours !=null  ? (
             <>
               <span className="font-semibold">{data.hours}</span>
               <span className="text-xs font-semibold">h</span>{" "}
@@ -49,7 +66,7 @@ export default function SleepTracker() {
             "-"
           )}
 
-          {data.minutes ? (
+          {data.minutes!=null ? (
             <>
               <span className="font-semibold">{data.minutes}</span>
               <span className="text-xs font-semibold">m</span>

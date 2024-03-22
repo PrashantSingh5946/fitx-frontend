@@ -9,9 +9,20 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import axios from "axios";
 import { refreshAccessToken } from "../../../lib/helpers";
 import { login } from "../../../app/features/auth/authSlice";
+import { setHealthData } from "../../../app/features/health/healthSlice";
 
 export default function HeartRateWidget() {
-  const [data, setData] = useState([{ x: "", y: 0 }]);
+
+  const{ data, fetchTimeInMillis } = useAppSelector((state) => state.health.heartData);
+
+  const setData = (payload: { y: number, x: string }[] ) => {
+    dispatch(
+      setHealthData({
+        heartData: { data: payload, fetchTimeInMillis: new Date().getTime() },
+      })
+    );
+  }
+  //const [data, setData] = useState([{ x: "", y: 0 }]);
   const [width, setWidth] = useState(100);
   let accessToken = useAppSelector((state) => state.auth.accessToken);
   let refreshToken = useAppSelector((state) => state.auth.refreshToken);
@@ -41,31 +52,36 @@ export default function HeartRateWidget() {
 
 
   const fetchData = async () => {
-    if (accessToken) {
-      try {
-        let data = await googleFitDataFetcher(accessToken);
-        setData(data);
-      } catch (err: any) {
-        if (err.message.indexOf("Request failed with status code 401") != -1) {
-          //Refresh token
-          if (refreshToken) {
-            try {
-              let response = (await refreshAccessToken(refreshToken)).data;
-              console.log("Refreshed token", response);
-              let accessToken = response.access_token;
-
-              dispatch(
-                login({
-                  accessToken: accessToken,
-                })
-              );
-            } catch (err) {
-              console.log("Error refreshing the access token", err);
+   
+    if((new Date().getTime() - fetchTimeInMillis) > 60000)
+    {
+      if (accessToken) {
+        try {
+          let data = await googleFitDataFetcher(accessToken);
+          setData(data);
+        } catch (err: any) {
+          if (err.message.indexOf("Request failed with status code 401") != -1) {
+            //Refresh token
+            if (refreshToken) {
+              try {
+                let response = (await refreshAccessToken(refreshToken)).data;
+                console.log("Refreshed token", response);
+                let accessToken = response.access_token;
+  
+                dispatch(
+                  login({
+                    accessToken: accessToken,
+                  })
+                );
+              } catch (err) {
+                console.log("Error refreshing the access token", err);
+              }
             }
           }
         }
       }
     }
+  
   };
 
   useEffect(() => {

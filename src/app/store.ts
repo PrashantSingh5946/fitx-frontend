@@ -6,6 +6,7 @@ import recipeReducer from "./features/recipe/recipeSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
+import healthReducer from "./features/health/healthSlice";
 
 const persistConfig = {
   key: "root",
@@ -15,6 +16,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   auth: authReducer,
   recipe: recipeReducer,
+  health: healthReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

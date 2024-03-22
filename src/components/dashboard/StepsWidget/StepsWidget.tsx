@@ -7,9 +7,11 @@ import { useAppSelector, useAppDispatch } from "../../../app/hooks";
 import { refreshAccessToken } from "../../../lib/helpers";
 import { login } from "../../../app/features/auth/authSlice";
 import { AxiosError } from "axios";
+import { setHealthData } from "../../../app/features/health/healthSlice";
 
 export default function StepsWidget() {
-  const [data, setData] = useState([0]);
+  // const [data, setData] = useState([0]);
+  const { data, fetchTimeInMillis } = useAppSelector((state) => state.health.stepsData);
   const [total, setTotal] = useState(0);
   const [width, setWidth] = useState(100);
 
@@ -22,39 +24,49 @@ export default function StepsWidget() {
   }, [data]);
 
   const fetchData = async () => {
-    if (accessToken) {
-      try {
-        let data = await googleFitStepsDataFetcher(accessToken);
-        setData(data);
-      } catch (err: any) {
-        console.log(err);
-        if (err.response.status == 401) {
-          console.log("Refreshing token", refreshToken);
 
-          //Refresh token
-          if (refreshToken) {
-            try {
-              let response = (await refreshAccessToken(refreshToken)).data;
-              console.log("Refreshed token", response);
-              let accessToken = response.access_token;
+    console.log("Fetching steps data after" +  (new Date().getTime() - fetchTimeInMillis))
+    if ((new Date().getTime() - fetchTimeInMillis) > 60000) {
 
-              dispatch(
-                login({
-                  accessToken: accessToken,
-                })
-              );
-            } catch (err) {
-              console.log("Error refreshing the access token", err);
+     
+      if (accessToken) {
+        try {
+          let data = await googleFitStepsDataFetcher(accessToken);
+          setData(data);
+        } catch (err: any) {
+          console.log(err);
+          if (err.response.status == 401) {
+            console.log("Refreshing token", refreshToken);
+
+            //Refresh token
+            if (refreshToken) {
+              try {
+                let response = (await refreshAccessToken(refreshToken)).data;
+                console.log("Refreshed token", response);
+                let accessToken = response.access_token;
+
+                dispatch(
+                  login({
+                    accessToken: accessToken,
+                  })
+                );
+              } catch (err) {
+                console.log("Error refreshing the access token", err);
+              }
             }
           }
         }
       }
     }
+
   };
 
   useEffect(() => {
+    if (accessToken) {
+    }
     fetchData();
-  }, [accessToken]);
+  }
+    , [accessToken]);
 
   const options: ApexOptions = {
     chart: {
@@ -174,18 +186,26 @@ export default function StepsWidget() {
     },
   ];
 
-  useEffect(()=> {
-    const resizeObserver = new ResizeObserver((event) => {   
-      setWidth(event[0].contentBoxSize[0].inlineSize); });
-
-      if(document.getElementById("heart_widget"))
-      {
-        resizeObserver.observe(document.getElementById("heart_widget")!);
-      }
-      
+  const setData = (payload: number[]) => {
+    dispatch(
+      setHealthData({
+        stepsData: { data: payload, fetchTimeInMillis: new Date().getTime() },
+      })
+    );
   }
-  
-);
+
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver((event) => {
+      setWidth(event[0].contentBoxSize[0].inlineSize);
+    });
+
+    if (document.getElementById("heart_widget")) {
+      resizeObserver.observe(document.getElementById("heart_widget")!);
+    }
+
+  }
+
+  );
 
 
   return (
@@ -201,7 +221,7 @@ export default function StepsWidget() {
           series={series}
           type="area"
           height={160}
-          width={width+40}
+          width={width + 40}
         />
       </div>
     </div>
