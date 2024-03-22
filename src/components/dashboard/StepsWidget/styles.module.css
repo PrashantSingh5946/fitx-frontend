@@ -12,8 +12,9 @@
 }
 
 .container {
-  width: 100%;
-  max-width: 400px;
+  min-width: 320px;
+  max-width: 600px;
+  width: 90vw;
   min-height: 180px;
   max-height: 180px;
   border-radius: 20px;
@@ -32,6 +33,13 @@
   border-radius: 16px;
 
   position: relative;
+}
+
+@media (min-width: 600px) {
+  /* Apply only when screen size is larger than 600px */
+  .widget{
+    width: 600px; /* Set width to 600px on larger screens */
+  }
 }
 
 .graph {

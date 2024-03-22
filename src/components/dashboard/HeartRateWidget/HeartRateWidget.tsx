@@ -12,6 +12,7 @@ import { login } from "../../../app/features/auth/authSlice";
 
 export default function HeartRateWidget() {
   const [data, setData] = useState([{ x: "", y: 0 }]);
+  const [width, setWidth] = useState(100);
   let accessToken = useAppSelector((state) => state.auth.accessToken);
   let refreshToken = useAppSelector((state) => state.auth.refreshToken);
 
@@ -36,6 +37,8 @@ export default function HeartRateWidget() {
           .toString() + " BPM"
       );
   }, [data]);
+
+
 
   const fetchData = async () => {
     if (accessToken) {
@@ -189,8 +192,23 @@ export default function HeartRateWidget() {
     },
   ];
 
+
+    useEffect(()=> {
+      const resizeObserver = new ResizeObserver((event) => {   
+        setWidth(event[0].contentBoxSize[0].inlineSize); });
+
+        if(document.getElementById("heart_widget"))
+        {
+          resizeObserver.observe(document.getElementById("heart_widget")!);
+        }
+        
+    }
+    
+  );
+
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="heart_widget">
       <div className={styles.headings}>
         <span>Heart Rate</span>
         <span className={styles.heart_rate}>{average}</span>
@@ -198,11 +216,12 @@ export default function HeartRateWidget() {
 
       <div className={styles.graph}>
         <ApexChart
+          
           options={options}
           series={series}
           type="area"
           height={160}
-          width={"500px"}
+          width={width+40}
         />
       </div>
     </div>

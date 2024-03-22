@@ -15,17 +15,24 @@ export default function Dashboard() {
 
   return (
     <div
-      className="p-4 flex flex-col items-center"
-      style={{ height: "inherit"}}
+      className="flex flex-col items-center pt-10 mx-auto w-full bg-black rounded-[40px] pb-5 mt-5"
+      style={{
+        background:
+          "linear-gradient(274.42deg, rgba(96, 106, 153, 0.2) 0%, rgba(49, 69, 88, 0.82) 124.45%)",
+      }}
     >
- <MobileHeader />
+
       {/* Convert this to a responsive tailwind layout */}
+      <MobileHeader/>
 
-      <div className="flex flex-row gap-4 flex-wrap justify-center sm:justify-start">
 
-      
-     
+      <div className="flex flex-row gap-4 flex-wrap justify-center sm:justify-start p-4">
+
+    
       <BMIWidget />
+      
+
+    
       {/* <TargetsWidget /> */}
       <HeartRateWidget />
       <StepsWidget />

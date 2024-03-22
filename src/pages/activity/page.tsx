@@ -1,4 +1,4 @@
-import { Card } from "@nextui-org/react";
+import { Card, Progress, Slider } from "@nextui-org/react";
 import React from "react";
 
 interface ActivityItemProps {
@@ -8,16 +8,48 @@ interface ActivityItemProps {
   time: string;
 }
 
+
+// ActivityItem Component
+
+const VerticalProgressBar: React.FC<{ progress: number; label: string }> = ({
+  progress,
+  label,
+}) => (
+
+
+  <Slider   
+  size="lg"
+  hideThumb={true}
+  step={0.01} 
+  maxValue={1} 
+  minValue={0} 
+  orientation="vertical"
+  aria-label={label}
+  defaultValue={0.01 * progress}
+  value={0.01 * progress}
+  onChange={(value) => {}}
+
+  classNames={{filler:"bg-gradient-to-l  from-red-600 to-pink-300", track:"bg-gray-400"}}
+/> 
+ 
+);
+
+
+
+//How to add rotate without changing the initial position of the progress bar
+
+
+
 const ActivityItem: React.FC<ActivityItemProps> = ({
   title,
   src,
   altText,
   time,
 }) => (
-  <Card className="mt-2">
+  <Card className="m-1 shadow-none bg-transparent">
     <div
-      className="flex gap-5 justify-between px-4 py-4 w-full whitespace-nowrap rounded-2xl shadow-2xl bg-zinc-700 leading-[150%]"
-      style={{ marginTop: "10px" }}
+      className="flex gap-5 justify-between px-4 py-4 w-full whitespace-nowrap rounded-2xl shadow-2xl bg-zinc-700/70 leading-[150%]"
+     
     >
       <div className="flex gap-2">
         <img
@@ -42,33 +74,28 @@ const ActivityItem: React.FC<ActivityItemProps> = ({
 );
 
 const ActivityTrackerApp: React.FC = () => (
-  <div className="flex flex-col space-between h-full">
+  <div   className="flex flex-col gap-4 p-6 my-4 pb-8 rounded-[40px]  "
+  style={{
+    background:
+      "linear-gradient(274.42deg, rgb(96 106 153 / 20%) 0%, rgba(49, 69, 88, 0.82) 124.45%)",
+  }}>
     <Card
-      className="m-2 p-2"
+      className="m-2 p-2 w-full"
       style={{ background: "none", width: "90%", alignSelf: "center" }}
     >
-      <div className="flex gap-5 mt-2 justify-between px-5 w-full text-base font-bold leading-6 text-white whitespace-nowrap">
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/7e4b5c64979f7b79b1d2be80b885f9ad03ed4723e1a1f2835d21945d29ba888b?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-          className="shrink-0 w-8 aspect-square"
-        />
-        <div className="my-auto">Activity Tracker</div>
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/a4a6fbc5223c59f105bbf3ea19b0d0860de5c6961f1c8ff64f71a5d789034b87?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-          className="shrink-0 w-8 aspect-square"
-        />
+      <div className="flex gap-5 justify-center px-5 w-full text-base font-bold leading-6 text-white whitespace-nowrap">
+
+        <div className="my-auto">Activity</div>
+
       </div>
     </Card>
 
     <div
-      className="flex gap-4 p-5 "
+      className="flex gap-4 p-5 w-full"
       style={{
-        width: "90%",
+       
         background: "gray",
         borderRadius: "20px",
-        margin: "20px",
         alignSelf: "center",
         padding: "20px",
         backgroundColor: "rgb(112 124 187 / 28%)",
@@ -77,15 +104,10 @@ const ActivityTrackerApp: React.FC = () => (
       <div className="flex flex-col flex-1 self-start mt-2 text-sm font-semibold leading-5 text-white">
         <div className="flex flex-row justify-between p-2">
           <div>
-            <span>Today Target</span>
+            <span>Today's target</span>
           </div>
           <div>
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/b6b43be451851947744e13c67b8e281f0f5648fe3d7069f661b4aae6b0e7d5e2?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-              alt="Achievement Badge"
-              className="self-end w-6 aspect-square"
-            />
+           
           </div>
         </div>
 
@@ -118,47 +140,33 @@ const ActivityTrackerApp: React.FC = () => (
       </div>
     </div>
 
-    <Card className="p-3 mx-2 dark my-2">
+    <Card className="p-3 dark" style={{background: "rgba(112, 124, 187, 0.28)"}}>
       <div
         className="flex justify-between px-px mt-8 text-base font-semibold leading-6 text-white"
         style={{ width: "90%", alignSelf: "center", margin: "10px" }}
       >
         <div className="flex-auto my-auto">Activity Progress</div>
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/0afcafc86d28e845cfa1d610d1c41ae5a44dfafb88e0d058190835bc8bec2891?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-          alt="Activity Progress Graph"
-          className="shrink-0 aspect-[2.56] w-[76px]"
-        />
+      
       </div>
 
       <div
         className="flex flex-col px-5 py-6 mt-4 w-full rounded-3xl shadow-2xl"
         style={{ background: "none" }}
       >
-        <Card className="p-2" style={{ background: "gray" }}>
+        <Card className="p-2 h-[200px]" style={{ background:"rgba(112, 124, 187, 0.28)" }} >
           <div
-            className="flex flex-row w-full p-4"
+            className="flex flex-row w-full h-[180px] p-4"
             style={{ justifyContent: "space-between" }}
           >
             {/* Similar Images and Block Repeated with Different Sources */}
             {[
-              "https://cdn.builder.io/api/v1/image/assets/TEMP/0fd3718797e808da5d8702a977e1ff6b277c33e1b5f12c28831b19f5c2a8ff73?apiKey=2471e6abba594059a1b1e2ce6032627e&",
-              "https://cdn.builder.io/api/v1/image/assets/TEMP/76edf77a6229a8a4dbb8daa4cf5c1a18a52b9df4c9be01b75e5f202968e4998f?apiKey=2471e6abba594059a1b1e2ce6032627e&",
-              "https://cdn.builder.io/api/v1/image/assets/TEMP/4038372d61d5ea77fb2c659f0c9a53f5d16fec8f2840819d564f5d2cf48e9ecd?apiKey=2471e6abba594059a1b1e2ce6032627e&",
-              "https://cdn.builder.io/api/v1/image/assets/TEMP/2b43efc8ff913beab37b7eb6390e47f94c922e2ee7ee2778053aafcd991800cd?apiKey=2471e6abba594059a1b1e2ce6032627e&, https://cdn.builder.io/api/v1/image/assets/TEMP/f9b8e0b454c6f6817bc09b346524a10adc47012419948a875eb04727525d027e?apiKey=2471e6abba594059a1b1e2ce6032627e&",
-              "https://cdn.builder.io/api/v1/image/assets/TEMP/fe99820a89663d5378a2e07635f2fb87e6a3c8916998996b5d9e4dee1889476c?apiKey=2471e6abba594059a1b1e2ce6032627e&",
-              "https://cdn.builder.io/api/v1/image/assets/TEMP/226b379c1bcf9f8450423050ce6563c58b8837691223713842959bf0f475bb91?apiKey=2471e6abba594059a1b1e2ce6032627e&",
-            ].map((ext) => (
-              <img
-                loading="lazy"
-                src={ext}
-                alt=""
-                className="shrink-0 aspect-[0.16] w-[22px]"
-              />
+              50, 60, 75, 60, 85, 90
+            ].map((ext, index) => (
+          
+              <VerticalProgressBar key={index} label="Progress bar" progress={ext}/>
             ))}
           </div>
-          <div className="flex gap-5 justify-between mt-3 text-xs leading-5 whitespace-nowrap text-stone-500">
+          {/* <div className="flex gap-5 justify-between mt-3 text-xs leading-5 whitespace-nowrap text-stone-500">
             <div className="grow">Sun</div>
             <div>Mon</div>
             <div className="text-center">Tue</div>
@@ -166,17 +174,16 @@ const ActivityTrackerApp: React.FC = () => (
             <div className="text-center">Thu</div>
             <div className="text-center">Fri</div>
             <div className="grow text-center">Sat</div>
-          </div>
+          </div> */}
         </Card>
       </div>
     </Card>
 
     <Card
-      className="p-4 my-2 dark m-2"
+      className="p-4 my-2 dark m-2 w-full"
       style={{
-        width: "90%",
         alignSelf: "center",
-        margin: "10px",
+       
         background: "none",
       }}
     >
@@ -191,7 +198,7 @@ const ActivityTrackerApp: React.FC = () => (
         </div>
 
         <div>
-          <Card className="p-0" style={{ background: "none" }}>
+          <Card className="p-0 bg-transparent shadow-none p-2 gap-2">
             {/* ActivityItem Component Usage */}
             <ActivityItem
               title="Drinking 300ml Water"

@@ -1,5 +1,6 @@
 import {
   Button,
+  Image,
   Modal,
   ModalBody,
   ModalContent,
@@ -48,29 +49,35 @@ export default function MobileHeader() {
 
   return (
     <Card
-      className="left-0 w-full h-16 justify-between items-center z-50 w-screen flex flex-row p-5 dark text-white rounded-none mb-2 p-3 sticky top-1"
-      style={{ background: "none" }}
-    >
-      <User
-        name={"WELCOME BACK"}
-        description={firstName?.toUpperCase() + " " + lastName?.toUpperCase()}
-        avatarProps={{
-          src: pictureUrl,
-        }}
-        // onClick={() => setIsModalOpen(true)}
-      />
-
-      <Modal isOpen={isModalOpen}>
-        <ModalContent>
+        style={{ background: "none" }}
+        className=" mt-2 my-5 flex justify-center items-center p-4"
+      >
+        <div className="flex gap-5 justify-between w-full leading-[150%] max-w-[315px]">
+          <div className="flex gap-4 dark">
+            <Image
+              src={pictureUrl}
+              width={55}
+              height={55}
+              className="shrink-0 aspect-square dark "
+              isZoomed
+            />
+            <div className="flex flex-col flex-1 px-5 my-auto">
+              <div className="text-base text-white">
+                {firstName + " " + lastName}
+              </div>
+              <div className="mt-1 text-xs whitespace-nowrap text-white/70">
+                Genesis Program
+              </div>
+            </div>
+          </div>
           <Button
-            onClick={() => {
-              logoutUser();
-            }}
+            className="text-white self-center"
+            size="sm"
+            style={{ background: "#FF6767" }}
           >
-            Logout
+            Edit
           </Button>
-        </ModalContent>
-      </Modal>
-    </Card>
+        </div>
+      </Card>
   );
 }

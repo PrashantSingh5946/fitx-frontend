@@ -11,6 +11,7 @@ import { AxiosError } from "axios";
 export default function StepsWidget() {
   const [data, setData] = useState([0]);
   const [total, setTotal] = useState(0);
+  const [width, setWidth] = useState(100);
 
   let accessToken = useAppSelector((state) => state.auth.accessToken);
   let refreshToken = useAppSelector((state) => state.auth.refreshToken);
@@ -173,6 +174,20 @@ export default function StepsWidget() {
     },
   ];
 
+  useEffect(()=> {
+    const resizeObserver = new ResizeObserver((event) => {   
+      setWidth(event[0].contentBoxSize[0].inlineSize); });
+
+      if(document.getElementById("heart_widget"))
+      {
+        resizeObserver.observe(document.getElementById("heart_widget")!);
+      }
+      
+  }
+  
+);
+
+
   return (
     <div className={styles.container}>
       <div className={styles.headings}>
@@ -186,7 +201,7 @@ export default function StepsWidget() {
           series={series}
           type="area"
           height={160}
-          width={"500px"}
+          width={width+40}
         />
       </div>
     </div>
