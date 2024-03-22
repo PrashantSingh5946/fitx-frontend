@@ -6,6 +6,7 @@ import { login, logout } from "../../app/features/auth/authSlice";
 import { useAppSelector } from "../../app/hooks";
 import { useEffect } from "react";
 import { fetchGoogleProfilePicture } from "../../lib/helpers";
+import { resetStore } from "../../app/store";
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ export default function Profile() {
 
   const logoutUser = () => {
     googleLogout();
-    dispatch(logout());
+    resetStore();
   };
 
   return (

@@ -10,7 +10,7 @@ interface initialStateType { sleep: sleepData, heartData: heartData, stepsData: 
 
 
 let initialState: initialStateType = {
-    sleep: { data: { hours: 4, minutes: 30 }, fetchTimeInMillis: 0 },
+    sleep: { data: { hours: 0, minutes: 0 }, fetchTimeInMillis: 0 },
     heartData: { data: [{ x: "", y: 0 }], fetchTimeInMillis: 0 },
     stepsData: { data: [0], fetchTimeInMillis: 0 },
 

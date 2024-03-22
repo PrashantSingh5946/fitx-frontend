@@ -19,6 +19,8 @@ const rootReducer = combineReducers({
   health: healthReducer,
 });
 
+
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
@@ -31,6 +33,13 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+export  const resetStore = () => {
+  persistor.pause();
+  persistor.purge().then(() => {
+    window.location.reload();
+  });
+}
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
