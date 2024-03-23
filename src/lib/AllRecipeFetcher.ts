@@ -10,7 +10,7 @@ export default async (userEmail: string): Promise<Recipe[] | undefined> => {
                 `/recipe/all`,
             headers: {
                 "Content-Type": "application/json",
-                user_email: userEmail,
+                'user_email': userEmail,
             },
         };
         const { data }:{data:Recipe[]} = await axios(config);
