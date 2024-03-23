@@ -20,7 +20,7 @@ export default function BMIWidget() {
     <div className={styles.widget}>
       <div className={styles["col-1"]}>
         <h3 className="text bold">BMI (Body Mass Index)</h3>
-        <h5>You have a normal weight</h5>
+        <p className="xs">You have a normal weight</p>
         {/* <button>View More</button> */}
       </div>
       <div className={styles["col-1"]}>
@@ -29,7 +29,7 @@ export default function BMIWidget() {
      
       value={bmi}
       maxValue={40}
-      className="mr-8"
+      className="mr-1"
     classNames={{ svg: "w-36 h-36 drop-shadow-md",
    
     track: "stroke-white/10",

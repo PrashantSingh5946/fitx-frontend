@@ -13,7 +13,7 @@ interface IngredientProps {
 }
 
 const Ingredient: React.FC<IngredientProps> = ({ imageSrc, name, amount }) => (
-  <div className="flex flex-col items-left" style={{ minWidth: "100px" }}>
+  <div className="flex flex-col items-left min-w-[100px] max-w-[150px] w-[100px] h-[150px]" >
     <img
       src={imageSrc}
       alt={name}
@@ -102,7 +102,7 @@ const RecipeDetails: React.FC = () => {
 
   return (
     <div
-      className="flex flex-col mx-auto w-full bg-neutral-600 max-w-[480px] text-white rounded-[40px] mt-4"
+      className="flex flex-col mx-auto w-full bg-neutral-600  text-white rounded-[40px] mt-4"
       style={{
         maxHeight: "90vh",
         background: "linear-gradient(274.42deg, #F6605D 0%, #9DCEFF 124.45%)",
@@ -116,8 +116,8 @@ const RecipeDetails: React.FC = () => {
         <Pancake />
       </div>
       <div
-        className="flex z-10 flex-col px-1 py-2 mt-0 w-full bg-black/80 rounded-[40px]"
-        style={{ overflowY: "scroll" }}
+        className="flex z-10 flex-col px-1 py-2 mt-0 w-full bg-black/80 rounded-[40px] overflow-y-auto no-scrollbar md:p-8"
+       
       >
         <div className="shrink-0 self-end bg-white/80 h-[5px] rounded-[50px] w-[50px] self-center" />
         <div className="flex gap-5 justify-between leading-[150%] px-4">
@@ -140,7 +140,7 @@ const RecipeDetails: React.FC = () => {
             <h2 className="text-base font-semibold">Nutrition</h2>
             <div
               className="flex gap-4 mt-3 text-xs"
-              style={{ overflowX: "scroll", flexWrap: "wrap" }}
+              style={{  flexWrap: "wrap" }}
             >
               <div
                 className="flex gap-1.5 whitespace-nowrap rounded-xl  bg-[linear-gradient(175deg,#b4b5b72b_0%,#3F4E5E36_124.45%)]"
@@ -229,8 +229,7 @@ const RecipeDetails: React.FC = () => {
             </div>
 
             <div
-              className="flex flex-row mt-5 leading-[150%] w-screen"
-              style={{ overflowX: "scroll", maxWidth: "100%" }}
+              className="flex flex-row mt-5 leading-[150%] max-w-[90vw] md:flex-wrap overflow-x-scroll no-scrollbar gap-5"
             >
               {recipe?.ingredients.map((data, index) => (
                 <Card

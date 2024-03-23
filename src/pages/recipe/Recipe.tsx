@@ -52,7 +52,7 @@ export default function () {
 
   return (
     <div
-      className="flex flex-col gap-2 mt-5 rounded-[40px] py-5 px-2"
+      className="flex flex-col gap-2 mt-5 items-center rounded-[40px] py-5 px-2"
       style={{
         background:
           "linear-gradient(274.42deg, rgb(96 106 153 / 20%) 0%, rgba(49, 69, 88, 0.82) 124.45%)",

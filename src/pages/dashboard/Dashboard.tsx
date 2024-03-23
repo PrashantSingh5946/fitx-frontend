@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   return (
     <div
-      className="flex flex-col items-center pt-10 mx-auto w-full bg-black rounded-[40px] pb-5 mt-5"
+      className="flex flex-col items-center pt-10 mx-auto w-full  bg-black rounded-[40px] pb-5 mt-5"
       style={{
         background:
           "linear-gradient(274.42deg, rgba(96, 106, 153, 0.2) 0%, rgba(49, 69, 88, 0.82) 124.45%)",
@@ -26,7 +26,7 @@ export default function Dashboard() {
       <MobileHeader/>
 
 
-      <div className="flex flex-row gap-4 flex-wrap justify-center sm:justify-start p-4">
+      <div className="flex flex-row gap-4 flex-wrap justify-center content-center p-4">
 
     
       <BMIWidget />
