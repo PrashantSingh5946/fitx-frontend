@@ -2,8 +2,9 @@ import { Card, Button } from "@nextui-org/react";
 
 import Pancake from "./Pancake";
 import styles from "./styles.module.css";
+import { Recipe } from "../../app/features/recipe/recipeSlice";
 
-export default function () {
+export default function ({recipe}: {recipe: Recipe}) {
   return (
     <>
       <Card
@@ -25,8 +26,8 @@ export default function () {
         {/* Food Description */}
 
         <div className="text-white mt-2">
-          <div className="text-sm"> Honey Pancake </div>
-          <div className="text-xs text-white/60">Easy | 30mins | 180kCal</div>
+          <div className="text-sm"> {recipe.name} </div>
+          <div className="text-xs text-white/60">Easy | 30mins | {recipe.calories} kcal</div>
         </div>
 
         {/* View Button */}

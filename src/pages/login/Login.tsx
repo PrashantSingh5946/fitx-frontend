@@ -2,6 +2,7 @@ import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 import {
   decodeLoginCredential,
   fetchGoogleProfilePicture,
+  fetchUserExists,
 } from "../../lib/helpers";
 import { login } from "../../app/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -25,7 +26,7 @@ export default function () {
 
   let API_URL = process.env.REACT_APP_API_URL;
 
-  const googleLogin = useGoogleLogin({
+  const googleAuthorise = useGoogleLogin({
     flow: "auth-code",
     scope:
       "https://www.googleapis.com/auth/fitness.activity.read https://www.googleapis.com/auth/fitness.heart_rate.read https://www.googleapis.com/auth/fitness.sleep.read https://www.googleapis.com/auth/admin.directory.user.readonly https://www.googleapis.com/auth/userinfo.profile",
@@ -84,7 +85,32 @@ export default function () {
 
         //Complete the authorisation procedure
 
-        googleLogin();
+        //Check if the user is already registered
+
+        fetchUserExists(loginCredential).then((response) => {
+
+          if (response.data) {
+
+            console.log("User exists");
+            if (response.data.accessToken) {
+              //User is registered
+              console.log("User is registered");
+              payload.accessToken = response.data.accessToken;
+              payload.refreshToken = response.data.refreshToken;
+              dispatch(login(payload));
+            }
+            else if(response.data.shouldAuthorise)
+            {
+              googleAuthorise();
+            }
+
+          } else {
+           
+          }
+        });
+
+
+
       }
     } catch (err) {
       console.log(err);
@@ -103,6 +129,7 @@ export default function () {
     <div>
       <GoogleLogin
         onSuccess={(credentialResponse) => {
+          console.log("Tap credential response", credentialResponse);
           handleLogin(credentialResponse?.credential);
         }}
         onError={() => {

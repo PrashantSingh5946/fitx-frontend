@@ -13,14 +13,42 @@ import {
   ModalBody,
   ModalFooter,
 } from "@nextui-org/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Recipe from "../../components/ui/NavBar/Buttons/Recipe";
 import RecipeForm from "../../components/recipe/RecipeForm";
 import RecipePreviewCard from "../../components/recipe/RecipePreviewCard";
 import RecipeCategoryCard from "../../components/recipe/RecipeCategoryCard";
+import { useAppSelector } from "../../app/hooks";
+import { Recipe as RecipeType} from "../../app/features/recipe/recipeSlice";
+import AllRecipeFetcher from "../../lib/AllRecipeFetcher";
+import { Link } from "react-router-dom";
 
 export default function () {
+
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const email = useAppSelector((state) => state.auth.email);
+
+  const [availableRecipes, setAvailableRecipes] = useState<RecipeType[] | null>(null);
+
+  useEffect(()=> {
+
+    if(email)
+    {
+      AllRecipeFetcher(email).then((data): void => {
+        if(data)
+        {
+          setAvailableRecipes(data);
+        }
+
+        console.log("All recipes",data);
+       
+      }
+      );
+    }
+  
+  },[])
+
 
   return (
     <div
@@ -105,17 +133,22 @@ export default function () {
 
         <div className="overflow-y scroll">
 
-          <div>
-            <Card className="bg-transparent shadow-none text-white text-large pb-2 mb-0 mt-5">
-              Recommendation for Diet
-            </Card>
-            <Card className="bg-transparent shadow-none flex flex-row overflow-x gap-5 flex-wrap justify-center sm:justify-start mt-1">
-              <RecipePreviewCard />
-              <RecipePreviewCard />
-              <RecipePreviewCard />
-              <RecipePreviewCard />
-            </Card>
-          </div>
+
+                    <div>
+                      <Card className="bg-transparent shadow-none text-white text-large pb-2 mb-0 mt-5">
+                        Recommendation for Diet
+                      </Card>
+                      <Card className="bg-transparent shadow-none flex flex-row overflow-x gap-5 flex-wrap justify-center sm:justify-start mt-1">
+                        {
+                          availableRecipes?.map((recipe:RecipeType) => 
+                          <Link key={recipe._id}  to={`/recipe/${recipe._id}/show`}>
+                             <RecipePreviewCard recipe={recipe} />
+                          </Link>
+                          )
+                        }
+                    
+                      </Card>
+                    </div>
 
           <div>
             <Card className="bg-transparent shadow-none text-white text-large pb-2 mb-0 mt-5">

@@ -26,7 +26,7 @@ import {
   Recipe,
   setCurrentRecipe,
 } from "../../app/features/recipe/recipeSlice";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 export default function () {
   const [name, setName] = useState("");
@@ -34,6 +34,8 @@ export default function () {
   const [dietaryPreferences, setDietaryPreferences] = useState("vegetarian");
   const [allergies, setAllergies] = useState("None");
   const [isLoading, setIsloading] = useState(false);
+  const email = useAppSelector((state) => state.auth.email);
+
   //   const [data, setData] = useState([
   //     {
   //       name: "Recipe 1",
@@ -70,11 +72,11 @@ export default function () {
   //     },
   //   ]);
 
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState([]);
   let nav = useNavigate();
   let dispatch = useAppDispatch();
 
-  console.log(data.length);
+  
 
   function GenerateRecipe() {
     let data = {
@@ -85,19 +87,21 @@ export default function () {
     };
 
     let payload = JSON.stringify(data);
+
     let config = {
       method: "post",
       maxBodyLength: Infinity,
       url: process.env.REACT_APP_API_URL + "/recipe/create",
       headers: {
         "Content-Type": "application/json",
+        'user_email': email,
       },
       data: payload,
     };
 
     const submitData = (data: Recipe) => {
       dispatch(setCurrentRecipe(data));
-      nav("/recipe/show");
+      nav(`/recipe/${data._id}/show`);
     };
 
     setIsloading(true);
@@ -105,9 +109,10 @@ export default function () {
       .request(config)
       .then((response) => {
         console.log(response);
-        setData(response.data);
+        console.log("Recipe generated successfully", response.data);
 
         let {
+          _id,
           name,
           description,
           allergy_warning,
@@ -116,9 +121,10 @@ export default function () {
           instructions,
           macros_per_100g,
           dietary_restrictions,
-        } = response.data.recipes[0];
+        } = response.data;
 
         let recipe: Recipe = {
+          _id: _id,
           name: name,
           description: description,
           ingredients: ingredients,
@@ -129,7 +135,7 @@ export default function () {
           dietary_restrictions: dietary_restrictions,
         };
 
-        submitData(recipe);
+       submitData(recipe);
       })
       .catch((error) => {
         console.log(error);
@@ -210,9 +216,9 @@ export default function () {
 
       {data.length != 0 && (
         <div className="overflow-y bg-transparent">
-          {data?.recipes.map(() => (
+          {data &&
             <RecipeDetails />
-          ))}
+          }
         </div>
       )}
     </>

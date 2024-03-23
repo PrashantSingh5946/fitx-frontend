@@ -2,6 +2,9 @@ import * as React from "react";
 import Pancake from "./Pancake";
 import { useAppSelector } from "../../app/hooks";
 import { Card } from "@nextui-org/react";
+import { useParams } from "react-router-dom";
+import RecipeFetcher from "../../lib/RecipeFetcher";
+import { Recipe } from "../../app/features/recipe/recipeSlice";
 
 interface IngredientProps {
   imageSrc: string;
@@ -65,61 +68,37 @@ const Step: React.FC<StepProps> = ({
   </>
 );
 
-const steps = [
-  {
-    number: "01",
-    title: "Step 1",
-    description: "Prepare all of the ingredients that needed",
-    isActive: true,
-  },
-  {
-    number: "02",
-    title: "Step 2",
-    description: "Mix flour, sugar, salt, and baking powder",
-  },
-  {
-    number: "03",
-    title: "Step 3",
-    description:
-      "In a seperate place, mix the eggs and liquid milk until blended",
-  },
-  {
-    number: "04",
-    title: "Step 4",
-    description:
-      "Put the egg and milk mixture into the dry ingredients, Stir untul smooth and smooth",
-  },
-  {
-    number: "05",
-    title: "Step 5",
-    description: "Enjoy your meal!!",
-  },
-];
 
-const ingredients = [
-  {
-    imageSrc:
-      "https://cdn.builder.io/api/v1/image/assets/TEMP/f04bc67e13ef786645964c24ac41cd45bd59d0b24762be1cd783117fa4cd416b?apiKey=2471e6abba594059a1b1e2ce6032627e&",
-    name: "Wheat Flour",
-    amount: "100g",
-  },
-  {
-    imageSrc:
-      "https://cdn.builder.io/api/v1/image/assets/TEMP/e315e84ec6eecb0bb573bd7633a2e5b4d10d6ae505e57ffbd7b817f746e02ad8?apiKey=2471e6abba594059a1b1e2ce6032627e&",
-    name: "Sugar",
-    amount: "3 tbsp",
-  },
-  {
-    imageSrc:
-      "https://cdn.builder.io/api/v1/image/assets/TEMP/134ce32773871b349e1da7a7469fcc3cc907b568d44751acae8727ebfbfc7dec?apiKey=2471e6abba594059a1b1e2ce6032627e&",
-    name: "Baking Soda",
-    amount: "2 tsp",
-  },
-];
 
 const RecipeDetails: React.FC = () => {
-  const recipe = useAppSelector((state) => state.recipe.currentRecipe);
-  console.log(recipe);
+  
+  const recipeId = useParams<{ recipeId: string }>().recipeId;
+
+
+  console.log(recipeId);
+  
+  const email = useAppSelector((state) => state.auth.email);
+  console.log(email);
+  
+  const [recipe, setRecipe] = React.useState<Recipe|null>(null);
+  const [isLoading, setIsLoading] = React.useState(true); 
+
+  React.useEffect(() => {
+
+    if(recipeId && email)
+    {
+      RecipeFetcher(recipeId, email).then((data) => {
+      
+        if(data)
+        {
+          setRecipe(data);
+        }
+   
+        setIsLoading(false);
+    });
+    }
+    
+  }  , []);
 
   return (
     <div

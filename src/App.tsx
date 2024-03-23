@@ -26,7 +26,8 @@ function App() {
           <Route path="/activity" element={<Activity />} />
 
           <Route path="/recipe" element={<Recipe />} />
-          <Route path="/recipe/show" element={<RecipeDetails />} />
+          <Route path="/recipe/:recipeId/show" element={<RecipeDetails/>} />
+       
 
           <Route path="/profile" element={<Profile />} />
         </Route>

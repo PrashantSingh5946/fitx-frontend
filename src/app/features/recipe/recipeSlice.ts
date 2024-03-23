@@ -4,6 +4,7 @@ import Recipe from "../../../pages/recipe/Recipe";
 
 // Define a type for the slice state
 export interface Recipe {
+  _id: string;
   name: string;
   ingredients: string[];
   description: string;

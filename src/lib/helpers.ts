@@ -14,11 +14,27 @@ export const refreshAccessToken = async (refreshToken: string) => {
   let data = await axios.post(
     process.env.REACT_APP_API_URL + "/auth/google/refresh-token",
     {
-      refreshToken: refreshToken,
+      "refreshToken": refreshToken,
     }
   );
 
   return data;
+};
+
+//Fetch if the user exists by attaching email into the body of axios request, sent to the api url + auth/user/exists
+export const fetchUserExists = async (credential: string) => {
+  try {
+    let data = await axios.post(
+      process.env.REACT_APP_API_URL + "/auth/google/verify",
+      {
+        "token": credential,
+      }
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
 };
 
 export const fetchGoogleProfilePicture = async (
