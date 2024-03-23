@@ -9,7 +9,7 @@ export default function (props: props) {
   return (
     <Link
       to={props.href}
-      className="w-full h-full flex justify-center items-center"
+      className="w-auto h-full flex justify-center items-center"
     >
       <div className="flex justify-center items-center w-full h-full flex justify-center items-center">
         <svg

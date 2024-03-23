@@ -5,6 +5,7 @@ import { useAppSelector } from "../app/hooks";
 import { useEffect } from "react";
 import { Card } from "@nextui-org/react";
 import { BackgroundGradientAnimation } from "../components/ui/BackgroundGradientAnimation";
+import VerticalNavbar from "../components/ui/NavBar/VerticalNavbar";
 
 export const ProtectedLayout = () => {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
@@ -17,7 +18,10 @@ export const ProtectedLayout = () => {
 
   return (
     <BackgroundGradientAnimation>
-      <Card className="bg-transparent z-10 h-screen w-screen flex flex-col">
+
+
+      <Card className="bg-transparent z-10 h-screen w-screen flex flex-col md:flex-row md:items-center md:gap-12 md:p-6">
+      <VerticalNavbar/>
         {/* <MobileHeader /> */}
         <div
           className="bg-transparent w-screen"
@@ -25,7 +29,8 @@ export const ProtectedLayout = () => {
         >
           <Outlet />
         </div>
-        <Navbar />
+      
+        <Navbar/>
       </Card>
     </BackgroundGradientAnimation>
   );

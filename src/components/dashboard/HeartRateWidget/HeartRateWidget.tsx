@@ -224,8 +224,8 @@ export default function HeartRateWidget() {
 
 
   return (
-    <div className={styles.container} id="heart_widget">
-      <div className={styles.headings}>
+    <div className={styles.container} id="heart_widget" >
+      <div className={styles.headings+" md:p-4"}>
         <span>Heart Rate</span>
         <span className={styles.heart_rate}>{average}</span>
       </div>

@@ -4,5 +4,21 @@
   border-radius: 16px;
   flex-grow: 1;
   flex-basis: 1;
-  aspect-ratio: 1;
+  background-image: url("https://cdn.builder.io/api/v1/image/assets/TEMP/81ad1a591383edb1ca6cf6aaba225e6ad2a5d5b1c01773640e89c9f4766e3fd5?apiKey=2471e6abba594059a1b1e2ce6032627e&");
+  background-size: cover;
+  background-repeat: no-repeat;
+ 
+  width: 90vw;
+  max-width: 600px;
+  min-height: 180px;
+  max-height: 180px;
+  min-width: 320px;
+}
+
+
+@media (min-width: 600px) {
+  /* Apply only when screen size is larger than 600px */
+  .sleep-widget {
+    width: 600px; /* Set width to 600px on larger screens */
+  }
 }

@@ -210,7 +210,7 @@ export default function StepsWidget() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.headings}>
+      <div className={styles.headings + " md:font-semibold md:p-4"}>
         <span>Steps</span>
         <span className={styles.heart_rate}>{total}</span>
       </div>

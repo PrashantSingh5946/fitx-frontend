@@ -10,7 +10,7 @@ export default function (props: props) {
     <>
       <Link
         to={props.href}
-        className="w-full h-full flex justify-center items-center"
+        className="w-auto h-full flex justify-center items-center"
       >
         <svg
           width="30"

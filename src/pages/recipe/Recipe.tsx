@@ -90,7 +90,7 @@ export default function () {
           />
 
           <Button
-            className="justify-center items-center px-16 py-5 text-base font-bold w-[190px] leading-6 text-white"
+            className="justify-center items-center w-[100%] px-16 py-5 text-base font-bold md:w-[190px] leading-6 text-white"
             style={{
               background:
                 "linear-gradient(274.42deg, rgb(255 52 48) 0%, rgb(109 182 255) 124.45%)",
@@ -140,7 +140,7 @@ export default function () {
                       </Card>
                       <Card className="bg-transparent shadow-none flex flex-row overflow-x gap-5 flex-wrap justify-center sm:justify-start mt-1">
                         {
-                          availableRecipes?.map((recipe:RecipeType) => 
+                          availableRecipes?.splice(0,5).map((recipe:RecipeType) => 
                           <Link key={recipe._id}  to={`/recipe/${recipe._id}/show`}>
                              <RecipePreviewCard recipe={recipe} />
                           </Link>

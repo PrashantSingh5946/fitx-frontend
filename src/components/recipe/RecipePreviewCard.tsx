@@ -9,16 +9,14 @@ export default function ({recipe}: {recipe: Recipe}) {
     <>
       <Card
         isPressable
-        className="p-4 flex flex-col gap-1 justify-center items-center bg-transparent aspect-square"
+        className="p-4 flex flex-col gap-1 justify-center w-[160px] md:w-[200px] items-center bg-transparent aspect-square"
         style={{
           background:
             "linear-gradient(274.42deg, rgb(197 139 242 / 20%) 0%, rgb(238 164 206 / 20%) 124.45%)",
-          width: "150px",
-          height: "150px",
         }}
       >
         {/* //Food logo */}
-        <div className={styles["svg-container"]}>
+        <div className={ "w-[60%]" + " "+styles["svg-container"]}>
           {" "}
           <Pancake />{" "}
         </div>

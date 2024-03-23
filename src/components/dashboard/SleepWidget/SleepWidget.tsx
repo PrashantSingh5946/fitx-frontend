@@ -44,15 +44,25 @@ export default function SleepTracker() {
   }, [accessToken]);
 
   return (
+    <div style={{
+      backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets/TEMP/81ad1a591383edb1ca6cf6aaba225e6ad2a5d5b1c01773640e89c9f4766e3fd5?apiKey=2471e6abba594059a1b1e2ce6032627e&')",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+    }}>
+
+   
     <div
-      className="flex flex-col justify-center font-medium h-[180px] rounded-lg aspect-square"
+      className="flex flex-col w-[90vw] justify-center font-medium min-w-[320px] h-[180px] md:w-[600px] rounded-lg "
       style={{
         background:
           "linear-gradient(274.42deg, #92a4fd3f 0%, #9dceff3f 124.45%)",
+          overflow: "hidden",
+          
+        
       }}
     >
-      <div className="flex overflow-hidden relative flex-col p-4 w-full">
-        <div className="relative text-xs leading-5 text-white">Sleep</div>
+      <div className="flex overflow-hidden relative flex-col p-4 pt-4 md:p-8 w-full bg-black/20 w-[100%] h-[100%] dark" >
+        <div className="relative md:font-semibold leading-5 text-white">Sleep</div>
         <div
           className="relative mt-3 text-lg leading-5 bg-clip-text bg-black/80 text-white "
           style={{ zIndex: 11, color: "#92a3fd" }}
@@ -75,13 +85,9 @@ export default function SleepTracker() {
             ""
           )}
         </div>
-        <img
-          loading="lazy"
-          style={{ zIndex: 10 }}
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/81ad1a591383edb1ca6cf6aaba225e6ad2a5d5b1c01773640e89c9f4766e3fd5?apiKey=2471e6abba594059a1b1e2ce6032627e&"
-          className="self-center mt-3 aspect-[1.41] w-[110px]"
-        />
+       
       </div>
+    </div>
     </div>
   );
 }

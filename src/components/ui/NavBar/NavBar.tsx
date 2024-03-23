@@ -20,7 +20,7 @@ export default function () {
         radius="sm"
         aria-label="Tabs radius"
         selectedKey={path}
-        className="rounded-sm"
+        className="rounded-sm md:hidden"
         classNames={{
           tabList:
             "gap-6 w-full relative rounded-none p-0 border-b border-divider h-30 p-2 rounded-sm flex p-1 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-100 rounded-large mx-2 z-20 dark",

@@ -87,19 +87,19 @@ export default function Profile() {
         <Card className="bg-transparent content-center flex flex-row justify-center items-center gap-4 p-4 mt-4 bg-neutral-600/40  max-w-[315px] w-[315px]">
 
 
-          <Card className="bg-transparent content-center bg-neutral-600/40 h-[60px] p-4">
-            <div className="text-white text-sm"  style={{color:"#92a3fd"}}>60kg</div>
-            <span className="text-white text-xs"> Weight </span>
+          <Card className="bg-transparent flex items-center justify-center bg-neutral-600/40 h-[60px] p-4 w-[80px]">
+            <div className="text-white text-sm"  style={{color:"#92a3fd"}}>170cm</div>
+            <span className="text-white text-xs"> Height </span>
           </Card>
       
-          <Card className="bg-transparent content-center bg-neutral-600/40 h-[60px] p-4">
+          <Card className="bg-transparent justify-center items-center bg-neutral-600/40 h-[60px] p-4 w-[80px]">
             <div className="text-white text-sm"  style={{color:"#92a3fd"}}>60kg</div>
             <span className="text-white text-xs"> Weight </span>
           </Card>
 
-          <Card className="bg-transparent content-center bg-neutral-600/40 h-[60px] p-4">
-            <div className="text-white text-sm"  style={{color:"#92a3fd"}}>60kg</div>
-            <span className="text-white text-xs"> Weight </span>
+          <Card className="bg-transparent justify-center  items-center  bg-neutral-600/40 h-[60px] p-4 w-[80px]">
+            <div className="text-white text-sm"  style={{color:"#92a3fd"}}>24yr</div>
+            <span className="text-white text-xs"> Age </span>
           </Card>
 
         </Card>
@@ -225,7 +225,13 @@ export default function Profile() {
           </div>
         </div>
 
-        <div>
+        
+
+       
+      </div>
+
+     
+      <div>
           <Button
             className="m-5"
             onClick={() => {
@@ -235,7 +241,7 @@ export default function Profile() {
             Logout
           </Button>
         </div>
-      </div>
+      
 
     </div>
   );

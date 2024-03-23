@@ -2,13 +2,18 @@
   min-width: 320px;
   width: 90vw;
   height: 180px;
-  background: linear-gradient(274.42deg, #da840d 0%, #f12711 124.45%);
+  background: linear-gradient(274.42deg, #92a4fd1b 0%, #384b5d3c 124.45%);
   /* blue-shadow */
-  box-shadow: 0px 10px 22px rgba(149, 173, 254, 0.3);
+  /* box-shadow: 0px 10px 22px rgba(149, 173, 254, 0.3); */
   border-radius: 20px;
   position: relative;
   color: white;
-  padding: 20px;
+  padding: 30px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
 
 }
 
