@@ -26,6 +26,8 @@ import {
   Recipe,
   setCurrentRecipe,
 } from "../../app/features/recipe/recipeSlice";
+
+import { Carousel } from "@material-tailwind/react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 export default function () {
@@ -76,7 +78,21 @@ export default function () {
   let nav = useNavigate();
   let dispatch = useAppDispatch();
 
-  
+  const dietFacts = [
+    "Spicy foods containing capsaicin can boost metabolism temporarily.",
+    "Green tea consumption may support weight loss due to its catechin antioxidants.",
+    "Protein-rich foods help increase satiety and reduce overall calorie intake.",
+    "Fiber-rich foods promote feelings of fullness and aid in weight management.",
+    "Drinking water before meals can help control appetite and calorie intake.",
+    "Sufficient sleep is crucial for managing hunger hormones and reducing cravings.",
+    "Mindful eating can prevent overeating and promote healthier habits.",
+    "Meal prepping helps in making better food choices and avoiding unhealthy options.",
+    "Healthy fats like avocados and nuts improve satiety and support weight loss.",
+    "A balanced diet consisting of various food groups is essential for long-term weight management and overall health."
+  ];
+
+
+
 
   function GenerateRecipe() {
     let data = {
@@ -135,7 +151,7 @@ export default function () {
           dietary_restrictions: dietary_restrictions,
         };
 
-       submitData(recipe);
+        submitData(recipe);
       })
       .catch((error) => {
         console.log(error);
@@ -212,7 +228,31 @@ export default function () {
         </>
       )}
 
-      {isLoading && <Spinner className="h-[450px]" size="lg" />}
+
+      {isLoading && (
+
+<div className="flex flex-col item-center justify-center gap-5 min-h-[40vh]">
+
+    <Spinner color="danger" size="lg"/>
+
+        <Carousel navigation={({ setActiveIndex, activeIndex, length }) => { }} placeholder={<></>} transition={{ type: "tween", duration: 0.5 }} className="rounded-xl max-w-[100%] overflow-hidden" autoplay >
+
+          {
+
+            dietFacts.map((fact, index) =>
+
+              <Card key={index} className="bg-transparent text-white shadow-none min-h-[10vh]  flex item-center justify-center">
+
+              
+                <div className="text-white text-center mt-4">{fact}</div>
+
+              </Card>
+            )
+          }
+        </Carousel>
+
+        </div>
+      )}
 
       {data.length != 0 && (
         <div className="overflow-y bg-transparent">
