@@ -20,7 +20,7 @@ export default function BMIWidget() {
     <div className={styles.widget}>
       <div className={styles["col-1"]}>
         <h3 className="text bold">BMI (Body Mass Index)</h3>
-        <p className="xs">You have a normal weight</p>
+        <p className="text-xs">You have a normal weight</p>
         {/* <button>View More</button> */}
       </div>
       <div className={styles["col-1"]}>
