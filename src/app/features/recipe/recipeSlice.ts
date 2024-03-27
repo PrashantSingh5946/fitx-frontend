@@ -9,18 +9,12 @@ export interface Recipe {
   ingredients: string[];
   description: string;
   instructions: string[];
-  macros_per_100g: MacroPer100g;
+  macros_per_100g: number[];
   calories: number;
   dietary_restrictions: DietaryRestriction;
   allergy_warning: string;
 }
 
-export interface MacroPer100g {
-  carbs: number;
-  protein: number;
-  fats: number;
-  fibre: number;
-}
 
 const initialState: { currentRecipe: Recipe | null } = {
   currentRecipe: null,

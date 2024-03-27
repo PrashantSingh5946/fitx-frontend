@@ -22,20 +22,48 @@ import { useAppSelector } from "../../app/hooks";
 import { Recipe as RecipeType} from "../../app/features/recipe/recipeSlice";
 import AllRecipeFetcher from "../../lib/AllRecipeFetcher";
 import { Link } from "react-router-dom";
+import RecipeSearch from "../../lib/RecipeSearch";
 
 export default function () {
 
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const email = useAppSelector((state) => state.auth.email);
+  const token = useAppSelector((state) => state.auth.credential);
+
+  const [searchContent, setSearchContent] = useState<string>("");
+
+  const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  const handleSearch = (value: string) => {
+    setSearchContent(value);
+    if (typingTimeout) {
+      clearTimeout(typingTimeout);
+    }
+
+    setTypingTimeout(
+      setTimeout(() => {
+        if(token)
+        {
+
+          RecipeSearch(value, token).then((data): void => { if(data) { setAvailableRecipes(data) }});
+
+        }
+     
+      }, 500)
+    );
+  };
+  
+
+
 
   const [availableRecipes, setAvailableRecipes] = useState<RecipeType[] | null>(null);
 
   useEffect(()=> {
 
-    if(email)
+    if(email && token)
     {
-      AllRecipeFetcher(email).then((data): void => {
+      AllRecipeFetcher(email, token).then((data): void => {
         if(data)
         {
           console.log(data);
@@ -52,6 +80,9 @@ export default function () {
     }
   
   },[])
+
+
+
 
 
   return (
@@ -90,6 +121,8 @@ export default function () {
             placeholder="Type to search..."
             size="lg"
             type="search"
+            value={searchContent}
+            onValueChange={(e) => handleSearch(e)}
             startContent={<FaSearch />}
           />
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Recipe } from "../app/features/recipe/recipeSlice";
 
-export default async (recipeId: string, userEmail: string): Promise<Recipe | undefined> => {
+export default async (recipeId: string, userEmail: string, accessToken:string): Promise<Recipe | undefined> => {
     try {
         const config = {
             method: "get",
@@ -11,6 +11,7 @@ export default async (recipeId: string, userEmail: string): Promise<Recipe | und
             headers: {
                 "Content-Type": "application/json",
                 user_email: userEmail,
+                "Authorization": "Bearer " + accessToken,
             },
         };
         const { data }:{data:Recipe} = await axios(config);

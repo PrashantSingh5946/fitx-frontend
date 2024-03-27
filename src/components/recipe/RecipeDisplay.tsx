@@ -73,6 +73,7 @@ const Step: React.FC<StepProps> = ({
 const RecipeDetails: React.FC = () => {
   
   const recipeId = useParams<{ recipeId: string }>().recipeId;
+  const token = useAppSelector((state) => state.auth.credential);
 
 
   console.log(recipeId);
@@ -85,9 +86,9 @@ const RecipeDetails: React.FC = () => {
 
   React.useEffect(() => {
 
-    if(recipeId && email)
+    if(recipeId && email && token)
     {
-      RecipeFetcher(recipeId, email).then((data) => {
+      RecipeFetcher(recipeId, email, token).then((data) => {
       
         if(data)
         {
@@ -143,6 +144,21 @@ const RecipeDetails: React.FC = () => {
               style={{  flexWrap: "wrap" }}
             >
               <div
+                className="flex gap-1.5 p-2.5 rounded-xl bg-[linear-gradient(175deg,#b4b5b72b_0%,#3F4E5E36_124.45%)]"
+                style={{
+                  maxWidth: "120px",
+                  height: "40px",
+                  padding: "10px",
+                }}
+              >
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/db418b6295552dbe19f4724b6d2d6eca6d1089d85a4f484e5939c3c3b1b19f94?apiKey=2471e6abba594059a1b1e2ce6032627e&"
+                  alt="Fibre"
+                  className="shrink-0 self-end mt-9 aspect-[0.76] w-[18px]"
+                />
+                <div>{recipe?.macros_per_100g[0]}g Carbs</div>
+              </div>
+              <div
                 className="flex gap-1.5 whitespace-nowrap rounded-xl  bg-[linear-gradient(175deg,#b4b5b72b_0%,#3F4E5E36_124.45%)]"
                 style={{
                   maxWidth: "120px",
@@ -170,7 +186,7 @@ const RecipeDetails: React.FC = () => {
                   alt="Fats"
                   className="shrink-0 aspect-square w-[18px]"
                 />
-                <div>{recipe?.macros_per_100g.fats}g fats</div>
+                <div>{recipe?.macros_per_100g[2]}g fats</div>
               </div>
               <div
                 className="flex gap-1.5 p-2.5 rounded-xl  bg-[linear-gradient(175deg,#b4b5b72b_0%,#3F4E5E36_124.45%)]"
@@ -185,7 +201,7 @@ const RecipeDetails: React.FC = () => {
                   alt="Proteins"
                   className="shrink-0 aspect-square w-[18px]"
                 />
-                <div>{recipe?.macros_per_100g.protein}g proteins</div>
+                <div>{recipe?.macros_per_100g[1] }g proteins</div>
               </div>
 
               <div
@@ -201,7 +217,7 @@ const RecipeDetails: React.FC = () => {
                   alt="Fibre"
                   className="shrink-0 self-end mt-9 aspect-[0.76] w-[18px]"
                 />
-                <div>{recipe?.macros_per_100g.fibre}g Fibre</div>
+                <div>{recipe?.macros_per_100g[3]}g Fibre</div>
               </div>
             </div>
           </div>

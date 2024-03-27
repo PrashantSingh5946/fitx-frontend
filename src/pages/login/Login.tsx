@@ -142,7 +142,8 @@ export default function () {
           password,
         });
 
-        const decodedCredential = decodeLoginCredential(response.data.credential);
+        const credential = response.data.credential;
+        const decodedCredential = decodeLoginCredential(credential);
 
         console.log(decodedCredential)
 
@@ -153,7 +154,7 @@ export default function () {
           firstName: decodedCredential.firstName,
           lastName: decodedCredential.lastName,
           picture: "",
-          credential: "",
+          credential: credential,
           accessToken: decodedCredential.accessToken,
           refreshToken: decodedCredential.refreshToken,
         };

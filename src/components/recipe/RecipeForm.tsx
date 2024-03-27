@@ -78,6 +78,8 @@ export default function () {
   let nav = useNavigate();
   let dispatch = useAppDispatch();
 
+  const token = useAppSelector((state) => state.auth.credential);
+
   const dietFacts = [
     "Spicy foods containing capsaicin can boost metabolism temporarily.",
     "Green tea consumption may support weight loss due to its catechin antioxidants.",
@@ -111,6 +113,7 @@ export default function () {
       headers: {
         "Content-Type": "application/json",
         'user_email': email,
+        'Authorization': 'Bearer ' + token,
       },
       data: payload,
     };
