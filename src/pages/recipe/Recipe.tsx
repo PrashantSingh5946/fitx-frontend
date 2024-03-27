@@ -38,13 +38,17 @@ export default function () {
       AllRecipeFetcher(email).then((data): void => {
         if(data)
         {
+          console.log(data);
           setAvailableRecipes(data);
         }
-
-        console.log("All recipes",data);
        
       }
       );
+    }
+
+    else
+    {
+      console.log("Email not found");
     }
   
   },[])
@@ -132,15 +136,14 @@ export default function () {
         </Modal>
 
         <div className="overflow-y scroll">
-
-
+          
                     <div>
                       <Card className="bg-transparent shadow-none text-white text-large pb-2 mb-0 mt-5">
-                        Recommendation for Diet
+                        Popular recipes
                       </Card>
                       <Card className="bg-transparent shadow-none flex flex-row overflow-x gap-5 flex-wrap justify-center sm:justify-start mt-1">
                         {
-                          availableRecipes?.splice(0,5).map((recipe:RecipeType) => 
+                          availableRecipes?.map((recipe:RecipeType) => 
                           <Link key={recipe._id}  to={`/recipe/${recipe._id}/show`}>
                              <RecipePreviewCard recipe={recipe} />
                           </Link>

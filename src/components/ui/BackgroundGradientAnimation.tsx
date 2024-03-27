@@ -120,6 +120,7 @@ export const BackgroundGradientAnimation = ({
         "h-screen w-screen relative overflow-hidden top-0 left-0",
         containerClassName
       )}
+     
     >
       <svg className="hidden">
         <defs>

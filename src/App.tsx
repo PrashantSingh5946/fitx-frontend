@@ -14,30 +14,33 @@ import {
   Route,
 } from "react-router-dom";
 import Home from "./pages/homepage/Home";
+import { BackgroundGradientAnimation } from "./components/ui/BackgroundGradientAnimation";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
+    <BackgroundGradientAnimation>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-        <Route path="/" element={<ProtectedLayout />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/activity" element={<Activity />} />
+          <Route path="/" element={<ProtectedLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/activity" element={<Activity />} />
 
-          <Route path="/recipe" element={<Recipe />} />
-          <Route path="/recipe/:recipeId/show" element={<RecipeDetails/>} />
-       
+            <Route path="/recipe" element={<Recipe />} />
+            <Route path="/recipe/:recipeId/show" element={<RecipeDetails />} />
 
-          <Route path="/profile" element={<Profile />} />
-        </Route>
 
-        <Route path="/terms-of-service" element={<TermsOfService />} />
-        <Route path="/privacy-policy" element={<TermsOfService />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
 
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/privacy-policy" element={<TermsOfService />} />
+
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </BackgroundGradientAnimation>
   );
 }
 

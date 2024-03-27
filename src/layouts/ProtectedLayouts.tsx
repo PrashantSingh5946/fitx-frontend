@@ -17,7 +17,7 @@ export const ProtectedLayout = () => {
   }, [isLoggedIn]);
 
   return (
-    <BackgroundGradientAnimation>
+  
 
 
       <Card className="bg-transparent z-10 h-screen w-screen flex flex-col md:flex-row md:items-center md:gap-12 md:p-6">
@@ -32,6 +32,5 @@ export const ProtectedLayout = () => {
       
         <Navbar/>
       </Card>
-    </BackgroundGradientAnimation>
   );
 };
