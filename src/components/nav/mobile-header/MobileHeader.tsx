@@ -50,7 +50,7 @@ export default function MobileHeader() {
   return (
     <Card
         style={{ background: "none" }}
-        className=" mt-2 my-5 flex justify-center items-center p-4"
+        className=" mt-2 my-5 flex justify-center items-center p-4 min-h-[100px]"
       >
         <div className="flex gap-5 justify-between w-full leading-[150%] max-w-[315px]">
           <div className="flex gap-4 dark">

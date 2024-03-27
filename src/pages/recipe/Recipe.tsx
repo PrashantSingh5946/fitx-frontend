@@ -87,7 +87,7 @@ export default function () {
 
   return (
     <div
-      className="flex flex-col gap-2 mt-5 items-center rounded-[40px] py-5 px-2"
+      className="flex flex-col gap-2 mt-5 items-center rounded-[40px] py-5 px-2 md:max-h-[80vh] overflow-y-hidden"
       style={{
         background:
           "linear-gradient(274.42deg, rgb(96 106 153 / 20%) 0%, rgba(49, 69, 88, 0.82) 124.45%)",
@@ -100,7 +100,7 @@ export default function () {
 
       </div>
       <div
-        className="p-2 mt-2  flex flex-col gap-5 bg-transparent p-4 rounded-large m-2 "
+        className="p-2 mt-2  flex flex-col gap-5 bg-transparent p-4 rounded-large m-2  overflow-y-scroll"
         style={{
           height: "inherit",
           // overflowY: "scroll",
@@ -168,9 +168,9 @@ export default function () {
           </ModalContent>
         </Modal>
 
-        <div className="overflow-y scroll">
+        <div >
           
-                    <div>
+                    <div >
                       <Card className="bg-transparent shadow-none text-white text-large pb-2 mb-0 mt-5">
                         Popular recipes
                       </Card>

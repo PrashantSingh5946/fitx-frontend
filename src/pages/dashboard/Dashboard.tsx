@@ -7,7 +7,7 @@ import HeartRateWidget from "../../components/dashboard/HeartRateWidget/HeartRat
 import StepsWidget from "../../components/dashboard/StepsWidget/StepsWidget";
 import WaterIntakeTracker from "../../components/dashboard/WaterIntakeWidget.tsx";
 import SleepTracker from "../../components/dashboard/SleepWidget/SleepWidget";
-import { Card, User } from "@nextui-org/react";
+import { Card, ScrollShadow, User } from "@nextui-org/react";
 export default function Dashboard() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -15,7 +15,7 @@ export default function Dashboard() {
 
   return (
     <div
-      className="flex flex-col items-center pt-10 mx-auto w-full  bg-black rounded-[40px] pb-5 mt-5"
+      className="flex flex-col items-center pt-10 mx-auto w-full  bg-black rounded-[40px] pb-5 mt-5 md:max-h-[80vh] overflow-y-hidden"
       style={{
         background:
           "linear-gradient(274.42deg, rgba(96, 106, 153, 0.2) 0%, rgba(49, 69, 88, 0.82) 124.45%)",
@@ -23,24 +23,29 @@ export default function Dashboard() {
     >
 
       {/* Convert this to a responsive tailwind layout */}
-      <MobileHeader/>
 
 
-      <div className="flex flex-row gap-4 flex-wrap justify-center content-center p-4">
 
-    
-      <BMIWidget />
+      <MobileHeader />
+
+      <ScrollShadow>
+      <div className="flex flex-row gap-4 flex-wrap justify-center content-center p-4 ">
       
 
-    
-      {/* <TargetsWidget /> */}
-      <HeartRateWidget />
-      <StepsWidget />
-      {/* <WaterIntakeTracker /> */}
-      <SleepTracker />
-      </div>
+          <BMIWidget />
 
-    
+
+
+          {/* <TargetsWidget /> */}
+          <HeartRateWidget />
+          <StepsWidget />
+          {/* <WaterIntakeTracker /> */}
+          <SleepTracker />
+
+      
+      </div>
+      </ScrollShadow>
+
     </div>
   );
 }
