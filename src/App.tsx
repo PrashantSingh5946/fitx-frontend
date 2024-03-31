@@ -18,7 +18,9 @@ import { BackgroundGradientAnimation } from "./components/ui/BackgroundGradientA
 
 function App() {
   return (
-    <BackgroundGradientAnimation>
+    <div className="" style={{zIndex:20, position:"relative"}}>
+
+   
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -40,7 +42,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
-    </BackgroundGradientAnimation>
+      </div>
   );
 }
 

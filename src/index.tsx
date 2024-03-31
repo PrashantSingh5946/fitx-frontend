@@ -9,6 +9,7 @@ import { persistor, store } from "./app/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { NextUIProvider } from "@nextui-org/react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { BackgroundGradientAnimation } from "./components/ui/BackgroundGradientAnimation";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,7 +20,10 @@ root.render(
       <GoogleOAuthProvider clientId="172252521427-lc61p26ecqbpp0pnqiso8is1jbrt4s2g.apps.googleusercontent.com">
         <NextUIProvider>
           <PersistGate loading={null} persistor={persistor}>
-            <App />
+
+            <BackgroundGradientAnimation>
+              <App/>
+            </BackgroundGradientAnimation>
           </PersistGate>
         </NextUIProvider>
       </GoogleOAuthProvider>

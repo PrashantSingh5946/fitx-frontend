@@ -100,7 +100,7 @@ export default function () {
 
       </div>
       <div
-        className="p-2 mt-2  flex flex-col gap-5 bg-transparent p-4 rounded-large m-2  overflow-y-scroll"
+        className="p-2 mt-2  flex flex-col gap-5 bg-transparent p-4 rounded-large m-2"
         style={{
           height: "inherit",
           // overflowY: "scroll",
