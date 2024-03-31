@@ -98,6 +98,7 @@ export default function StepsWidget() {
       },
     },
     xaxis: {
+      type: "numeric",
       axisBorder: {
         show: false,
       },

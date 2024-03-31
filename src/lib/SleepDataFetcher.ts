@@ -62,7 +62,7 @@ export default async function (
     // bucketByTime: {
     //   durationMillis: 300000,
     // },
-    startTimeMillis: new Date().getTime() - 2 * 24 * 60 * 60 * 1000,
+    startTimeMillis: new Date().getTime() - 1 * 24 * 60 * 60 * 1000,
     endTimeMillis: new Date().getTime(),
   });
 

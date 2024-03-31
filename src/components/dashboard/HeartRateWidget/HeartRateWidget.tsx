@@ -98,6 +98,10 @@ export default function HeartRateWidget() {
       toolbar: {
         show: false,
       },
+      animations: {
+        enabled: true
+      },
+      
     },
     grid: {
       show: false,
@@ -118,13 +122,11 @@ export default function HeartRateWidget() {
       },
     },
     xaxis: {
+      type: "datetime",
       axisBorder: {
         show: false,
       },
-      labels: {
-        format: "HH/mm",
-        show: false,
-      },
+     
       axisTicks: {
         show: false,
       },
@@ -199,6 +201,7 @@ export default function HeartRateWidget() {
         ],
       },
     },
+    
   };
 
   const series = [
