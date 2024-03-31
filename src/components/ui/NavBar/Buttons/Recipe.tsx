@@ -3,14 +3,12 @@ import { Link } from "react-router-dom";
 
 interface props {
   fillColor: string;
-  href: string;
 }
 
 export default function (props: props) {
   return (
     <>
-      <Link
-        to={props.href}
+      <div
         className="w-auto h-full flex justify-center items-center"
       >
         <div className="flex justify-center items-center w-full h-full flex justify-center items-center">
@@ -19,7 +17,7 @@ export default function (props: props) {
             color={props.fillColor}
           />
         </div>
-      </Link>
+      </div>
     </>
   );
 }

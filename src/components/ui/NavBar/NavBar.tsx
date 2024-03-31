@@ -24,7 +24,7 @@ export default function () {
         classNames={{
           tabList:
             "gap-6 w-full relative rounded-none p-0 border-b border-divider h-30 p-2 rounded-sm flex p-1 h-fit gap-2 items-center flex-nowrap overflow-x-scroll scrollbar-hide bg-default-100 rounded-large mx-2 z-20 dark",
-          tab: "max-w p-4 h-20 flex align-center justify-center ",
+          tab: "max-w  h-20 flex align-center justify-center ",
           tabContent: "w-full h-full flex justify-center items-center",
           base: "w-screen h-20 mb-4 mt-2",
         }}
@@ -34,50 +34,48 @@ export default function () {
           key="/dashboard"
           className="flex items-center"
           title={
-            <HomeButton
-              href="/dashboard"
-              fillColor={path.includes("dashboard") ? fillColor : "white"}
-            />
+            <Link to={"/dashboard"} className="w-[100%] h-[100%] items-center content-center">
+              <HomeButton
+              
+                fillColor={path.includes("dashboard") ? fillColor : "white"}
+              />
+            </Link>
           }
         />
         <Tab
           key="/activity"
           className="flex items-center"
           title={
-            <ActivityButton
-              href="/activity"
-              fillColor={path.includes("activity") ? fillColor : "white"}
-            />
+            <Link to={"/activity"} className="w-[100%] h-[100%] items-center content-center">
+              <ActivityButton
+               
+                fillColor={path.includes("activity") ? fillColor : "white"}
+              />
+            </Link>
           }
         />
-        {/* <Tab
-          key="/search"
-          className="flex items-center"
-          title={
-            <SearchButton
-              href="/search"
-              fillColor={path.includes("search") ? fillColor : "white"}
-            />
-          }
-        /> */}
         <Tab
           key="/recipe"
           className="flex items-center"
           title={
-            <Recipe
-              href="/recipe"
-              fillColor={path.includes("recipe") ? fillColor : "white"}
-            />
+            <Link to={"/recipe"} className="w-[100%] h-[100%] items-center content-center">
+              <Recipe
+               
+                fillColor={path.includes("recipe") ? fillColor : "white"}
+              />
+            </Link>
           }
         />
         <Tab
           key="/profile"
           className="flex items-center"
           title={
-            <ProfileButton
-              href="/profile"
-              fillColor={path.includes("profile") ? fillColor : "white"}
-            />
+            <Link to={"/profile"} className="w-[100%] h-[100%] items-center content-center">
+              <ProfileButton
+               
+                fillColor={path.includes("profile") ? fillColor : "white"}
+              />
+            </Link>
           }
         />{" "}
       </Tabs>

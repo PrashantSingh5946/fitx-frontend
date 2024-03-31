@@ -2,14 +2,13 @@ import { Link } from "react-router-dom";
 
 interface props {
   fillColor: string;
-  href: string;
 }
 
 export default function (props: props) {
   return (
     <>
-      <Link
-        to={props.href}
+      <div
+        
         className="w-auto h-full flex justify-center items-center"
       >
         <svg
@@ -38,7 +37,7 @@ export default function (props: props) {
             strokeLinejoin="round"
           />
         </svg>
-      </Link>
+      </div>
     </>
   );
 }

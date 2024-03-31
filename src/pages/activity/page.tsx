@@ -93,7 +93,7 @@ const ActivityTrackerApp: React.FC = () => (
     </Card>
 
 
-    <div className="flex flex-col gap-4 overflow-hidden  md:hover:overflow-scroll">
+    <div className="flex flex-col gap-4 overflow-hidden  md:hover:overflow-y-scroll">
       <div
         className="flex gap-4 p-5 w-full"
         style={{
