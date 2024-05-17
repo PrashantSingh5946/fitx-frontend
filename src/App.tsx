@@ -6,6 +6,7 @@ import Login from "./pages/login/Login";
 import Recipe from "./pages/recipe/Recipe";
 import RecipeDetails from "./components/recipe/RecipeDisplay";
 import TermsOfService from "./pages/legal/TermsOfService";
+import Goals from "./pages/goals/page"
 
 import {
   BrowserRouter,
@@ -15,6 +16,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/homepage/Home";
 import { BackgroundGradientAnimation } from "./components/ui/BackgroundGradientAnimation";
+import TasksManager from "./pages/tasks/page";
 
 function App() {
   return (
@@ -28,6 +30,9 @@ function App() {
           <Route path="/" element={<ProtectedLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/activity" element={<Activity />} />
+
+            <Route path="/goals" element={<Goals/>}/>
+            <Route path="/tasks" element={<TasksManager/>}/>
 
             <Route path="/recipe" element={<Recipe />} />
             <Route path="/recipe/:recipeId/show" element={<RecipeDetails />} />

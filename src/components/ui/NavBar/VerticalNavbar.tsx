@@ -42,7 +42,7 @@ export default function () {
                             <Link to="/dashboard" className="w-[100%] h-[100%] items-center content-center">
 
                                 <Card className="p-2 align-start p-2 bg-transparent shadow-none w-100 content-center items-center gap-4 flex flex-row">  <HomeButton
-                                    
+
                                     fillColor={path.includes("dashboard") ? fillColor : "white"}
                                 /> Dashboard</Card>
                             </Link>
@@ -59,11 +59,11 @@ export default function () {
                         <>
                             <Link to="/activity" className="w-[100%] h-[100%] items-center content-center">
 
-                                <Card className="p-2 align-start bg-transparent shadow-none w-100 content-center items-center gap-4 flex flex-row">  
-                                <ActivityButton
-                                    
-                                    fillColor={path.includes("activity") ? fillColor : "white"}
-                                /> Activity</Card>
+                                <Card className="p-2 align-start bg-transparent shadow-none w-100 content-center items-center gap-4 flex flex-row">
+                                    <ActivityButton
+
+                                        fillColor={path.includes("activity") ? fillColor : "white"}
+                                    /> Activity</Card>
 
                             </Link>
 
@@ -71,29 +71,37 @@ export default function () {
 
                     }
                 />
-                {/* <Tab
-          key="/search"
-          className="flex items-center"
-          title={
-            <SearchButton
-              href="/search"
-              fillColor={path.includes("search") ? fillColor : "white"}
-            />
-          }
-        /> */}
+                <Tab
+                    key="/goals"
+                    className="flex items-center"
+                    title={
+                        <>
+                            <Link to="/goals" className="w-[100%] h-[100%] items-center content-center">
 
-            <Tab
+                                <Card className="p-2 align-start p-2 bg-transparent shadow-none w-100 content-center items-center gap-4 flex flex-row">
+                                    <Recipe
+
+                                        fillColor={path.includes("recipe") ? fillColor : "white"}
+                                    /> Goals</Card>
+
+                            </Link>
+
+                        </>
+                    }
+                />
+
+                <Tab
                     key="/recipe"
                     className="flex items-center"
                     title={
                         <>
                             <Link to="/recipe" className="w-[100%] h-[100%] items-center content-center">
 
-                                <Card className="p-2 align-start p-2 bg-transparent shadow-none w-100 content-center items-center gap-4 flex flex-row">  
-                                <Recipe
-                                    
-                                    fillColor={path.includes("recipe") ? fillColor : "white"}
-                                /> Recipe</Card>
+                                <Card className="p-2 align-start p-2 bg-transparent shadow-none w-100 content-center items-center gap-4 flex flex-row">
+                                    <Recipe
+
+                                        fillColor={path.includes("recipe") ? fillColor : "white"}
+                                    /> Recipe</Card>
 
                             </Link>
 
@@ -102,19 +110,19 @@ export default function () {
                     }
                 />
 
-              
-<Tab
+
+                <Tab
                     key="/profile"
                     className="flex items-center"
                     title={
                         <>
                             <Link to="/profile" className="w-[100%] h-[100%] items-center content-center">
 
-                                <Card className="p-2 align-start p-2 bg-transparent shadow-none w-100 content-center items-center gap-4 flex flex-row">  
-                                <ProfileButton
-                                    
-                                    fillColor={path.includes("profile") ? fillColor : "white"}
-                                /> Profile</Card>
+                                <Card className="p-2 align-start p-2 bg-transparent shadow-none w-100 content-center items-center gap-4 flex flex-row">
+                                    <ProfileButton
+
+                                        fillColor={path.includes("profile") ? fillColor : "white"}
+                                    /> Profile</Card>
 
                             </Link>
 
@@ -122,7 +130,7 @@ export default function () {
 
                     }
                 />
-               
+
             </Tabs>
         </>
     );
