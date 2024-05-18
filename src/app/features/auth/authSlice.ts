@@ -12,6 +12,7 @@ interface AuthState {
   credential?: string;
   accessToken?: string;
   refreshToken?: string;
+  goals?: string[];
 }
 
 // Define the initial state using that type
@@ -25,6 +26,7 @@ const initialState: AuthState = {
   credential: "",
   accessToken: "",
   refreshToken: "",
+  goals: [],
 };
 
 export const authSlice = createSlice({
@@ -34,13 +36,25 @@ export const authSlice = createSlice({
   reducers: {
     // Use the PayloadAction type to declare the contents of `action.payload`
     login: (state, action: PayloadAction<AuthState>) => {
-      console.log(action.payload);
-      console.log({ ...state, ...action.payload });
-      return { ...state, ...action.payload };
+      const goals = action.payload.goals;
+      const prevGoals = state.goals;
+
+      let newGoals: string[] = [];
+
+      if (goals && prevGoals) {
+        newGoals = [...goals];
+      } else if (goals) {
+        newGoals = [...goals];
+      } else if (prevGoals) {
+        newGoals = [...prevGoals];
+      }
+
+      console.log("New Goals", newGoals);
+
+      return { ...state, ...action.payload, goals: [...newGoals] };
     },
 
     logout: () => {
-
       localStorage.removeItem("persist:root");
       return { ...initialState };
     },

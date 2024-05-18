@@ -8,6 +8,8 @@ import { Tabs, Tab } from "@nextui-org/tabs";
 import { Link, useLocation } from "react-router-dom";
 import Recipe from "./Buttons/Recipe";
 import { Card } from "@nextui-org/react";
+import Activity from "./Buttons/Activity";
+import Goals from "./Buttons/Goals";
 
 export default function () {
     let fillColor = "#fb3f3fd4";
@@ -79,9 +81,9 @@ export default function () {
                             <Link to="/goals" className="w-[100%] h-[100%] items-center content-center">
 
                                 <Card className="p-2 align-start p-2 bg-transparent shadow-none w-100 content-center items-center gap-4 flex flex-row">
-                                    <Recipe
+                                    <Goals
 
-                                        fillColor={path.includes("recipe") ? fillColor : "white"}
+                                        fillColor={path.includes("goals") ? fillColor : "white"}
                                     /> Goals</Card>
 
                             </Link>

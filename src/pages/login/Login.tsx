@@ -26,13 +26,14 @@ export default function () {
     refreshToken: "",
   });
 
-  const [loginCredential, setLoginCredential] = useState<{ email: string, password: string }>({ email: "", password: "" });
-
+  const [loginCredential, setLoginCredential] = useState<{
+    email: string;
+    password: string;
+  }>({ email: "", password: "" });
 
   const dispatch = useAppDispatch();
 
   let API_URL = process.env.REACT_APP_API_URL;
-
 
   const googleAuthorise = useGoogleLogin({
     flow: "auth-code",
@@ -87,6 +88,7 @@ export default function () {
           credential: loginCredential,
           accessToken: "",
           refreshToken: "",
+          goals: [...decodedCredential.goals],
         };
 
         setPayload(payload);
@@ -96,9 +98,7 @@ export default function () {
         //Check if the user is already registered
 
         fetchUserExists(loginCredential).then((response) => {
-
           if (response.data) {
-
             console.log("User exists");
             if (response.data.accessToken) {
               //User is registered
@@ -106,18 +106,12 @@ export default function () {
               payload.accessToken = response.data.accessToken;
               payload.refreshToken = response.data.refreshToken;
               dispatch(login(payload));
-            }
-            else if (response.data.shouldAuthorise) {
+            } else if (response.data.shouldAuthorise) {
               googleAuthorise();
             }
-
           } else {
-
           }
         });
-
-
-
       }
     } catch (err) {
       console.log(err);
@@ -126,65 +120,57 @@ export default function () {
 
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   const redirect = useNavigate();
-  
-  const currentAuthState = useAppSelector((state) => state.auth);
 
+  const currentAuthState = useAppSelector((state) => state.auth);
 
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
+  const startLogin = async (email: string, password: string) => {
+    try {
+      const response = await axios.post(`${API_URL}/auth/login`, {
+        email,
+        password,
+      });
 
-    const startLogin = async (email: string, password: string) => {
-      try {
-        const response = await axios.post(`${API_URL}/auth/login`, {
-          email,
-          password,
-        });
+      const credential = response.data.credential;
+      const decodedCredential = decodeLoginCredential(credential);
 
-        const credential = response.data.credential;
-        const decodedCredential = decodeLoginCredential(credential);
+      console.log(decodedCredential);
 
-        console.log(decodedCredential)
+      const payload = {
+        isLoggedIn: true,
+        email: decodedCredential.email,
+        emailVerified: decodedCredential.email_verified,
+        firstName: decodedCredential.firstName,
+        lastName: decodedCredential.lastName,
+        picture: "",
+        credential: credential,
+        accessToken: decodedCredential.accessToken,
+        refreshToken: decodedCredential.refreshToken,
+        goals: decodedCredential.goals,
+      };
 
-        const payload = {
-          isLoggedIn: true,
-          email: decodedCredential.email,
-          emailVerified: decodedCredential.email_verified,
-          firstName: decodedCredential.firstName,
-          lastName: decodedCredential.lastName,
-          picture: "",
-          credential: credential,
-          accessToken: decodedCredential.accessToken,
-          refreshToken: decodedCredential.refreshToken,
-        };
+      fetchGoogleProfilePicture(decodedCredential.access_token).then(
+        (picture) => {
+          dispatch(login({ ...currentAuthState, picture: picture }));
+        }
+      );
+      // setPayload({
+      //   ...payload,
+      //   picture,
+      // });
 
-
-        
-        fetchGoogleProfilePicture(decodedCredential.access_token).then
-        (
-          (picture) => {
-           dispatch(login({...currentAuthState, picture: picture}))
-          }
-        )
-        // setPayload({
-        //   ...payload,
-        //   picture,
-        // });
-        
-        dispatch(
-          login({
-            ...payload,
-          })
-        );
-
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  
-
-
+      dispatch(
+        login({
+          ...payload,
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -192,12 +178,9 @@ export default function () {
     }
   }, [isLoggedIn]);
 
-
   return (
     <Card className="w-[100vw] h-[100vh] flex justify-center items-center bg-transparent z-10">
-
       <Card className="w-[400px] h-[400px] flex justify-center items-center bg-neutral-600/40 gap-5">
-
         <div>
           <GoogleLogin
             onSuccess={(credentialResponse) => {
@@ -213,7 +196,6 @@ export default function () {
 
         <hr className="w-[90%] border-1 border-neutral-500/50" />
         <div className="w-[90%] dark shadow-none flex justify-center items-center">
-
           <Card className="bg-transparent flex flex-col p-2 gap-3 w-[100%] shadow-none justify-center items-center">
             <Input
               isClearable
@@ -222,7 +204,12 @@ export default function () {
               variant="bordered"
               placeholder="Enter your email"
               value={loginCredential.email}
-              onChange={(e) => {setLoginCredential({...loginCredential, email: e.target.value})}}
+              onChange={(e) => {
+                setLoginCredential({
+                  ...loginCredential,
+                  email: e.target.value,
+                });
+              }}
               onClear={() => console.log("input cleared")}
               className="max-w-xs"
             />
@@ -231,11 +218,14 @@ export default function () {
               label="Password"
               variant="bordered"
               placeholder="Enter your password"
-
               // ...
 
               endContent={
-                <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                <button
+                  className="focus:outline-none"
+                  type="button"
+                  onClick={toggleVisibility}
+                >
                   {isVisible ? (
                     <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
                   ) : (
@@ -245,14 +235,18 @@ export default function () {
               }
               type={isVisible ? "text" : "password"}
               className="max-w-xs"
-              onChange={(e) => {setLoginCredential({...loginCredential, password: e.target.value})}}
+              onChange={(e) => {
+                setLoginCredential({
+                  ...loginCredential,
+                  password: e.target.value,
+                });
+              }}
             />
             <Button
-             className="max-w-xs mt-5"
+              className="max-w-xs mt-5"
               onClick={() => {
-                  startLogin(loginCredential.email, loginCredential.password);
+                startLogin(loginCredential.email, loginCredential.password);
               }}
-
               style={{
                 background:
                   "linear-gradient(274.42deg, rgb(255 52 48) 0%, rgb(109 182 255) 124.45%)",
@@ -262,11 +256,7 @@ export default function () {
             </Button>
           </Card>
         </div>
-
       </Card>
-
     </Card>
-
-
   );
 }

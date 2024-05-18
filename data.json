@@ -1,0 +1,106 @@
+[
+    {
+        "id": 1,
+        "name": "Lose 3kg of fat",
+        "tasks": [
+            {
+                "id": "10",
+                "activity_type": "Cycling",
+                "time": 20,
+                "goal_id": 1
+            },
+            {
+                "id": "11",
+                "activity_type": "Walking",
+                "time": 25,
+                "goal_id": 1
+            },
+            {
+                "id": "12",
+                "activity_type": "Trekking",
+                "time": 17,
+                "goal_id": 1
+            }
+        ],
+        "minTime": 30,
+        "maxTime": 60
+    },
+    {
+        "id": 2,
+        "name": "Increase Muscle Strength and Endurance",
+        "tasks": [
+            {
+                "id": "1",
+                "activity_type": "Weightlifting",
+                "time": 30,
+                "goal_id": 2
+            },
+            {
+                "id": "2",
+                "activity_type": "Bodyweight Exercises",
+                "time": 20,
+                "goal_id": 2
+            },
+            {
+                "id": "3",
+                "activity_type": "Cardio",
+                "time": 25,
+                "goal_id": 2
+            }
+        ],
+        "minTime": 60,
+        "maxTime": 90
+    },
+    {
+        "id": 3,
+        "name": "Boost Stamina and Endurance",
+        "tasks": [
+            {
+                "id": "4",
+                "activity_type": "Running",
+                "time": 35,
+                "goal_id": 3
+            },
+            {
+                " id": "5",
+                "activity_type": "Cycling",
+                "time": 25,
+                "goal_id": 3
+            },
+            {
+                "id": "6",
+                "activity_type": "Swimming",
+                "time": 20,
+                "goal_id": 3
+            }
+        ],
+        "minTime": 60,
+        "maxTime": 90
+    },
+    {
+        "id": 4,
+        "name": "Enhance Muscle Tone and Definition",
+        "tasks": [
+            {
+                "id": "7",
+                "activity_type": "Strength Training",
+                "time": 40,
+                "goal_id": 4
+            },
+            {
+                "id": "8",
+                "activity_type": "Pilates",
+                "time": 30,
+                "goal_id": 4
+            },
+            {
+                "id": "9",
+                "activity_type": "Yoga",
+                "time": 20,
+                "goal_id": 4
+            }
+        ],
+        "minTime": 60,
+        "maxTime": 90
+    }
+]
